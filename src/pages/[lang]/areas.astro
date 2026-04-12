@@ -1,0 +1,57 @@
+---
+import '../../styles/pages/areas.css';
+import Layout from '../../layouts/Layout.astro';
+import AreaIcon from '../../components/AreaIcon.astro';
+import areasData from '../../data/areas.json';
+import es from '../../data/es.json';
+import en from '../../data/en.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = lang === 'en' ? en : es;
+const data = areasData[lang as 'es' | 'en'];
+const heroImg = 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1600&q=80';
+---
+
+<Layout title={t["nav.areas"]} lang={lang}>
+	<div class="page-header" style={`background-image: url('${heroImg}')`}>
+		<h1>{data.title}</h1>
+		<p>{data.subtitle}</p>
+	</div>
+
+	<div class="container">
+		<div class="areas-search">
+			<input type="text" id="areaSearch" placeholder={data.searchPlaceholder} />
+		</div>
+
+		<div class="areas-grid" id="areasGrid">
+			{data.items.map((area: { id: string; title: string; icon: string; description: string }) => (
+				<a href={`/${lang}/areas/${area.id}`} class="area-card" data-title={area.title.toLowerCase()}>
+					<AreaIcon name={area.icon} />
+					<h3>{area.title}</h3>
+				</a>
+			))}
+		</div>
+	</div>
+</Layout>
+
+<script>
+	const search = document.getElementById('areaSearch') as HTMLInputElement;
+	const cards = document.querySelectorAll('.area-card');
+
+	if (search) {
+		search.addEventListener('input', () => {
+			const q = search.value.toLowerCase();
+			cards.forEach(card => {
+				const title = card.getAttribute('data-title') || '';
+				(card as HTMLElement).style.display = title.includes(q) ? '' : 'none';
+			});
+		});
+	}
+</script>

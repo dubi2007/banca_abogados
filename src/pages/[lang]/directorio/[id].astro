@@ -1,0 +1,55 @@
+---
+import '../../../styles/pages/perfil.css';
+import Layout from '../../../layouts/Layout.astro';
+import directorioData from '../../../data/directorio.json';
+
+export function getStaticPaths() {
+    const paths: any[] = [];
+    ['es', 'en'].forEach(lang => {
+        directorioData.forEach((member: any) => {
+            paths.push({
+                params: { lang, id: member.id },
+                props: { member }
+            });
+        });
+    });
+    return paths;
+}
+
+const { lang } = Astro.params;
+const { member } = Astro.props as { member: any };
+const displayRole = member.role[lang];
+const experience = member.experience[lang];
+const backLabel = lang === 'en' ? '← Back to directory' : '← Volver al directorio';
+const expLabel = lang === 'en' ? 'Experience' : 'Experiencia';
+---
+
+<Layout title={member.name} lang={lang}>
+	<div class="profile-wrapper">
+		<a href={`/${lang}/directorio`} class="back-link">{backLabel}</a>
+
+		<div class="profile-card">
+			<div class="image-col">
+				<img src={member.image} alt={member.name} />
+			</div>
+			<div class="info-col">
+				<h1>{member.name}</h1>
+				<h2 class="role">{displayRole}</h2>
+				<hr />
+
+				<div class="contact-details">
+					<p><strong>Email:</strong> <a href={`mailto:${member.email}`}>{member.email}</a></p>
+					<p><strong>Sede:</strong> <span class="capitalize">{member.location}</span></p>
+					{member.linkedin && (
+						<p><a href={member.linkedin} target="_blank" class="linkedin-link">⧉ LinkedIn</a></p>
+					)}
+				</div>
+
+				<div class="experience-section">
+					<h3>{expLabel}</h3>
+					<p>{experience}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>

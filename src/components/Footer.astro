@@ -1,0 +1,20 @@
+---
+import '../styles/components/footer.css';
+import es from '../data/es.json';
+import en from '../data/en.json';
+import SocialIcons from './SocialIcons.astro';
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = lang === 'en' ? en : es;
+---
+
+<footer class="main-footer">
+  <div class="footer-inner container">
+    <SocialIcons />
+    <hr class="footer-divider" />
+    <p>&copy; {new Date().getFullYear()} {t["footer.copyright"]}</p>
+  </div>
+</footer>

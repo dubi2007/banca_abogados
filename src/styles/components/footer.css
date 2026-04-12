@@ -1,0 +1,29 @@
+/* ============================================
+   FOOTER - Muñiz Style (dark)
+   ============================================ */
+
+.main-footer {
+    background: var(--bg-darker);
+    padding: 3rem 0 2rem;
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.footer-inner p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.82rem;
+    margin: 0;
+}
+
+.footer-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--color-gold-dark);
+    border: none;
+}

@@ -1,0 +1,608 @@
+{
+    "es": {
+        "title": "NUESTRAS ÁREAS",
+        "subtitle": "Brindamos asesoría legal especializada en diversas áreas del derecho",
+        "searchPlaceholder": "¿Buscas algún área en especial?",
+        "items": [
+            {
+                "id": "aeronautico",
+                "title": "Aeronáutico",
+                "icon": "plane",
+                "description": "Asesoría en regulación aeronáutica, permisos de operación y vuelo para la aviación comercial, así como contratos de leasing aeronáutico y seguros.",
+                "heroImage": "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1600&q=80"
+            },
+            {
+                "id": "agraria-forestal",
+                "title": "Agraria, Forestal y Recursos Hídricos",
+                "icon": "leaf",
+                "description": "Asesoría integral en regulación agraria, forestal y de recursos hídricos, incluyendo permisos, concesiones y cumplimiento ambiental.",
+                "heroImage": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+            },
+            {
+                "id": "ambiental",
+                "title": "Ambiental",
+                "icon": "globe",
+                "description": "Consultoría en normativa ambiental, evaluaciones de impacto, certificaciones y cumplimiento de estándares ambientales nacionales e internacionales.",
+                "heroImage": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80"
+            },
+            {
+                "id": "arbitraje-internacional",
+                "title": "Arbitraje Internacional",
+                "icon": "scale",
+                "description": "Representación en arbitrajes internacionales comerciales y de inversión ante las principales instituciones arbitrales del mundo.",
+                "heroImage": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1600&q=80"
+            },
+            {
+                "id": "comercio-exterior",
+                "title": "Comercio Exterior",
+                "icon": "ship",
+                "description": "Asesoría en operaciones de comercio internacional, regulación aduanera, tratados de libre comercio y resolución de controversias comerciales.",
+                "heroImage": "https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=1600&q=80"
+            },
+            {
+                "id": "competencia",
+                "title": "Competencia y Barreras Burocráticas",
+                "icon": "shield",
+                "description": "Defensa y asesoría en materia de libre competencia, prácticas anticompetitivas, control de concentraciones y eliminación de barreras burocráticas.",
+                "heroImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+            },
+            {
+                "id": "compliance",
+                "title": "Compliance",
+                "icon": "check-shield",
+                "description": "Diseño e implementación de programas de cumplimiento normativo, prevención de lavado de activos, gobierno corporativo y gestión de riesgos.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "derecho-administrativo",
+                "title": "Derecho Administrativo",
+                "icon": "building-gov",
+                "description": "Representación ante entidades del Estado, procedimientos administrativos, contrataciones públicas y defensa en procedimientos sancionadores.",
+                "heroImage": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&q=80"
+            },
+            {
+                "id": "derecho-corporativo",
+                "title": "Derecho Corporativo",
+                "icon": "briefcase",
+                "description": "Asesoramiento integral a empresas nacionales e internacionales en constitución, fusiones, adquisiciones y reestructuraciones societarias.",
+                "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80"
+            },
+            {
+                "id": "derecho-tributario",
+                "title": "Derecho Tributario",
+                "icon": "calculator",
+                "description": "Planificación fiscal, cumplimiento tributario, defensa en fiscalizaciones y procedimientos contenciosos tributarios ante SUNAT y el Tribunal Fiscal.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80"
+            },
+            {
+                "id": "digital-investments",
+                "title": "Digital Investments",
+                "icon": "chip",
+                "description": "Asesoría legal en inversiones digitales, blockchain, criptoactivos, tokenización y regulación de activos digitales.",
+                "heroImage": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1600&q=80"
+            },
+            {
+                "id": "educacion",
+                "title": "Educación",
+                "icon": "graduation",
+                "description": "Asesoría a instituciones educativas en licenciamiento, acreditación, gobierno institucional y cumplimiento de la normativa del sector educativo.",
+                "heroImage": "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1600&q=80"
+            },
+            {
+                "id": "electricidad",
+                "title": "Electricidad",
+                "icon": "bolt",
+                "description": "Regulación del sector eléctrico, generación, transmisión y distribución de energía, contratos de suministro y tarifas.",
+                "heroImage": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1600&q=80"
+            },
+            {
+                "id": "financiamiento-proyectos",
+                "title": "Financiamiento de Proyectos y Sindicaciones",
+                "icon": "bank",
+                "description": "Estructuración de financiamientos de proyectos, créditos sindicados, emisiones de bonos y financiamiento de infraestructura.",
+                "heroImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
+            },
+            {
+                "id": "fintech",
+                "title": "Fintech",
+                "icon": "mobile-pay",
+                "description": "Asesoría regulatoria para empresas fintech, plataformas de pago, crowdfunding, lending y sandbox regulatorio.",
+                "heroImage": "https://images.unsplash.com/photo-1563986768609-322da13575f2?w=1600&q=80"
+            },
+            {
+                "id": "fusiones-adquisiciones",
+                "title": "Fusiones y Adquisiciones (M&A)",
+                "icon": "handshake",
+                "description": "Asesoría integral en procesos de M&A, due diligence, negociación de contratos, autorizaciones regulatorias y reestructuraciones.",
+                "heroImage": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80"
+            },
+            {
+                "id": "infraestructura-app",
+                "title": "Infraestructura, APP y OxI",
+                "icon": "crane",
+                "description": "Asesoría en asociaciones público-privadas, obras por impuestos, licitaciones y ejecución de proyectos de infraestructura pública.",
+                "heroImage": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80"
+            },
+            {
+                "id": "inmobiliaria",
+                "title": "Inmobiliaria y Construcción",
+                "icon": "building",
+                "description": "Asesoría legal en desarrollo inmobiliario, contratos de construcción, habilitaciones urbanas, licencias y regulación del suelo.",
+                "heroImage": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80"
+            },
+            {
+                "id": "innovacion-emprendimiento",
+                "title": "Innovación y Emprendimiento",
+                "icon": "rocket",
+                "description": "Apoyo legal a startups y emprendedores en constitución, rondas de inversión, propiedad intelectual y escalamiento.",
+                "heroImage": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1600&q=80"
+            },
+            {
+                "id": "laboral",
+                "title": "Laboral y Seguridad Social",
+                "icon": "users",
+                "description": "Asesoría integral en relaciones laborales, negociaciones colectivas, seguridad social y prevención de contingencias laborales.",
+                "heroImage": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80"
+            },
+            {
+                "id": "life-sciences",
+                "title": "Life Sciences & Health Care",
+                "icon": "heartbeat",
+                "description": "Regulación farmacéutica, dispositivos médicos, ensayos clínicos, registros sanitarios y cumplimiento en el sector salud.",
+                "heroImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80"
+            },
+            {
+                "id": "litigios",
+                "title": "Litigios",
+                "icon": "gavel",
+                "description": "Representación legal ante tribunales ordinarios, arbitrales y constitucionales en materias civiles, comerciales y administrativas.",
+                "heroImage": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1600&q=80"
+            },
+            {
+                "id": "maritima-portuaria",
+                "title": "Marítima y Portuaria",
+                "icon": "anchor",
+                "description": "Derecho marítimo, regulación portuaria, contratos de transporte marítimo, seguros y resolución de disputas marítimas.",
+                "heroImage": "https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=1600&q=80"
+            },
+            {
+                "id": "mercado-capitales",
+                "title": "Mercado de Capitales y Regulación Bancaria",
+                "icon": "chart",
+                "description": "Emisiones de valores, regulación bursátil, fondos de inversión, regulación bancaria y cumplimiento financiero.",
+                "heroImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80"
+            },
+            {
+                "id": "mineria",
+                "title": "Minería y Desarrollo Sostenible",
+                "icon": "mountain",
+                "description": "Asesoría legal a empresas mineras en concesiones, permisos, fiscalización, regulación ambiental y desarrollo sostenible.",
+                "heroImage": "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=1600&q=80"
+            },
+            {
+                "id": "moda-retail",
+                "title": "Moda y Retail",
+                "icon": "tag",
+                "description": "Asesoría legal en la industria de la moda y retail, franquicias, distribución, e-commerce y protección de marcas.",
+                "heroImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+            },
+            {
+                "id": "negocios-digitales",
+                "title": "Negocios e Innovación Digital",
+                "icon": "code",
+                "description": "Asesoría en transformación digital, comercio electrónico, protección de datos, inteligencia artificial y regulación tecnológica.",
+                "heroImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80"
+            },
+            {
+                "id": "penal",
+                "title": "Penal",
+                "icon": "lock",
+                "description": "Defensa penal corporativa y personal, prevención del delito, compliance penal y representación en procesos penales complejos.",
+                "heroImage": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1600&q=80"
+            },
+            {
+                "id": "pesquera",
+                "title": "Pesquera",
+                "icon": "fish",
+                "description": "Regulación pesquera y acuícola, permisos de pesca, cuotas, sostenibilidad del recurso y contratos del sector.",
+                "heroImage": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1600&q=80"
+            },
+            {
+                "id": "petroleo-gas",
+                "title": "Petróleo y Gas",
+                "icon": "flame",
+                "description": "Asesoría en exploración y explotación de hidrocarburos, contratos de licencia, regulación energética y comercialización.",
+                "heroImage": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1600&q=80"
+            },
+            {
+                "id": "previsional",
+                "title": "Previsional",
+                "icon": "umbrella",
+                "description": "Asesoría en pensiones, AFP, ONP, seguridad social, regímenes jubilatorios y beneficios previsionales.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "procesos-seleccion",
+                "title": "Procesos de Selección",
+                "icon": "clipboard",
+                "description": "Asesoría en contrataciones con el Estado, licitaciones públicas, impugnaciones y ejecución de contratos públicos.",
+                "heroImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+            },
+            {
+                "id": "propiedad-intelectual",
+                "title": "Propiedad Intelectual",
+                "icon": "lightbulb",
+                "description": "Registro y protección de marcas, patentes, derechos de autor, nombres comerciales, denominaciones de origen y licencias.",
+                "heroImage": "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=1600&q=80"
+            },
+            {
+                "id": "publicidad-consumo",
+                "title": "Publicidad, Consumo y Privacidad",
+                "icon": "megaphone",
+                "description": "Regulación publicitaria, protección al consumidor, privacidad y protección de datos personales, GDPR y normativa local.",
+                "heroImage": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80"
+            },
+            {
+                "id": "recuperaciones",
+                "title": "Recuperaciones",
+                "icon": "refresh",
+                "description": "Gestión de cobranza judicial y extrajudicial, recuperación de activos, ejecución de garantías y reestructuración de deudas.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80"
+            },
+            {
+                "id": "reestructuracion",
+                "title": "Reestructuración Empresarial y Derecho Concursal",
+                "icon": "layers",
+                "description": "Procesos concursales, reestructuración patrimonial, liquidaciones, convenios colectivos de acreedores y reorganización empresarial.",
+                "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80"
+            },
+            {
+                "id": "regulacion-municipal",
+                "title": "Regulación Municipal y Autorizaciones",
+                "icon": "city",
+                "description": "Gestión de licencias municipales, autorizaciones de funcionamiento, habilitaciones urbanas y regulación local.",
+                "heroImage": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&q=80"
+            },
+            {
+                "id": "saneamiento-predial",
+                "title": "Saneamiento Predial y Acceso a Tierras",
+                "icon": "map",
+                "description": "Regularización de propiedad inmueble, inscripción registral, acceso a tierras, servidumbres y derechos de vía.",
+                "heroImage": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+            },
+            {
+                "id": "seguros-reaseguros",
+                "title": "Seguros & Reaseguros",
+                "icon": "shield-check",
+                "description": "Asesoría en regulación de seguros, reclamos, pólizas, reaseguros, siniestros y resolución de controversias del sector.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "telecomunicaciones",
+                "title": "Telecomunicaciones y Media",
+                "icon": "signal",
+                "description": "Regulación de telecomunicaciones, concesiones, espectro radioeléctrico, medios de comunicación y convergencia digital.",
+                "heroImage": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80"
+            },
+            {
+                "id": "transporte",
+                "title": "Transporte",
+                "icon": "truck",
+                "description": "Regulación del transporte terrestre, ferroviario y multimodal, concesiones, permisos y contratos de transporte.",
+                "heroImage": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&q=80"
+            },
+            {
+                "id": "turismo-hoteleria",
+                "title": "Turismo y Hotelería",
+                "icon": "hotel",
+                "description": "Asesoría legal al sector turismo y hotelero, licencias, regulación, contratos de gestión y franquicias hoteleras.",
+                "heroImage": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80"
+            }
+        ]
+    },
+
+
+
+    
+    "en": {
+        "title": "PRACTICE AREAS",
+        "subtitle": "We provide specialized legal advice in various areas of law",
+        "searchPlaceholder": "Looking for a specific area?",
+        "items": [
+            {
+                "id": "aeronautico",
+                "title": "Aeronautical",
+                "icon": "plane",
+                "description": "Advisory on aeronautical regulation, operating and flight permits for commercial aviation, as well as aircraft leasing and insurance contracts.",
+                "heroImage": "https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1600&q=80"
+            },
+            {
+                "id": "agraria-forestal",
+                "title": "Agricultural, Forestry & Water Resources",
+                "icon": "leaf",
+                "description": "Comprehensive advice on agricultural, forestry and water resources regulation, including permits, concessions and environmental compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+            },
+            {
+                "id": "ambiental",
+                "title": "Environmental",
+                "icon": "globe",
+                "description": "Environmental regulatory consulting, impact assessments, certifications and compliance with national and international environmental standards.",
+                "heroImage": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80"
+            },
+            {
+                "id": "arbitraje-internacional",
+                "title": "International Arbitration",
+                "icon": "scale",
+                "description": "Representation in international commercial and investment arbitrations before leading arbitral institutions worldwide.",
+                "heroImage": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1600&q=80"
+            },
+            {
+                "id": "comercio-exterior",
+                "title": "Foreign Trade",
+                "icon": "ship",
+                "description": "Advisory on international trade operations, customs regulation, free trade agreements and commercial dispute resolution.",
+                "heroImage": "https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=1600&q=80"
+            },
+            {
+                "id": "competencia",
+                "title": "Competition & Bureaucratic Barriers",
+                "icon": "shield",
+                "description": "Defense and advisory on free competition, anti-competitive practices, merger control and elimination of bureaucratic barriers.",
+                "heroImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+            },
+            {
+                "id": "compliance",
+                "title": "Compliance",
+                "icon": "check-shield",
+                "description": "Design and implementation of compliance programs, anti-money laundering prevention, corporate governance and risk management.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "derecho-administrativo",
+                "title": "Administrative Law",
+                "icon": "building-gov",
+                "description": "Representation before government entities, administrative procedures, public procurement and defense in sanctioning proceedings.",
+                "heroImage": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&q=80"
+            },
+            {
+                "id": "derecho-corporativo",
+                "title": "Corporate Law",
+                "icon": "briefcase",
+                "description": "Comprehensive corporate advisory for national and international companies in incorporation, mergers, acquisitions and restructurings.",
+                "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80"
+            },
+            {
+                "id": "derecho-tributario",
+                "title": "Tax Law",
+                "icon": "calculator",
+                "description": "Tax planning, compliance, defense in audits and contentious tax proceedings before SUNAT and the Tax Court.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80"
+            },
+            {
+                "id": "digital-investments",
+                "title": "Digital Investments",
+                "icon": "chip",
+                "description": "Legal advisory on digital investments, blockchain, crypto-assets, tokenization and regulation of digital assets.",
+                "heroImage": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1600&q=80"
+            },
+            {
+                "id": "educacion",
+                "title": "Education",
+                "icon": "graduation",
+                "description": "Advisory to educational institutions on licensing, accreditation, institutional governance and education sector compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1600&q=80"
+            },
+            {
+                "id": "electricidad",
+                "title": "Electricity",
+                "icon": "bolt",
+                "description": "Electric sector regulation, power generation, transmission and distribution, supply contracts and tariffs.",
+                "heroImage": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1600&q=80"
+            },
+            {
+                "id": "financiamiento-proyectos",
+                "title": "Project Finance & Syndications",
+                "icon": "bank",
+                "description": "Project finance structuring, syndicated loans, bond issuances and infrastructure financing.",
+                "heroImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
+            },
+            {
+                "id": "fintech",
+                "title": "Fintech",
+                "icon": "mobile-pay",
+                "description": "Regulatory advisory for fintech companies, payment platforms, crowdfunding, lending and regulatory sandbox.",
+                "heroImage": "https://images.unsplash.com/photo-1563986768609-322da13575f2?w=1600&q=80"
+            },
+            {
+                "id": "fusiones-adquisiciones",
+                "title": "Mergers & Acquisitions (M&A)",
+                "icon": "handshake",
+                "description": "Comprehensive M&A advisory, due diligence, contract negotiation, regulatory approvals and restructurings.",
+                "heroImage": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80"
+            },
+            {
+                "id": "infraestructura-app",
+                "title": "Infrastructure, PPP & Tax Works",
+                "icon": "crane",
+                "description": "Advisory on public-private partnerships, tax works, tenders and execution of public infrastructure projects.",
+                "heroImage": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80"
+            },
+            {
+                "id": "inmobiliaria",
+                "title": "Real Estate & Construction",
+                "icon": "building",
+                "description": "Legal advisory on real estate development, construction contracts, urban planning, licenses and land regulation.",
+                "heroImage": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80"
+            },
+            {
+                "id": "innovacion-emprendimiento",
+                "title": "Innovation & Entrepreneurship",
+                "icon": "rocket",
+                "description": "Legal support for startups and entrepreneurs in incorporation, funding rounds, IP and scaling.",
+                "heroImage": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1600&q=80"
+            },
+            {
+                "id": "laboral",
+                "title": "Labor & Social Security",
+                "icon": "users",
+                "description": "Comprehensive advisory on labor relations, collective bargaining, social security and labor contingency prevention.",
+                "heroImage": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80"
+            },
+            {
+                "id": "life-sciences",
+                "title": "Life Sciences & Health Care",
+                "icon": "heartbeat",
+                "description": "Pharmaceutical regulation, medical devices, clinical trials, sanitary registrations and healthcare compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80"
+            },
+            {
+                "id": "litigios",
+                "title": "Litigation",
+                "icon": "gavel",
+                "description": "Legal representation before ordinary, arbitral and constitutional courts in civil, commercial and administrative matters.",
+                "heroImage": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1600&q=80"
+            },
+            {
+                "id": "maritima-portuaria",
+                "title": "Maritime & Port",
+                "icon": "anchor",
+                "description": "Maritime law, port regulation, maritime transport contracts, insurance and maritime dispute resolution.",
+                "heroImage": "https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=1600&q=80"
+            },
+            {
+                "id": "mercado-capitales",
+                "title": "Capital Markets & Banking Regulation",
+                "icon": "chart",
+                "description": "Securities issuances, stock market regulation, investment funds, banking regulation and financial compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80"
+            },
+            {
+                "id": "mineria",
+                "title": "Mining & Sustainable Development",
+                "icon": "mountain",
+                "description": "Legal advisory to mining companies on concessions, permits, oversight, environmental regulation and sustainability.",
+                "heroImage": "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=1600&q=80"
+            },
+            {
+                "id": "moda-retail",
+                "title": "Fashion & Retail",
+                "icon": "tag",
+                "description": "Legal advisory in the fashion and retail industry, franchises, distribution, e-commerce and brand protection.",
+                "heroImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+            },
+            {
+                "id": "negocios-digitales",
+                "title": "Digital Business & Innovation",
+                "icon": "code",
+                "description": "Advisory on digital transformation, e-commerce, data protection, artificial intelligence and technology regulation.",
+                "heroImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80"
+            },
+            {
+                "id": "penal",
+                "title": "Criminal Law",
+                "icon": "lock",
+                "description": "Corporate and personal criminal defense, crime prevention, criminal compliance and representation in complex criminal proceedings.",
+                "heroImage": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1600&q=80"
+            },
+            {
+                "id": "pesquera",
+                "title": "Fishing",
+                "icon": "fish",
+                "description": "Fishery and aquaculture regulation, fishing permits, quotas, resource sustainability and sector contracts.",
+                "heroImage": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1600&q=80"
+            },
+            {
+                "id": "petroleo-gas",
+                "title": "Oil & Gas",
+                "icon": "flame",
+                "description": "Advisory on hydrocarbon exploration and exploitation, license agreements, energy regulation and commercialization.",
+                "heroImage": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1600&q=80"
+            },
+            {
+                "id": "previsional",
+                "title": "Pension & Social Security",
+                "icon": "umbrella",
+                "description": "Advisory on pensions, AFP, ONP, social security, retirement schemes and pension benefits.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "procesos-seleccion",
+                "title": "Procurement Processes",
+                "icon": "clipboard",
+                "description": "Advisory on government procurement, public tenders, challenges and execution of public contracts.",
+                "heroImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+            },
+            {
+                "id": "propiedad-intelectual",
+                "title": "Intellectual Property",
+                "icon": "lightbulb",
+                "description": "Registration and protection of trademarks, patents, copyrights, trade names, appellations of origin and licenses.",
+                "heroImage": "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=1600&q=80"
+            },
+            {
+                "id": "publicidad-consumo",
+                "title": "Advertising, Consumer & Privacy",
+                "icon": "megaphone",
+                "description": "Advertising regulation, consumer protection, privacy and personal data protection, GDPR and local regulations.",
+                "heroImage": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80"
+            },
+            {
+                "id": "recuperaciones",
+                "title": "Recoveries",
+                "icon": "refresh",
+                "description": "Judicial and extrajudicial debt collection management, asset recovery, guarantee enforcement and debt restructuring.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80"
+            },
+            {
+                "id": "reestructuracion",
+                "title": "Corporate Restructuring & Insolvency",
+                "icon": "layers",
+                "description": "Insolvency proceedings, asset restructuring, liquidations, creditor agreements and corporate reorganization.",
+                "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80"
+            },
+            {
+                "id": "regulacion-municipal",
+                "title": "Municipal Regulation & Permits",
+                "icon": "city",
+                "description": "Municipal license management, operating authorizations, urban planning and local regulation.",
+                "heroImage": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&q=80"
+            },
+            {
+                "id": "saneamiento-predial",
+                "title": "Land Title & Access",
+                "icon": "map",
+                "description": "Real property regularization, registry registration, land access, easements and right of way.",
+                "heroImage": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+            },
+            {
+                "id": "seguros-reaseguros",
+                "title": "Insurance & Reinsurance",
+                "icon": "shield-check",
+                "description": "Advisory on insurance regulation, claims, policies, reinsurance, losses and sector dispute resolution.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "telecomunicaciones",
+                "title": "Telecommunications & Media",
+                "icon": "signal",
+                "description": "Telecommunications regulation, concessions, radio spectrum, media and digital convergence.",
+                "heroImage": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80"
+            },
+            {
+                "id": "transporte",
+                "title": "Transportation",
+                "icon": "truck",
+                "description": "Land, rail and multimodal transport regulation, concessions, permits and transport contracts.",
+                "heroImage": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&q=80"
+            },
+            {
+                "id": "turismo-hoteleria",
+                "title": "Tourism & Hospitality",
+                "icon": "hotel",
+                "description": "Legal advisory to tourism and hospitality sector, licenses, regulation, management contracts and hotel franchises.",
+                "heroImage": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80"
+            }
+        ]
+    }
+}

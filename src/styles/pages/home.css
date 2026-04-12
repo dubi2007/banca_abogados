@@ -1,0 +1,240 @@
+/* ============================================
+   HOME PAGE - Premium with Parallax
+   ============================================ */
+
+/* AREAS PREVIEW */
+.home-areas {
+    padding: 6rem 0;
+    background: var(--bg-white);
+}
+
+.areas-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border-light);
+}
+
+.area-preview-card {
+    padding: 3rem 2rem;
+    border-right: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.area-preview-card:last-child {
+    border-right: none;
+}
+
+.area-preview-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-normal);
+}
+
+.area-preview-card:hover {
+    background: var(--bg-light);
+}
+
+.area-preview-card:hover::after {
+    transform: scaleX(1);
+}
+
+.area-num {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 200;
+    color: var(--border-light);
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+    transition: color var(--transition-normal);
+}
+
+.area-preview-card:hover .area-num {
+    color: var(--color-gold);
+}
+
+.area-preview-card h3 {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.view-more-link {
+    text-align: center;
+    padding: 3rem 0 0;
+}
+
+.view-more-link a {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--color-gold);
+    transition: color var(--transition-normal);
+}
+
+.view-more-link a:hover {
+    color: var(--color-gold-dark);
+}
+
+/* PARALLAX SECTIONS */
+.parallax-section {
+    position: relative;
+    padding: 10rem 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.parallax-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 2;
+}
+
+.parallax-label {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--color-gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.parallax-content h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--text-white);
+    letter-spacing: 3px;
+    margin-bottom: 1.2rem;
+}
+
+.parallax-content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+/* NOVEDADES */
+.home-novedades {
+    padding: 6rem 0;
+    background: var(--bg-white);
+}
+
+.home-novedades .carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.home-novedades .card {
+    background: var(--bg-white);
+    padding: 2rem;
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.home-novedades .card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--color-gold);
+    transition: width var(--transition-normal);
+}
+
+.home-novedades .card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.home-novedades .card:hover::before {
+    width: 100%;
+}
+
+.home-novedades .card .date {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-gold);
+    margin-bottom: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.home-novedades .card h3 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: var(--text-dark);
+}
+
+.read-more {
+    color: var(--color-gold);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.read-more:hover {
+    color: var(--color-gold-dark);
+}
+
+/* SCROLL ANIMATIONS */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* stagger */
+.area-preview-card.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.area-preview-card.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.area-preview-card.fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+.card.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.card.fade-up:nth-child(3) { transition-delay: 0.2s; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .areas-preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .area-preview-card:nth-child(2) { border-right: none; }
+    .area-preview-card:nth-child(1),
+    .area-preview-card:nth-child(2) { border-bottom: 1px solid var(--border-light); }
+}
+
+@media (max-width: 768px) {
+    .areas-preview-grid { grid-template-columns: 1fr; }
+    .area-preview-card { border-right: none; border-bottom: 1px solid var(--border-light); }
+    .area-preview-card:last-child { border-bottom: none; }
+    .parallax-section { padding: 6rem 0; background-attachment: scroll; }
+    .home-novedades .carousel { grid-template-columns: 1fr; }
+}

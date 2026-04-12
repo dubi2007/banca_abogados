@@ -1,0 +1,85 @@
+/* ============================================
+   AREAS PAGE - Grid with search + SVG icons
+   ============================================ */
+
+/* SEARCH */
+.areas-search {
+    max-width: 500px;
+    margin: 3rem auto 2.5rem;
+}
+
+.areas-search input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    transition: border-color var(--transition-normal);
+}
+
+.areas-search input::placeholder {
+    color: var(--text-muted);
+}
+
+.areas-search input:focus {
+    outline: none;
+    border-color: var(--color-gold);
+}
+
+/* GRID */
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border-light);
+    border: 1px solid var(--border-light);
+    padding-bottom: 4rem;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.area-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 1.8rem;
+    background: var(--bg-white);
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.area-card:hover {
+    background: var(--bg-light);
+}
+
+.area-card:hover .area-icon {
+    color: var(--color-gold);
+}
+
+.area-card:hover h3 {
+    color: var(--color-gold);
+}
+
+.area-card .area-icon {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: color var(--transition-normal);
+}
+
+.area-card h3 {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: var(--text-dark);
+    margin: 0;
+    transition: color var(--transition-normal);
+}
+
+@media (max-width: 768px) {
+    .areas-grid {
+        grid-template-columns: 1fr;
+    }
+}

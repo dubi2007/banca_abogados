@@ -1,0 +1,62 @@
+{
+    "es": {
+        "title": "NUESTRAS SEDES",
+        "subtitle": "Presencia estratégica para estar cerca de nuestros clientes",
+        "items": [
+            {
+                "city": "Lima",
+                "address": "Av. El Derby 254, Santiago de Surco",
+                "phone": "+51 1 612 3000",
+                "email": "lima@faynshteynlaw.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=500&fit=crop&q=80"
+            },
+            {
+                "city": "Arequipa",
+                "address": "Calle Mercaderes 228, Of. 301",
+                "phone": "+51 54 215 000",
+                "email": "arequipa@faynshteynlaw.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=800&h=500&fit=crop&q=80"
+            },
+            {
+                "city": "Trujillo",
+                "address": "Jr. Pizarro 456, Of. 502",
+                "phone": "+51 44 232 100",
+                "email": "trujillo@faynshteynlaw.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=500&fit=crop&q=80"
+            }
+        ]
+    },
+    "en": {
+        "title": "OUR OFFICES",
+        "subtitle": "Strategic presence to be close to our clients",
+        "items": [
+            {
+                "city": "Lima",
+                "address": "Av. El Derby 254, Santiago de Surco",
+                "phone": "+51 1 612 3000",
+                "email": "lima@faynshteynlaw.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "https://images.unsplash.com/photo-1531968455001-5c5272a67571?w=800&h=500&fit=crop&q=80"
+            },
+            {
+                "city": "Arequipa",
+                "address": "Calle Mercaderes 228, Of. 301",
+                "phone": "+51 54 215 000",
+                "email": "arequipa@faynshteynlaw.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=800&h=500&fit=crop&q=80"
+            },
+            {
+                "city": "Trujillo",
+                "address": "Jr. Pizarro 456, Of. 502",
+                "phone": "+51 44 232 100",
+                "email": "trujillo@faynshteynlaw.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=500&fit=crop&q=80"
+            }
+        ]
+    }
+}

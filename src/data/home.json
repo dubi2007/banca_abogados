@@ -1,0 +1,32 @@
+{
+    "hero": {
+        "es": {
+            "title": "Faynshteyn Abogados",
+            "subtitle": "Estudio Jurídico Premium"
+        },
+        "en": {
+            "title": "Faynshteyn Lawyers",
+            "subtitle": "Premium Law Firm"
+        },
+        "videoSrc": "https://www.w3schools.com/howto/rain.mp4", 
+        "videoPoster": "https://www.w3schools.com/howto/img_nature_wide.jpg"
+    },
+    "novedades_empresas": {
+        "es": {
+            "title": "Novedades para las empresas",
+            "items": [
+                {"title": "Nueva Ley General de Sociedades en Debate", "date": "10 Oct 2026"},
+                {"title": "Actualización de Políticas de Beneficios Laborales", "date": "05 Oct 2026"},
+                {"title": "Normativa sobre Datos Personales", "date": "28 Sep 2026"}
+            ]
+        },
+        "en": {
+            "title": "Corporate News & Updates",
+            "items": [
+                {"title": "New General Corporate Law in Debate", "date": "Oct 10, 2026"},
+                {"title": "Update on Employee Benefits Policies", "date": "Oct 05, 2026"},
+                {"title": "Regulations on Personal Data", "date": "Sep 28, 2026"}
+            ]
+        }
+    }
+}

@@ -1,0 +1,72 @@
+/* ============================================
+   SEDES PAGE - Muñiz Style
+   ============================================ */
+
+.sedes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    padding: var(--section-padding);
+}
+
+.sede-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    padding: 2.5rem;
+    transition: all var(--transition-normal);
+}
+
+.sede-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.sede-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--color-gold);
+}
+
+.sede-card .detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-body);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.sede-card .detail-icon {
+    flex-shrink: 0;
+    font-size: 1rem;
+    margin-top: 2px;
+}
+
+.sede-card .detail a {
+    color: var(--text-body);
+}
+
+.sede-card .detail a:hover {
+    color: var(--color-gold);
+}
+
+.sede-card .map-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--color-gold);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sede-card .map-link:hover {
+    color: var(--color-gold-dark);
+}
+
+@media (max-width: 768px) {
+    .sedes-grid { grid-template-columns: 1fr; }
+}

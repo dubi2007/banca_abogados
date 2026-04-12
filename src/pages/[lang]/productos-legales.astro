@@ -1,0 +1,38 @@
+---
+import '../../styles/pages/productos.css';
+import Layout from '../../layouts/Layout.astro';
+import productosData from '../../data/productos.json';
+import es from '../../data/es.json';
+import en from '../../data/en.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = lang === 'en' ? en : es;
+const data = productosData[lang as 'es' | 'en'];
+---
+
+<Layout title={t["nav.products"]} lang={lang}>
+	<div class="page-header">
+		<h1>{data.title}</h1>
+		<p>{data.subtitle}</p>
+	</div>
+
+	<div class="container">
+		<div class="productos-grid">
+			{data.items.map((item: { title: string; icon: string; description: string; price: string }) => (
+				<div class="producto-card">
+					<span class="icon">{item.icon}</span>
+					<h3>{item.title}</h3>
+					<p>{item.description}</p>
+					<span class="price-tag">{item.price}</span>
+				</div>
+			))}
+		</div>
+	</div>
+</Layout>

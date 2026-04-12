@@ -1,0 +1,54 @@
+---
+import '../../../styles/pages/area-detalle.css';
+import Layout from '../../../layouts/Layout.astro';
+import areasData from '../../../data/areas.json';
+import es from '../../../data/es.json';
+import en from '../../../data/en.json';
+
+export function getStaticPaths() {
+    const paths: any[] = [];
+    (['es', 'en'] as const).forEach(lang => {
+        const data = areasData[lang];
+        data.items.forEach((area: any) => {
+            paths.push({
+                params: { lang, id: area.id },
+                props: { area }
+            });
+        });
+    });
+    return paths;
+}
+
+const { lang } = Astro.params;
+const t = lang === 'en' ? en : es;
+const { area } = Astro.props as { area: any };
+const backLabel = lang === 'en' ? 'BACK' : 'REGRESAR';
+const contactLabel = lang === 'en' ? 'CONTACT US' : 'CONTÁCTENOS';
+---
+
+<Layout title={area.title} lang={lang}>
+	<section class="area-fullscreen" style={`background-image: url('${area.heroImage}')`}>
+		<div class="area-overlay"></div>
+
+		<!-- BACK BUTTON -->
+		<a href={`/${lang}/areas`} class="area-back">
+			<span class="back-line"></span>
+			{backLabel}
+		</a>
+
+		<!-- BOTTOM CONTENT -->
+		<div class="area-bottom">
+			<div class="area-text">
+				<h1>{area.title}</h1>
+				<p>{area.description}</p>
+			</div>
+
+			<div class="area-actions">
+				<a href={`/${lang}/contactenos`} class="area-contact-btn">{contactLabel}</a>
+			</div>
+		</div>
+
+		<!-- VERTICAL LINE -->
+		<div class="area-vline"></div>
+	</section>
+</Layout>

@@ -1,0 +1,134 @@
+---
+import '../../styles/pages/home.css';
+import Layout from '../../layouts/Layout.astro';
+import VideoHero from '../../components/VideoHero.astro';
+import homeData from '../../data/home.json';
+import es from '../../data/es.json';
+import en from '../../data/en.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = lang === 'en' ? en : es;
+const heroData = homeData.hero[lang as 'es' | 'en'];
+const novedadesData = homeData.novedades_empresas[lang as 'es' | 'en'];
+const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
+---
+
+<Layout title={heroData.title} lang={lang}>
+	<VideoHero
+		videoSrc={homeData.hero.videoSrc}
+		videoPoster={homeData.hero.videoPoster}
+		title={heroData.title}
+		subtitle={heroData.subtitle}
+		ctaText={ctaText}
+		ctaHref={`/${lang}/nosotros`}
+	/>
+
+	<!-- AREAS PREVIEW -->
+	<section class="home-areas">
+		<div class="container">
+			<div class="section-title">
+				<h2>{lang === 'en' ? 'PRACTICE AREAS' : 'ÁREAS DE PRÁCTICA'}</h2>
+				<p>{lang === 'en' ? 'Excellence in every specialization' : 'Excelencia en cada especialización'}</p>
+			</div>
+			<div class="areas-preview-grid">
+				<a href={`/${lang}/areas/derecho-corporativo`} class="area-preview-card">
+					<span class="area-num">01</span>
+					<h3>{lang === 'en' ? 'Corporate Law' : 'Derecho Corporativo'}</h3>
+				</a>
+				<a href={`/${lang}/areas/fusiones-adquisiciones`} class="area-preview-card">
+					<span class="area-num">02</span>
+					<h3>{lang === 'en' ? 'Mergers & Acquisitions' : 'Fusiones y Adquisiciones'}</h3>
+				</a>
+				<a href={`/${lang}/areas/litigios`} class="area-preview-card">
+					<span class="area-num">03</span>
+					<h3>{lang === 'en' ? 'Litigation' : 'Litigios'}</h3>
+				</a>
+				<a href={`/${lang}/areas/derecho-tributario`} class="area-preview-card">
+					<span class="area-num">04</span>
+					<h3>{lang === 'en' ? 'Tax Law' : 'Derecho Tributario'}</h3>
+				</a>
+			</div>
+			<div class="view-more-link">
+				<a href={`/${lang}/areas`}>{lang === 'en' ? 'VIEW ALL AREAS →' : 'VER TODAS LAS ÁREAS →'}</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- PARALLAX SECTION 1 - RECONOCIMIENTOS -->
+	<section class="parallax-section" data-parallax style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')">
+		<div class="parallax-overlay"></div>
+		<div class="parallax-content container">
+			<span class="parallax-label">{lang === 'en' ? 'THE MAIN LEGAL GUIDES CONSIDER US' : 'LAS PRINCIPALES GUÍAS LEGALES NOS CONSIDERAN'}</span>
+			<h2>{lang === 'en' ? 'LEADING FIRM IN PERU' : 'FIRMA LÍDER EN PERÚ'}</h2>
+			<p>{lang === 'en' ? 'Maintaining a high level of specialization in various areas of law' : 'Manteniendo un alto nivel de especialización en diversas áreas del derecho'}</p>
+			<a href={`/${lang}/nosotros`} class="btn-outline">{t["nav.about"]}</a>
+		</div>
+	</section>
+
+	<!-- NOVEDADES -->
+	<section class="home-novedades">
+		<div class="container">
+			<div class="section-title">
+				<h2>{novedadesData.title}</h2>
+			</div>
+			<div class="carousel">
+				{novedadesData.items.map((item: { title: string; date: string }) => (
+					<div class="card">
+						<span class="date">{item.date}</span>
+						<h3>{item.title}</h3>
+						<a href={`/${lang}/novedades`} class="read-more">→</a>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- PARALLAX SECTION 2 - CONTACTO -->
+	<section class="parallax-section" data-parallax style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80')">
+		<div class="parallax-overlay"></div>
+		<div class="parallax-content container" style="text-align:center;">
+			<span class="parallax-label">{lang === 'en' ? 'WE WANT TO HEAR FROM YOU' : 'QUEREMOS SABER DE USTED'}</span>
+			<h2>{lang === 'en' ? 'CONTACT US' : 'CONTÁCTENOS'}</h2>
+			<p>{lang === 'en' ? 'Let us know how we can help with your legal needs' : 'Permítanos saber cómo podemos ayudarle con sus necesidades legales'}</p>
+			<a href={`/${lang}/contactenos`} class="btn-outline">{t["nav.contact"]}</a>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	// PARALLAX EFFECT
+	const parallaxSections = document.querySelectorAll('[data-parallax]');
+
+	function handleParallax() {
+		parallaxSections.forEach(section => {
+			const rect = (section as HTMLElement).getBoundingClientRect();
+			const scrolled = window.scrollY;
+			const rate = (rect.top + scrolled - scrolled) * 0.3;
+			(section as HTMLElement).style.backgroundPositionY = `${rate}px`;
+		});
+	}
+
+	window.addEventListener('scroll', handleParallax, { passive: true });
+
+	// FADE-IN ON SCROLL
+	const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.area-preview-card, .card, .section-title').forEach(el => {
+		el.classList.add('fade-up');
+		observer.observe(el);
+	});
+</script>

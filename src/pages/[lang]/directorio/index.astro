@@ -1,0 +1,43 @@
+---
+import '../../../styles/pages/directorio.css';
+import Layout from '../../../layouts/Layout.astro';
+import TeamCard from '../../../components/TeamCard.astro';
+import directorioData from '../../../data/directorio.json';
+import es from '../../../data/es.json';
+import en from '../../../data/en.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = lang === 'en' ? en : es;
+const searchLabel = lang === 'en' ? 'Search by name...' : '¿Buscas a alguien en especial?';
+const catLabel = lang === 'en' ? 'Category' : 'Categoría';
+const areaLabel = lang === 'en' ? 'Area' : 'Área';
+const sedeLabel = lang === 'en' ? 'Office' : 'Sede';
+---
+
+<Layout title={t["nav.directory"]} lang={lang}>
+	<div class="page-header">
+		<h1>{t["nav.directory"]}</h1>
+	</div>
+
+	<section class="container" style="padding-top: 3rem;">
+		<div class="filters">
+			<select><option>{catLabel}</option></select>
+			<select><option>{areaLabel}</option></select>
+			<select><option>{sedeLabel}</option></select>
+			<input type="text" placeholder={searchLabel} />
+		</div>
+
+		<div class="team-grid">
+			{directorioData.map((member: any) => (
+				<TeamCard member={member} lang={lang} />
+			))}
+		</div>
+	</section>
+</Layout>

@@ -1,0 +1,46 @@
+---
+import '../styles/components/header.css';
+import es from '../data/es.json';
+import en from '../data/en.json';
+import SocialIcons from './SocialIcons.astro';
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = lang === 'en' ? en : es;
+---
+
+<header class="main-header">
+  <div class="top-bar container">
+    <SocialIcons />
+    <div class="lang-selector">
+      <a href={`/es/`} class={lang === 'es' ? 'active' : ''}>ES</a>
+      <span class="lang-separator">|</span>
+      <a href={`/en/`} class={lang === 'en' ? 'active' : ''}>EN</a>
+    </div>
+  </div>
+  <nav class="navbar container">
+    <div class="logo">
+      <a href={`/${lang}/`}>FAYNSHTEYN</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href={`/${lang}/nosotros`}>{t["nav.about"]}</a></li>
+      <li><a href={`/${lang}/areas`}>{t["nav.areas"]}</a></li>
+      <li><a href={`/${lang}/sedes`}>{t["nav.locations"]}</a></li>
+      <li><a href={`/${lang}/directorio`}>{t["nav.directory"]}</a></li>
+      <li><a href={`/${lang}/productos-legales`}>{t["nav.products"]}</a></li>
+      <li><a href={`/${lang}/novedades`}>{t["nav.news"]}</a></li>
+      <li><a href={`/${lang}/contactenos`}>{t["nav.contact"]}</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobileToggle');
+  const links = document.getElementById('navLinks');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  }
+</script>

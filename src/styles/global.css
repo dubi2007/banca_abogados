@@ -1,0 +1,239 @@
+/* ============================================
+   GLOBAL STYLES - Faynshteyn Abogados
+   Inspired by Muñiz Law design (light theme)
+   ============================================ */
+
+:root {
+    /* COLOR PALETTE */
+    --bg-white: #ffffff;
+    --bg-light: #f8f8f8;
+    --bg-dark: #1a1a1a;
+    --bg-darker: #111111;
+    --bg-card: #ffffff;
+
+    --color-gold: #C5A059;
+    --color-gold-light: #d4b574;
+    --color-gold-dark: #8A6632;
+    --color-gold-gradient: linear-gradient(135deg, #d4b574, #C5A059, #8A6632);
+
+    --color-accent: #C5A059;
+
+    --text-dark: #222222;
+    --text-body: #555555;
+    --text-muted: #888888;
+    --text-white: #ffffff;
+
+    --border-light: #e8e8e8;
+    --border-subtle: rgba(0, 0, 0, 0.06);
+
+    /* TYPOGRAPHY */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* SPACING */
+    --section-padding: 5rem 0;
+    --container-width: 1200px;
+
+    /* TRANSITIONS */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-white);
+    color: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-normal);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+/* UTILITIES */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* PAGE HEADER - shared across internal pages */
+.page-header {
+    padding: 14rem 1.5rem 6rem;
+    text-align: center;
+    background: var(--bg-dark);
+    color: var(--text-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,26,26,0.95), rgba(17,17,17,0.9));
+    z-index: 1;
+}
+
+.page-header * {
+    position: relative;
+    z-index: 2;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--color-gold);
+    z-index: 2;
+}
+
+.page-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 4px;
+    color: var(--text-white);
+    text-transform: uppercase;
+}
+
+.page-header p {
+    margin-top: 1rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* SECTION */
+.section-title {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-title h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.section-title p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* VERTICAL LINE DIVIDER (Muñiz style) */
+.v-line {
+    width: 2px;
+    height: 50px;
+    background: var(--color-gold);
+    margin: 2rem auto;
+}
+
+/* CTA BUTTON */
+.btn-outline {
+    display: inline-block;
+    padding: 0.9rem 3rem;
+    border: 1px solid var(--text-white);
+    color: var(--text-white);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all var(--transition-normal);
+}
+
+.btn-outline:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--text-white);
+}
+
+.btn-gold {
+    display: inline-block;
+    padding: 0.9rem 3rem;
+    background: var(--color-gold);
+    color: var(--text-white);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.btn-gold:hover {
+    background: var(--color-gold-dark);
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* DARK SECTION */
+.dark-section {
+    background: var(--bg-dark);
+    color: var(--text-white);
+}
+
+.dark-section h2,
+.dark-section h3 {
+    color: var(--text-white);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 8rem 1rem 3rem;
+    }
+}

@@ -1,0 +1,56 @@
+---
+interface Props {
+  name: string;
+  size?: number;
+}
+const { name, size = 28 } = Astro.props;
+
+const icons: Record<string, string> = {
+  "plane": `<path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.4-.1.9.3 1.1L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.7 5.3c.2.4.7.5 1.1.3l.5-.3c.4-.2.6-.6.5-1.1z"/>`,
+  "leaf": `<path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.7 10-10 10zM2 21c0-3 1.9-5.8 4.5-6.5"/>`,
+  "globe": `<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>`,
+  "scale": `<path d="M12 3v18M3 7l3 5h6L15 7M9 22h6"/><circle cx="12" cy="3" r="1"/>`,
+  "ship": `<path d="M2 20.4A9 9 0 0 0 12 16a9 9 0 0 0 10 4.4"/><path d="M4 18l2-4h12l2 4"/><path d="M10 14V8h4v6M12 8V4"/>`,
+  "shield": `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+  "check-shield": `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>`,
+  "building-gov": `<path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4M9 9h1M14 9h1M9 13h1M14 13h1"/>`,
+  "briefcase": `<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v.01"/>`,
+  "calculator": `<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M14 10h2M8 14h2M14 14h2M8 18h2M14 18h2"/>`,
+  "chip": `<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M20 15h2M9 2v2M9 20v2M2 9h2M20 9h2"/>`,
+  "graduation": `<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>`,
+  "bolt": `<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>`,
+  "bank": `<path d="M3 21h18M3 10h18M12 3l9 7H3z"/><path d="M5 10v8M8.5 10v8M12 10v8M15.5 10v8M19 10v8"/>`,
+  "mobile-pay": `<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 13h6M12 10v6"/>`,
+  "handshake": `<path d="M11 17a3 3 0 0 1-3-3V6l4-3 4 3v8a3 3 0 0 1-3 3"/><path d="M2 11h4M18 11h4M7 21l3-6M17 21l-3-6"/>`,
+  "crane": `<path d="M6 21V6l6-4 6 4M6 6h12M18 6v15M10 6v6M14 6v10M2 21h20"/>`,
+  "building": `<rect x="4" y="2" width="16" height="20"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01M12 6h.01M12 10h.01M12 14h.01"/>`,
+  "rocket": `<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>`,
+  "users": `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>`,
+  "heartbeat": `<path d="M19.5 12.572l-7.5 7.428-7.5-7.428A5 5 0 0 1 12 6.006a5 5 0 0 1 7.5 6.566z"/><path d="M3.5 12h3l2-4 3 8 2-4h3.5"/>`,
+  "gavel": `<path d="M14.5 2l5 5M2 22l1-1M13 6l6 6M6.5 17.5L2 22M17 2l5 5-3 3-5-5zM8 8l8 8M2 22l5.5-5.5"/>`,
+  "anchor": `<circle cx="12" cy="5" r="3"/><path d="M12 8v14M5 12H2a10 10 0 0 0 20 0h-3"/>`,
+  "chart": `<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>`,
+  "mountain": `<path d="m8 3 4 8 5-5 2 15H2L8 3z"/>`,
+  "tag": `<path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2z"/><circle cx="7.5" cy="7.5" r="1.5"/>`,
+  "code": `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
+  "lock": `<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`,
+  "fish": `<path d="M6.5 12c2 0 4-1 5.5-3 1.5 2 3.5 3 5.5 3s3.5-.5 5-1.5c-2 6-6 10-10.5 10S2.5 16.5.5 10.5C2 11.5 4.5 12 6.5 12z"/>`,
+  "flame": `<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14 0-5.5 2-7.5 1 1 2.5 3 2.5 5.5 0 2.5 1 3.5 2 3.5 2 0 3 1 3 4a6 6 0 0 1-12 0c0-1.5.5-3 1-4.5"/>`,
+  "umbrella": `<path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/>`,
+  "clipboard": `<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/>`,
+  "lightbulb": `<path d="M9 18h6M10 22h4"/><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>`,
+  "megaphone": `<path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>`,
+  "refresh": `<path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/>`,
+  "layers": `<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>`,
+  "city": `<path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>`,
+  "map": `<path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/>`,
+  "shield-check": `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>`,
+  "signal": `<path d="M2 12h2M20 12h2M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4M4.9 7.1l1.5 1.3M17.7 16.3l1.4 1.4M12 2v2M12 20v2"/><circle cx="12" cy="12" r="3"/>`,
+  "truck": `<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>`,
+  "hotel": `<path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M8 10h.01M16 10h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01"/>`
+};
+
+const svg = icons[name] || icons["briefcase"];
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="area-icon" set:html={svg} />

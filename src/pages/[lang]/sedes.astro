@@ -1,0 +1,56 @@
+---
+import '../../styles/pages/sedes.css';
+import Layout from '../../layouts/Layout.astro';
+import sedesData from '../../data/sedes.json';
+import es from '../../data/es.json';
+import en from '../../data/en.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = lang === 'en' ? en : es;
+const data = sedesData[lang as 'es' | 'en'];
+const heroImg = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80';
+---
+
+<Layout title={t["nav.locations"]} lang={lang}>
+	<div class="page-header" style={`background-image: url('${heroImg}')`}>
+		<h1>{data.title}</h1>
+		<p>{data.subtitle}</p>
+	</div>
+
+	<div class="container">
+		<div class="sedes-grid">
+			{data.items.map((sede: { city: string; address: string; phone: string; email: string; mapUrl: string; image: string }) => (
+				<div class="sede-card">
+					<div class="sede-image">
+						<img src={sede.image} alt={sede.city} loading="lazy" />
+						<div class="sede-city-label">{sede.city}</div>
+					</div>
+					<div class="sede-info">
+						<div class="detail">
+							<span class="detail-icon">📍</span>
+							<span>{sede.address}</span>
+						</div>
+						<div class="detail">
+							<span class="detail-icon">📞</span>
+							<span>{sede.phone}</span>
+						</div>
+						<div class="detail">
+							<span class="detail-icon">✉️</span>
+							<a href={`mailto:${sede.email}`}>{sede.email}</a>
+						</div>
+						<a href={sede.mapUrl} target="_blank" class="map-link">
+							{lang === 'en' ? 'VIEW ON MAP →' : 'VER EN MAPA →'}
+						</a>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</Layout>

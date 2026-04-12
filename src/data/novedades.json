@@ -1,0 +1,124 @@
+{
+    "es": {
+        "title": "NOVEDADES",
+        "tabs": {
+            "eventos": "Eventos",
+            "noticias": "Noticias",
+            "youtube": "YouTube",
+            "publicaciones": "Publicaciones"
+        },
+        "eventos": [
+            {
+                "title": "Seminario Internacional de Derecho Corporativo 2026",
+                "date": "15 Nov 2026",
+                "description": "Únase a nuestros expertos en el seminario anual sobre las últimas tendencias en derecho corporativo internacional.",
+                "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
+            },
+            {
+                "title": "Conferencia sobre Protección de Datos Personales",
+                "date": "20 Oct 2026",
+                "description": "Analizaremos los desafíos actuales en materia de privacidad y protección de datos en América Latina.",
+                "image": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80"
+            }
+        ],
+        "noticias": [
+            {
+                "title": "Faynshteyn reconocido por Chambers & Partners 2026",
+                "date": "01 Oct 2026",
+                "description": "Nuestro estudio ha sido reconocido como firma líder en múltiples áreas de práctica."
+            },
+            {
+                "title": "Nuevo socio se incorpora al área de Propiedad Intelectual",
+                "date": "15 Sep 2026",
+                "description": "Con más de 15 años de experiencia, fortalecemos nuestra práctica de PI."
+            }
+        ],
+        "youtube": [
+            {
+                "title": "Webinar: Novedades Tributarias 2026",
+                "videoId": "dQw4w9WgXcQ",
+                "date": "05 Oct 2026"
+            },
+            {
+                "title": "Entrevista: El futuro del Derecho Digital",
+                "videoId": "dQw4w9WgXcQ",
+                "date": "28 Sep 2026"
+            }
+        ],
+        "publicaciones": [
+            {
+                "title": "Guía Práctica de Compliance Empresarial",
+                "author": "Jorge Ziches",
+                "date": "Oct 2026",
+                "description": "Una guía completa sobre cumplimiento normativo para empresas en Latinoamérica."
+            },
+            {
+                "title": "Análisis de la Nueva Ley General de Sociedades",
+                "author": "María Flórez",
+                "date": "Sep 2026",
+                "description": "Estudio detallado de las principales modificaciones y su impacto empresarial."
+            }
+        ]
+    },
+    "en": {
+        "title": "NEWS",
+        "tabs": {
+            "eventos": "Events",
+            "noticias": "News",
+            "youtube": "YouTube",
+            "publicaciones": "Publications"
+        },
+        "eventos": [
+            {
+                "title": "International Corporate Law Seminar 2026",
+                "date": "Nov 15, 2026",
+                "description": "Join our experts at the annual seminar on the latest trends in international corporate law.",
+                "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
+            },
+            {
+                "title": "Data Protection Conference",
+                "date": "Oct 20, 2026",
+                "description": "We will analyze current challenges in privacy and data protection in Latin America.",
+                "image": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80"
+            }
+        ],
+        "noticias": [
+            {
+                "title": "Faynshteyn recognized by Chambers & Partners 2026",
+                "date": "Oct 01, 2026",
+                "description": "Our firm has been recognized as a leading firm in multiple practice areas."
+            },
+            {
+                "title": "New partner joins the Intellectual Property area",
+                "date": "Sep 15, 2026",
+                "description": "With over 15 years of experience, we strengthen our IP practice."
+            }
+        ],
+        "youtube": [
+            {
+                "title": "Webinar: Tax Updates 2026",
+                "videoId": "dQw4w9WgXcQ",
+                "date": "Oct 05, 2026"
+            },
+            {
+                "title": "Interview: The Future of Digital Law",
+                "videoId": "dQw4w9WgXcQ",
+                "date": "Sep 28, 2026"
+            }
+        ],
+        "publicaciones": [
+            {
+                "title": "Practical Guide to Corporate Compliance",
+                "author": "Jorge Ziches",
+                "date": "Oct 2026",
+                "description": "A comprehensive guide on regulatory compliance for companies in Latin America."
+            },
+            {
+                "title": "Analysis of the New General Corporate Law",
+                "author": "María Flórez",
+                "date": "Sep 2026",
+                "description": "Detailed study of the main modifications and their business impact."
+            }
+        ]
+    }
+}

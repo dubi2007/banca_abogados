@@ -1,0 +1,26 @@
+---
+import '../styles/components/teamcard.css';
+
+interface Props {
+  member: {
+    id: string;
+    name: string;
+    role: { [key: string]: string };
+    image: string;
+  };
+  lang: string;
+}
+
+const { member, lang } = Astro.props;
+const displayRole = member.role[lang];
+---
+
+<a href={`/${lang}/directorio/${member.id}`} class="team-card">
+  <div class="image-wrapper">
+    <img src={member.image} alt={member.name} loading="lazy" />
+  </div>
+  <div class="info">
+    <h3>{member.name}</h3>
+    <p>{displayRole}</p>
+  </div>
+</a>

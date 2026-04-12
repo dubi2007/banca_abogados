@@ -1,0 +1,56 @@
+[
+    {
+        "id": "jorge-ziches",
+        "name": "JORGE ZICHES",
+        "role": {
+            "es": "SOCIO PRINCIPAL",
+            "en": "SENIOR PARTNER"
+        },
+        "category": "socio",
+        "area": "derecho-corporativo",
+        "location": "lima",
+        "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80",
+        "email": "jziches@faynshteynlaw.com",
+        "linkedin": "https://linkedin.com",
+        "experience": {
+            "es": "Expertise en fusiones y adquisiciones (M&A). Más de 20 años asesorando compañías multinacionales.",
+            "en": "Expertise in Mergers and Acquisitions (M&A). Over 20 years advising multinational companies."
+        }
+    },
+    {
+        "id": "maria-florez",
+        "name": "MARÍA FLÓREZ",
+        "role": {
+            "es": "ASOCIADA SENIOR",
+            "en": "SENIOR ASSOCIATE"
+        },
+        "category": "asociado",
+        "area": "laboral",
+        "location": "arequipa",
+        "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+        "email": "mflorez@faynshteynlaw.com",
+        "linkedin": "https://linkedin.com",
+        "experience": {
+            "es": "Especialista en derecho laboral y seguridad social, representación en litigios laborales complejos.",
+            "en": "Specialist in labor and social security law, representing clients in complex labor litigation."
+        }
+    }, 
+    {
+        "id": "armando-cerron",
+        "name": "Armando cerron",
+        "role": {
+            "es": " ASESOR JURIDICO",
+            "en": "LEGAL ADVISOR"
+        },
+        "category": "socio",
+        "area": "derecho-corporativo",
+        "location": "lima",
+        "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80",
+        "email": "Acerron@faynshteynlaw.com",
+        "linkedin": "https://linkedin.com",
+        "experience": {
+            "es": "Expertise en fusiones y adquisiciones (M&A). Más de 20 años asesorando compañías multinacionales.",
+            "en": "Expertise in Mergers and Acquisitions (M&A). Over 20 years advising multinational companies."
+        }
+    }
+]

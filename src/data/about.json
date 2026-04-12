@@ -1,0 +1,64 @@
+{
+    "historia": {
+        "es": "Faynshteyn Abogados & Consultores es un estudio jurídico fundado con la visión de ofrecer servicios legales de excelencia, combinando el rigor académico con una profunda comprensión de las necesidades del mercado peruano e internacional. Desde nuestra fundación, hemos construido una reputación sólida basada en la confianza, la innovación y el compromiso con nuestros clientes. Nuestro equipo multidisciplinario de profesionales altamente calificados trabaja de manera coordinada para brindar soluciones legales integrales, adaptadas a los desafíos más complejos del entorno empresarial contemporáneo.",
+        "en": "Faynshteyn Abogados & Consultores is a law firm founded with the vision of providing excellent legal services, combining academic rigor with a deep understanding of the needs of the Peruvian and international market. Since our founding, we have built a solid reputation based on trust, innovation and commitment to our clients. Our multidisciplinary team of highly qualified professionals works in coordination to provide comprehensive legal solutions, adapted to the most complex challenges of the contemporary business environment."
+    },
+    "mision": {
+        "es": {
+            "title": "MISIÓN",
+            "text": "Brindar asesoría legal integral de la más alta calidad, generando valor para nuestros clientes a través de soluciones innovadoras, éticas y eficientes que contribuyan al desarrollo sostenible de sus negocios y de la sociedad."
+        },
+        "en": {
+            "title": "MISSION",
+            "text": "To provide comprehensive legal advice of the highest quality, generating value for our clients through innovative, ethical and efficient solutions that contribute to the sustainable development of their businesses and society."
+        }
+    },
+    "vision": {
+        "es": {
+            "title": "VISIÓN",
+            "text": "Ser reconocidos como el estudio de abogados líder en Perú y Latinoamérica, destacándonos por la excelencia profesional, la integridad y la capacidad de anticipar las necesidades legales del mercado global."
+        },
+        "en": {
+            "title": "VISION",
+            "text": "To be recognized as the leading law firm in Peru and Latin America, standing out for professional excellence, integrity and the ability to anticipate the legal needs of the global market."
+        }
+    },
+    "fundadora": {
+        "es": {
+            "title": "NUESTRA FUNDADORA",
+            "name": "Dra. Elena Faynshteyn",
+            "role": "Socia Fundadora & Managing Partner",
+            "bio": "Con más de 25 años de trayectoria en el ejercicio del derecho, la Dra. Elena Faynshteyn fundó el estudio con el propósito de crear una firma legal que combinara la tradición jurídica con la innovación. Graduada con honores de la Pontificia Universidad Católica del Perú y con maestría en Derecho Internacional por la Universidad de Harvard, ha sido reconocida por las principales guías legales internacionales como una de las abogadas más influyentes de la región. Su liderazgo ha sido fundamental para posicionar al estudio como referente en múltiples áreas del derecho."
+        },
+        "en": {
+            "title": "OUR FOUNDER",
+            "name": "Dr. Elena Faynshteyn",
+            "role": "Founding Partner & Managing Partner",
+            "bio": "With over 25 years of legal practice, Dr. Elena Faynshteyn founded the firm with the purpose of creating a legal practice that combines legal tradition with innovation. Graduated with honors from the Pontificia Universidad Católica del Perú and with a Master's in International Law from Harvard University, she has been recognized by leading international legal guides as one of the most influential lawyers in the region. Her leadership has been instrumental in positioning the firm as a benchmark in multiple areas of law."
+        }
+    },
+    "compromiso": {
+        "es": {
+            "title": "NUESTRO COMPROMISO CON EL PAÍS",
+            "cards": [
+                { "title": "Transparencia", "icon": "eye" },
+                { "title": "Innovación", "icon": "lightbulb" },
+                { "title": "Excelencia", "icon": "star" },
+                { "title": "Integridad", "icon": "shield" },
+                { "title": "Responsabilidad Social", "icon": "heart" },
+                { "title": "Sostenibilidad", "icon": "leaf" }
+            ]
+        },
+        "en": {
+            "title": "OUR COMMITMENT TO THE COUNTRY",
+            "cards": [
+                { "title": "Transparency", "icon": "eye" },
+                { "title": "Innovation", "icon": "lightbulb" },
+                { "title": "Excellence", "icon": "star" },
+                { "title": "Integrity", "icon": "shield" },
+                { "title": "Social Responsibility", "icon": "heart" },
+                { "title": "Sustainability", "icon": "leaf" }
+            ]
+        }
+    }
+}

@@ -1,0 +1,108 @@
+/* ============================================
+   MEMBER PROFILE PAGE - Muñiz Style
+   ============================================ */
+
+.profile-wrapper {
+    max-width: 1000px;
+    margin: 8rem auto 4rem;
+    padding: 2rem 1.5rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-gold);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.back-link:hover { color: var(--color-gold-dark); }
+
+.profile-card {
+    display: flex;
+    gap: 0;
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+}
+
+.profile-card .image-col {
+    flex: 0 0 40%;
+    background: #eee;
+}
+
+.profile-card .image-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-card .info-col {
+    flex: 1;
+    padding: 3rem;
+}
+
+.profile-card .info-col h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.profile-card .role {
+    color: var(--color-gold);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+}
+
+.profile-card hr {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin-bottom: 1.5rem;
+}
+
+.contact-details { margin-bottom: 2rem; }
+
+.contact-details p {
+    margin-bottom: 0.5rem;
+    color: var(--text-body);
+    font-size: 0.9rem;
+}
+
+.contact-details a { color: var(--color-gold); }
+.contact-details a:hover { text-decoration: underline; }
+
+.capitalize { text-transform: capitalize; }
+
+.linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-gold);
+    font-weight: 500;
+}
+
+.experience-section h3 {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+
+.experience-section p {
+    line-height: 1.8;
+    color: var(--text-body);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .profile-card { flex-direction: column; }
+    .profile-card .info-col { padding: 2rem 1.5rem; }
+}

@@ -1,0 +1,109 @@
+---
+import '../../styles/pages/novedades.css';
+import Layout from '../../layouts/Layout.astro';
+import novedadesData from '../../data/novedades.json';
+import es from '../../data/es.json';
+import en from '../../data/en.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = lang === 'en' ? en : es;
+const data = novedadesData[lang as 'es' | 'en'];
+---
+
+<Layout title={t["nav.news"]} lang={lang}>
+	<div class="page-header">
+		<h1>{data.title}</h1>
+		<div class="news-tabs">
+			<button class="active" data-tab="eventos">{data.tabs.eventos}</button>
+			<button data-tab="noticias">{data.tabs.noticias}</button>
+			<button data-tab="youtube">{data.tabs.youtube}</button>
+			<button data-tab="publicaciones">{data.tabs.publicaciones}</button>
+		</div>
+	</div>
+
+	<div class="news-content container">
+		<!-- EVENTOS -->
+		<div class="news-section active" id="tab-eventos">
+			<div class="events-grid">
+				{data.eventos.map((ev: { title: string; date: string; description: string; image: string }) => (
+					<div class="event-card">
+						<img src={ev.image} alt={ev.title} loading="lazy" />
+						<div class="event-info">
+							<span class="event-date">{ev.date}</span>
+							<h3>{ev.title}</h3>
+							<p>{ev.description}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<!-- NOTICIAS -->
+		<div class="news-section" id="tab-noticias">
+			<div class="news-list">
+				{data.noticias.map((n: { title: string; date: string; description: string }) => (
+					<div class="news-item">
+						<span class="news-date">{n.date}</span>
+						<h3>{n.title}</h3>
+						<p>{n.description}</p>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<!-- YOUTUBE -->
+		<div class="news-section" id="tab-youtube">
+			<div class="youtube-grid">
+				{data.youtube.map((yt: { title: string; videoId: string; date: string }) => (
+					<div class="youtube-card">
+						<iframe
+							src={`https://www.youtube.com/embed/${yt.videoId}`}
+							title={yt.title}
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+							allowfullscreen
+						></iframe>
+						<div class="yt-info">
+							<h3>{yt.title}</h3>
+							<span class="yt-date">{yt.date}</span>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<!-- PUBLICACIONES -->
+		<div class="news-section" id="tab-publicaciones">
+			<div class="pub-list">
+				{data.publicaciones.map((pub: { title: string; author: string; date: string; description: string }) => (
+					<div class="pub-item">
+						<h3>{pub.title}</h3>
+						<span class="pub-meta">{pub.author} · {pub.date}</span>
+						<p>{pub.description}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<script>
+	const tabs = document.querySelectorAll('.news-tabs button');
+	const sections = document.querySelectorAll('.news-section');
+
+	tabs.forEach(tab => {
+		tab.addEventListener('click', () => {
+			const target = tab.getAttribute('data-tab');
+			tabs.forEach(t => t.classList.remove('active'));
+			sections.forEach(s => s.classList.remove('active'));
+			tab.classList.add('active');
+			document.getElementById(`tab-${target}`)?.classList.add('active');
+		});
+	});
+</script>
