@@ -8,13 +8,44 @@ interface Props {
   lang: string;
 }
 const { lang } = Astro.props;
-const t = lang === 'en' ? en : es;
+const t = (lang === 'en' ? en : es) as any;
 ---
 
 <footer class="main-footer">
-  <div class="footer-inner container">
-    <SocialIcons />
+  <div class="footer-grid container">
+    <!-- COL 1: Info Empresa -->
+    <div class="footer-info">
+      <div class="logo">FAYNSHTEYN</div>
+      <p class="footer-desc">
+        {t["footer.description"]}
+      </p>
+      <SocialIcons />
+    </div>
+
+    <!-- COL 2: Navegación -->
+    <div class="footer-links">
+      <h3>{lang === 'en' ? 'NAVIGATION' : 'NAVEGACIÓN'}</h3>
+      <ul>
+        <li><a href={`/${lang}/nosotros`}>{t["nav.about"]}</a></li>
+        <li><a href={`/${lang}/areas`}>{t["nav.areas"]}</a></li>
+        <li><a href={`/${lang}/sedes`}>{t["nav.locations"]}</a></li>
+        <li><a href={`/${lang}/directorio`}>{t["nav.directory"]}</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 3: Servicios / Otros -->
+    <div class="footer-links">
+      <h3>{lang === 'en' ? 'SERVICES' : 'SERVICIOS'}</h3>
+      <ul>
+        <li><a href={`/${lang}/productos-legales`}>{t["nav.products"]}</a></li>
+        <li><a href={`/${lang}/novedades`}>{t["nav.news"]}</a></li>
+        <li><a href={`/${lang}/contactenos`}>{t["nav.contact"]}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom container">
     <hr class="footer-divider" />
-    <p>&copy; {new Date().getFullYear()} {t["footer.copyright"]}</p>
+    <p class="footer-copyright">&copy; {new Date().getFullYear()} {t["footer.copyright"]}</p>
   </div>
 </footer>

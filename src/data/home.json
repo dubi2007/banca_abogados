@@ -1,32 +1,82 @@
 {
-    "hero": {
-        "es": {
-            "title": "Faynshteyn Abogados",
-            "subtitle": ""
-        },
-        "en": {
-            "title": "Faynshteyn Lawyers",
-            "subtitle": "Premium Law Firm"
-        },
-        "videoSrc": "https://www.w3schools.com/howto/rain.mp4", 
-        "videoPoster": "https://www.w3schools.com/howto/img_nature_wide.jpg"
+  "hero": {
+    "videoSrc": "https://v.ftcdn.net/04/77/14/78/700_F_477147854_fA9x66K8XF2uG6p9Uj9z3v6v3y7jYj9Y_ST.mp4",
+    "videoPoster": "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1600&q=80",
+    "es": {
+      "title": "EXCELENCIA LEGAL SIN FRONTERAS",
+      "subtitle": "Asesoría integral para desafíos globales"
     },
-    "novedades_empresas": {
-        "es": {
-            "title": "Novedades para las empresas",
-            "items": [
-                {"title": "Nueva Ley General de Sociedades en Debate", "date": "10 Oct 2026"},
-                {"title": "Actualización de Políticas de Beneficios Laborales", "date": "05 Oct 2026"},
-                {"title": "Normativa sobre Datos Personales", "date": "28 Sep 2026"}
-            ]
-        },
-        "en": {
-            "title": "Corporate News & Updates",
-            "items": [
-                {"title": "New General Corporate Law in Debate", "date": "Oct 10, 2026"},
-                {"title": "Update on Employee Benefits Policies", "date": "Oct 05, 2026"},
-                {"title": "Regulations on Personal Data", "date": "Sep 28, 2026"}
-            ]
-        }
+    "en": {
+      "title": "LEGAL EXCELLENCE WITHOUT BORDERS",
+      "subtitle": "Comprehensive advice for global challenges"
     }
+  },
+  "stats": {
+    "es": [
+      { "label": "Años de Trayectoria", "value": "25+" },
+      { "label": "Especialistas", "value": "60+" },
+      { "label": "Casos de Éxito", "value": "1500+" },
+      { "label": "Presencia Global", "value": "10+" }
+    ],
+    "en": [
+      { "label": "Years of Experience", "value": "25+" },
+      { "label": "Specialists", "value": "60+" },
+      { "label": "Success Cases", "value": "1500+" },
+      { "label": "Global Presence", "value": "10+" }
+    ]
+  },
+  "commitment": {
+    "es": {
+      "title": "NUESTRO COMPROMISO",
+      "items": [
+        { "title": "ÉTICA PROFESIONAL", "desc": "Actuamos con la máxima integridad y transparencia en cada caso." },
+        { "title": "VISIÓN ESTRATÉGICA", "desc": "Anticipamos riesgos para proteger sus intereses a largo plazo." },
+        { "title": "RESULTADOS", "desc": "Enfoque implacable en alcanzar los objetivos de nuestros clientes." }
+      ]
+    },
+    "en": {
+      "title": "OUR COMMITMENT",
+      "items": [
+        { "title": "PROFESSIONAL ETHICS", "desc": "We act with maximum integrity and transparency in every case." },
+        { "title": "STRATEGIC VISION", "desc": "We anticipate risks to protect your interests in the long term." },
+        { "title": "RESULTS", "desc": "Relentless focus on achieving our clients' objectives." }
+      ]
+    }
+  },
+  "faqs": {
+    "es": {
+      "title": "PREGUNTAS FRECUENTES",
+      "items": [
+        { "q": "¿Cómo solicito una consulta inicial?", "a": "Puede contactarnos a través de nuestro formulario en línea, por teléfono o visitando nuestras sedes. Estaremos encantados de agendar una reunión presencial o virtual." },
+        { "q": "¿En qué áreas geográficas operan?", "a": "Contamos con presencia nacional en las principales ciudades del Perú y una red de aliados estratégicos a nivel internacional." },
+        { "q": "¿Brindan asesoría para empresas extranjeras?", "a": "Sí, nos especializamos en derecho corporativo internacional y ayudamos a empresas extranjeras a establecerse y operar legalmente en el país." }
+      ]
+    },
+    "en": {
+      "title": "FREQUENTLY ASKED QUESTIONS",
+      "items": [
+        { "q": "How do I request an initial consultation?", "a": "You can contact us through our online form, by phone, or by visiting our offices. We will be happy to schedule a face-to-face or virtual meeting." },
+        { "q": "In which geographic areas do you operate?", "a": "We have a national presence in the main cities of Peru and a network of strategic allies at an international level." },
+        { "q": "Do you provide advice for foreign companies?", "a": "Yes, we specialize in international corporate law and help foreign companies establish and operate legally in the country." }
+      ]
+    }
+  },
+  "novedades_empresas": {
+    "es": {
+      "title": "NOVEDADES Y ANÁLISIS",
+      "items": [
+        { "date": "12 MAR 2024", "title": "Nuevas regulaciones en el sector minero" },
+        { "date": "08 MAR 2024", "title": "Impacto de la reforma tributaria en empresas" },
+        { "date": "01 MAR 2024", "title": "Tendencias en arbitraje internacional" }
+      ]
+    },
+    "en": {
+      "title": "NEWS & ANALYSIS",
+      "items": [
+        { "date": "12 MAR 2024", "title": "New regulations in the mining sector" },
+        { "date": "08 MAR 2024", "title": "Impact of tax reform on companies" },
+        { "date": "01 MAR 2024", "title": "Trends in international arbitration" }
+      ]
+    }
+  }
 }

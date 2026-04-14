@@ -11,20 +11,23 @@ const { lang } = Astro.props;
 const t = lang === 'en' ? en : es;
 ---
 
-<header class="main-header">
+<header class="main-header" id="mainHeader">
   <div class="top-bar container">
     <SocialIcons />
     <div class="lang-selector">
-      <a href={`/es/`} class={lang === 'es' ? 'active' : ''}>ES</a>
+      <a href="/es/" class={lang === 'es' ? 'active' : ''}>ES</a>
       <span class="lang-separator">|</span>
-      <a href={`/en/`} class={lang === 'en' ? 'active' : ''}>EN</a>
+      <a href="/en/" class={lang === 'en' ? 'active' : ''}>EN</a>
     </div>
   </div>
   <nav class="navbar container">
     <div class="logo">
       <a href={`/${lang}/`}>FAYNSHTEYN</a>
     </div>
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
     <ul class="nav-links" id="navLinks">
       <li><a href={`/${lang}/nosotros`}>{t["nav.about"]}</a></li>
       <li><a href={`/${lang}/areas`}>{t["nav.areas"]}</a></li>
@@ -38,9 +41,31 @@ const t = lang === 'en' ? en : es;
 </header>
 
 <script>
-  const toggle = document.getElementById('mobileToggle');
-  const links = document.getElementById('navLinks');
-  if (toggle && links) {
-    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  function initHeader() {
+    const header = document.getElementById('mainHeader');
+    const toggle = document.getElementById('mobileToggle');
+    const links = document.getElementById('navLinks');
+
+    // Mobile Toggle
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+        toggle.classList.toggle('active');
+      });
+    }
+
+    // Scroll effect
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
   }
+
+  document.addEventListener('astro:page-load', initHeader);
 </script>

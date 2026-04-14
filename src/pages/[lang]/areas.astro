@@ -42,16 +42,20 @@ const heroImg = 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=
 </Layout>
 
 <script>
-	const search = document.getElementById('areaSearch') as HTMLInputElement;
-	const cards = document.querySelectorAll('.area-card');
+	function initAreas() {
+		const search = document.getElementById('areaSearch') as HTMLInputElement;
+		const cards = document.querySelectorAll('.area-card');
 
-	if (search) {
-		search.addEventListener('input', () => {
-			const q = search.value.toLowerCase();
-			cards.forEach(card => {
-				const title = card.getAttribute('data-title') || '';
-				(card as HTMLElement).style.display = title.includes(q) ? '' : 'none';
+		if (search) {
+			search.addEventListener('input', () => {
+				const q = search.value.toLowerCase();
+				cards.forEach(card => {
+					const title = card.getAttribute('data-title') || '';
+					(card as HTMLElement).style.display = title.includes(q) ? 'flex' : 'none';
+				});
 			});
-		});
+		}
 	}
+
+	document.addEventListener('astro:page-load', initAreas);
 </script>

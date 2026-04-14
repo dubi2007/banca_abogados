@@ -45,16 +45,20 @@ const { videoSrc, videoPoster, title, subtitle, ctaText, ctaHref } = Astro.props
 </section>
 
 <script>
-	const video = document.getElementById('heroVideo') as HTMLVideoElement;
-	const soundToggle = document.getElementById('soundToggle');
-	const iconMuted = document.getElementById('icon-muted');
-	const iconUnmuted = document.getElementById('icon-unmuted');
+	function initVideoHero() {
+		const video = document.getElementById('heroVideo') as HTMLVideoElement;
+		const soundToggle = document.getElementById('soundToggle');
+		const iconMuted = document.getElementById('icon-muted');
+		const iconUnmuted = document.getElementById('icon-unmuted');
 
-	if (soundToggle && video && iconMuted && iconUnmuted) {
-		soundToggle.addEventListener('click', () => {
-			video.muted = !video.muted;
-			iconMuted.style.display = video.muted ? 'block' : 'none';
-			iconUnmuted.style.display = video.muted ? 'none' : 'block';
-		});
+		if (soundToggle && video && iconMuted && iconUnmuted) {
+			soundToggle.addEventListener('click', () => {
+				video.muted = !video.muted;
+				iconMuted.style.display = video.muted ? 'block' : 'none';
+				iconUnmuted.style.display = video.muted ? 'none' : 'block';
+			});
+		}
 	}
+
+	document.addEventListener('astro:page-load', initVideoHero);
 </script>

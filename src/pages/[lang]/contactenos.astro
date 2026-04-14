@@ -1,6 +1,7 @@
 ---
 import '../../styles/pages/contactenos.css';
 import Layout from '../../layouts/Layout.astro';
+import contactData from '../../data/contact.json';
 import es from '../../data/es.json';
 import en from '../../data/en.json';
 
@@ -13,35 +14,174 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = lang === 'en' ? en : es;
-const labels = lang === 'en'
-  ? { name: 'Full Name', email: 'Email', phone: 'Phone', message: 'Message', send: 'SUBMIT' }
-  : { name: 'Nombre completo', email: 'Correo electrónico', phone: 'Teléfono', message: 'Mensaje', send: 'ENVIAR' };
+const data = contactData[lang as 'es' | 'en'];
+const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80';
 ---
 
-<Layout title={t["nav.contact"]} lang={lang}>
-	<section class="contact-hero">
-		<div class="contact-overlay"></div>
-		<div class="contact-content">
-			<h1>{t["nav.contact"]}</h1>
-			<form class="contact-form">
-				<div class="form-group">
-					<label>{labels.name}</label>
-					<input type="text" required />
+<Layout title={data.title} lang={lang}>
+	<div class="page-header" style={`background-image: url('${heroImg}')`}>
+		<h1>{data.title}</h1>
+		<p>{data.subtitle}</p>
+	</div>
+
+	<div class="contact-main-section">
+		<div class="container">
+			<div class="contact-grid">
+				<!-- INFO COLUMN -->
+				<div class="contact-info">
+					<div class="info-item">
+						<span class="info-label">{lang === 'en' ? 'ADDRESS' : 'DIRECCIÓN'}</span>
+						<p>{data.info.address}</p>
+					</div>
+					<div class="info-item">
+						<span class="info-label">{lang === 'en' ? 'PHONE' : 'TELÉFONO'}</span>
+						<p>{data.info.phone}</p>
+					</div>
+					<div class="info-item">
+						<span class="info-label">{lang === 'en' ? 'EMAIL' : 'CORREO'}</span>
+						<p>{data.info.email}</p>
+					</div>
+					<div class="info-item">
+						<span class="info-label">{lang === 'en' ? 'HOURS' : 'HORARIO'}</span>
+						<p>{data.info.hours}</p>
+					</div>
 				</div>
-				<div class="form-group">
-					<label>{labels.email}</label>
-					<input type="email" required />
+
+				<!-- FORM COLUMN -->
+				<div class="contact-form-wrapper">
+					<form class="contact-form" id="contactForm">
+						<div class="form-row">
+							<div class="form-group">
+								<label>{data.form.name}</label>
+								<input type="text" name="name" required />
+							</div>
+							<div class="form-group">
+								<label>{data.form.email}</label>
+								<input type="email" name="email" required />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label>{data.form.phone}</label>
+								<input type="tel" name="phone" />
+							</div>
+							<div class="form-group">
+								<label>{data.form.company}</label>
+								<input type="text" name="company" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label>{data.form.service}</label>
+								<select name="service" required>
+									<option value="" disabled selected>--</option>
+									<option value="corporate">{data.form.serviceOptions.corporate}</option>
+									<option value="tax">{data.form.serviceOptions.tax}</option>
+									<option value="litigation">{data.form.serviceOptions.litigation}</option>
+									<option value="other">{data.form.serviceOptions.other}</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>{data.form.subject}</label>
+								<input type="text" name="subject" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label>{data.form.message}</label>
+							<textarea rows="6" name="message" required></textarea>
+						</div>
+						
+						<button type="submit" class="btn-gold" id="submitBtn">
+							<span class="btn-text">{data.form.submit}</span>
+						</button>
+						<div id="formStatus" class="form-status"></div>
+					</form>
 				</div>
-				<div class="form-group">
-					<label>{labels.phone}</label>
-					<input type="tel" />
-				</div>
-				<div class="form-group">
-					<label>{labels.message}</label>
-					<textarea rows="5" required></textarea>
-				</div>
-				<button type="submit" class="submit-btn">{labels.send}</button>
-			</form>
+			</div>
 		</div>
+	</div>
+
+	<!-- MAP SECTION -->
+	<section class="contact-map">
+		<iframe 
+			src={data.mapUrl} 
+			width="100%" 
+			height="500" 
+			style="border:0;" 
+			allowfullscreen="" 
+			loading="lazy" 
+			referrerpolicy="no-referrer-when-downgrade">
+		</iframe>
 	</section>
 </Layout>
+
+<script>
+	function initContact() {
+		// Animation logic
+		const observerOptions = { threshold: 0.1 };
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				}
+			});
+		}, observerOptions);
+
+		document.querySelectorAll('.info-item, .contact-form-wrapper').forEach(el => {
+			el.classList.add('fade-up');
+			observer.observe(el);
+		});
+
+		// Form logic
+		const form = document.getElementById('contactForm') as HTMLFormElement;
+		const status = document.getElementById('formStatus');
+		const btn = document.getElementById('submitBtn') as HTMLButtonElement;
+
+		if (form && status && btn) {
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				
+				btn.disabled = true;
+				status.textContent = window.location.pathname.includes('/en/') ? 'Sending...' : 'Enviando...';
+				status.className = 'form-status info';
+
+				// Convertimos FormData a un objeto JSON para el servidor
+				const formData = new FormData(form);
+				const jsonData = Object.fromEntries(formData.entries());
+
+				try {
+					const response = await fetch('/api/send-email', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(jsonData)
+					});
+
+					const result = await response.json();
+
+					if (response.ok) {
+						status.textContent = window.location.pathname.includes('/en/') 
+							? 'Message sent successfully!' 
+							: '¡Mensaje enviado con éxito!';
+						status.className = 'form-status success';
+						form.reset();
+					} else {
+						console.error('Server Error:', result);
+						throw new Error(result.error || 'Unknown error');
+					}
+				} catch (error: any) {
+					console.error('Fetch Error:', error);
+					status.textContent = window.location.pathname.includes('/en/')
+						? `Error: ${error.message}`
+						: `Error: ${error.message}`;
+					status.className = 'form-status error';
+				} finally {
+					btn.disabled = false;
+				}
+			});
+		}
+	}
+
+	document.addEventListener('astro:page-load', initContact);
+</script>

@@ -4,7 +4,7 @@
 
 /* AREAS PREVIEW */
 .home-areas {
-    padding: 6rem 0;
+    padding: var(--section-padding);
     background: var(--bg-white);
 }
 
@@ -13,14 +13,16 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
     border: 1px solid var(--border-light);
+    margin-top: 2rem;
 }
 
 .area-preview-card {
-    padding: 3rem 2rem;
+    padding: clamp(2rem, 5vw, 4rem) 2.5rem;
     border-right: 1px solid var(--border-light);
     transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
+    background: var(--bg-white);
 }
 
 .area-preview-card:last-child {
@@ -33,7 +35,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 4px;
     background: var(--color-gold);
     transform: scaleX(0);
     transform-origin: left;
@@ -42,6 +44,9 @@
 
 .area-preview-card:hover {
     background: var(--bg-light);
+    transform: translateY(-5px);
+    z-index: 2;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
 }
 
 .area-preview-card:hover::after {
@@ -50,11 +55,11 @@
 
 .area-num {
     display: block;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 200;
     color: var(--border-light);
     font-family: var(--font-heading);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     transition: color var(--transition-normal);
 }
 
@@ -64,43 +69,120 @@
 
 .area-preview-card h3 {
     font-family: var(--font-body);
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-dark);
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.4;
 }
 
 .view-more-link {
     text-align: center;
-    padding: 3rem 0 0;
+    padding: 4rem 0 0;
 }
 
 .view-more-link a {
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
     color: var(--color-gold);
-    transition: color var(--transition-normal);
+    transition: all var(--transition-normal);
+    display: inline-block;
 }
 
 .view-more-link a:hover {
     color: var(--color-gold-dark);
+    transform: translateX(5px);
+}
+
+/* STATISTICS */
+.home-stats {
+    background: var(--bg-dark);
+    padding: 5rem 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: var(--color-gold);
+    font-weight: 600;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* COMMITMENT */
+.home-commitment {
+    padding: var(--section-padding);
+    background: var(--bg-white);
+}
+
+.commitment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.commitment-item {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+}
+
+.commitment-item:hover {
+    border-color: var(--color-gold);
+    background: var(--bg-light);
+    transform: translateY(-5px);
+}
+
+.commitment-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.commitment-item p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
 }
 
 /* PARALLAX SECTIONS */
 .parallax-section {
     position: relative;
-    padding: 10rem 0;
+    padding: clamp(6rem, 15vh, 12rem) 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    overflow: hidden;
 }
 
 .parallax-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.65));
 }
 
 .parallax-content {
@@ -110,102 +192,198 @@
 
 .parallax-label {
     display: block;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: var(--color-gold);
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
 }
 
 .parallax-content h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: var(--fs-h1);
     color: var(--text-white);
-    letter-spacing: 3px;
-    margin-bottom: 1.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
 }
 
 .parallax-content p {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 1.05rem;
-    max-width: 600px;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+    font-weight: 300;
 }
 
 /* NOVEDADES */
 .home-novedades {
-    padding: 6rem 0;
-    background: var(--bg-white);
+    padding: var(--section-padding);
+    background: var(--bg-light);
 }
 
 .home-novedades .carousel {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
 }
 
 .home-novedades .card {
     background: var(--bg-white);
-    padding: 2rem;
+    padding: 3rem 2.5rem;
     border: 1px solid var(--border-light);
     transition: all var(--transition-normal);
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .home-novedades .card::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    width: 0;
-    height: 3px;
+    width: 3px;
+    height: 0;
     background: var(--color-gold);
-    transition: width var(--transition-normal);
+    transition: height var(--transition-normal);
 }
 
 .home-novedades .card:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    transform: translateY(-8px);
+    border-color: transparent;
 }
 
 .home-novedades .card:hover::before {
-    width: 100%;
+    height: 100%;
 }
 
 .home-novedades .card .date {
     display: block;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--color-gold);
-    margin-bottom: 0.8rem;
-    letter-spacing: 1.5px;
+    margin-bottom: 1.2rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .home-novedades .card h3 {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 500;
-    margin-bottom: 1rem;
-    line-height: 1.5;
+    margin-bottom: 2rem;
+    line-height: 1.6;
     color: var(--text-dark);
+    flex-grow: 1;
 }
 
 .read-more {
     color: var(--color-gold);
-    font-weight: 600;
-    font-size: 1.2rem;
+    font-weight: 700;
+    font-size: 1.4rem;
+    transition: transform var(--transition-normal);
+    display: inline-block;
+    width: fit-content;
 }
 
-.read-more:hover {
-    color: var(--color-gold-dark);
+.home-novedades .card:hover .read-more {
+    transform: translateX(10px);
+}
+
+/* FAQ */
+.home-faq {
+    padding: var(--section-padding);
+    background: var(--bg-light);
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    margin-bottom: 1rem;
+    transition: all var(--transition-normal);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: left;
+}
+
+.faq-question .icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.faq-question .icon::before,
+.faq-question .icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2px;
+    background: var(--color-gold);
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.faq-question .icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-item.active .faq-question .icon::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.faq-item.active {
+    border-color: var(--color-gold);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+}
+
+.faq-answer p {
+    padding: 0 2rem 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
 }
 
 /* SCROLL ANIMATIONS */
 .fade-up {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-up.visible {
@@ -218,11 +396,11 @@
 .area-preview-card.fade-up:nth-child(3) { transition-delay: 0.2s; }
 .area-preview-card.fade-up:nth-child(4) { transition-delay: 0.3s; }
 
-.card.fade-up:nth-child(2) { transition-delay: 0.1s; }
-.card.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.card.fade-up:nth-child(2) { transition-delay: 0.15s; }
+.card.fade-up:nth-child(3) { transition-delay: 0.3s; }
 
 /* RESPONSIVE */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .areas-preview-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -231,10 +409,17 @@
     .area-preview-card:nth-child(2) { border-bottom: 1px solid var(--border-light); }
 }
 
+@media (max-width: 900px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+    .commitment-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
 @media (max-width: 768px) {
     .areas-preview-grid { grid-template-columns: 1fr; }
     .area-preview-card { border-right: none; border-bottom: 1px solid var(--border-light); }
     .area-preview-card:last-child { border-bottom: none; }
     .parallax-section { padding: 6rem 0; background-attachment: scroll; }
     .home-novedades .carousel { grid-template-columns: 1fr; }
+    .parallax-content p { font-size: 1.05rem; }
+    .stats-grid { grid-template-columns: 1fr; }
 }

@@ -61,6 +61,20 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 		</div>
 	</section>
 
+	<!-- STATISTICS SECTION -->
+	<section class="home-stats">
+		<div class="container">
+			<div class="stats-grid">
+				{homeData.stats[lang as 'es' | 'en'].map((stat: { label: string; value: string }) => (
+					<div class="stat-item">
+						<span class="stat-value">{stat.value}</span>
+						<span class="stat-label">{stat.label}</span>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
 	<!-- PARALLAX SECTION 1 - RECONOCIMIENTOS -->
 	<section class="parallax-section" data-parallax style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')">
 		<div class="parallax-overlay"></div>
@@ -69,6 +83,23 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 			<h2>{lang === 'en' ? 'LEADING FIRM IN PERU' : 'FIRMA LÍDER EN PERÚ'}</h2>
 			<p>{lang === 'en' ? 'Maintaining a high level of specialization in various areas of law' : 'Manteniendo un alto nivel de especialización en diversas áreas del derecho'}</p>
 			<a href={`/${lang}/nosotros`} class="btn-outline">{t["nav.about"]}</a>
+		</div>
+	</section>
+
+	<!-- COMMITMENT SECTION -->
+	<section class="home-commitment">
+		<div class="container">
+			<div class="section-title">
+				<h2>{homeData.commitment[lang as 'es' | 'en'].title}</h2>
+			</div>
+			<div class="commitment-grid">
+				{homeData.commitment[lang as 'es' | 'en'].items.map((item: { title: string; desc: string }) => (
+					<div class="commitment-item">
+						<h3>{item.title}</h3>
+						<p>{item.desc}</p>
+					</div>
+				))}
+			</div>
 		</div>
 	</section>
 
@@ -90,6 +121,28 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 		</div>
 	</section>
 
+	<!-- FAQ SECTION -->
+	<section class="home-faq">
+		<div class="container">
+			<div class="section-title">
+				<h2>{homeData.faqs[lang as 'es' | 'en'].title}</h2>
+			</div>
+			<div class="faq-accordion">
+				{homeData.faqs[lang as 'es' | 'en'].items.map((item: { q: string; a: string }) => (
+					<div class="faq-item">
+						<button class="faq-question">
+							{item.q}
+							<span class="icon"></span>
+						</button>
+						<div class="faq-answer">
+							<p>{item.a}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
 	<!-- PARALLAX SECTION 2 - CONTACTO -->
 	<section class="parallax-section" data-parallax style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80')">
 		<div class="parallax-overlay"></div>
@@ -103,32 +156,61 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 </Layout>
 
 <script>
-	// PARALLAX EFFECT
-	const parallaxSections = document.querySelectorAll('[data-parallax]');
+	function initAnimations() {
+		// FAQ ACCORDION
+		const faqItems = document.querySelectorAll('.faq-item');
+		faqItems.forEach(item => {
+			const question = item.querySelector('.faq-question');
+			question?.addEventListener('click', () => {
+				const isOpen = item.classList.contains('active');
+				// Close all other items
+				faqItems.forEach(otherItem => otherItem.classList.remove('active'));
+				// Toggle current
+				if (!isOpen) item.classList.add('active');
+			});
+		});
 
-	function handleParallax() {
-		parallaxSections.forEach(section => {
-			const rect = (section as HTMLElement).getBoundingClientRect();
-			const scrolled = window.scrollY;
-			const rate = (rect.top + scrolled - scrolled) * 0.3;
-			(section as HTMLElement).style.backgroundPositionY = `${rate}px`;
+		// PARALLAX EFFECT
+		const parallaxSections = document.querySelectorAll('[data-parallax]');
+		
+		function handleParallax() {
+			parallaxSections.forEach(section => {
+				const rect = (section as HTMLElement).getBoundingClientRect();
+				const scrolled = window.scrollY;
+				// Only animate if section is in viewport
+				if (rect.top < window.innerHeight && rect.bottom > 0) {
+					const rate = (rect.top) * 0.15; // Slower, smoother rate
+					(section as HTMLElement).style.backgroundPosition = `center ${rate}px`;
+				}
+			});
+		}
+
+		if (window.innerWidth > 768) {
+			window.addEventListener('scroll', handleParallax, { passive: true });
+		}
+
+		// FADE-IN ON SCROLL
+		const observerOptions = { 
+			threshold: 0.15, 
+			rootMargin: '0px 0px -80px 0px' 
+		};
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+					// Once visible, no need to observe anymore for performance
+					observer.unobserve(entry.target);
+				}
+			});
+		}, observerOptions);
+
+		document.querySelectorAll('.area-preview-card, .card, .section-title, .parallax-content, .stat-item, .commitment-item, .faq-item').forEach(el => {
+			el.classList.add('fade-up');
+			observer.observe(el);
 		});
 	}
 
-	window.addEventListener('scroll', handleParallax, { passive: true });
-
-	// FADE-IN ON SCROLL
-	const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-	const observer = new IntersectionObserver((entries) => {
-		entries.forEach(entry => {
-			if (entry.isIntersecting) {
-				entry.target.classList.add('visible');
-			}
-		});
-	}, observerOptions);
-
-	document.querySelectorAll('.area-preview-card, .card, .section-title').forEach(el => {
-		el.classList.add('fade-up');
-		observer.observe(el);
-	});
+	// Initialize on first load and after every View Transition
+	document.addEventListener('astro:page-load', initAnimations);
 </script>

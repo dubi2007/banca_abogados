@@ -1,0 +1,58 @@
+{
+  "es": {
+    "title": "CONTÁCTENOS",
+    "subtitle": "Estamos a su disposición para atender sus consultas legales.",
+    "form": {
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "company": "Empresa (Opcional)",
+      "service": "Área de Interés",
+      "serviceOptions": {
+        "corporate": "Derecho Corporativo",
+        "tax": "Derecho Tributario",
+        "litigation": "Litigios y Arbitraje",
+        "other": "Otro"
+      },
+      "subject": "Asunto",
+      "message": "Mensaje detallado",
+      "submit": "ENVIAR MENSAJE"
+    },
+    "info": {
+      "address": "Av. Principal 123, San Isidro, Lima - Perú",
+      "phone": "+51 (01) 123-4567",
+      "email": "contacto@faynshteyn.com",
+      "hours": "Lun - Vie: 9:00 AM - 6:00 PM"
+    },
+    "recipientEmail": "Jinganaupa@gmail.com",
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.234567890123!2d-77.036!3d-12.096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8651a000001%3A0x1234567890abcdef!2sSan%20Isidro!5e0!3m2!1ses-419!2spe!4v1620000000000!5m2!1ses-419!2spe"
+  },
+  "en": {
+    "title": "CONTACT US",
+    "subtitle": "We are at your disposal to answer your legal questions.",
+    "form": {
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "company": "Company (Optional)",
+      "service": "Area of Interest",
+      "serviceOptions": {
+        "corporate": "Corporate Law",
+        "tax": "Tax Law",
+        "litigation": "Litigation & Arbitration",
+        "other": "Other"
+      },
+      "subject": "Subject",
+      "message": "Detailed message",
+      "submit": "SEND MESSAGE"
+    },
+    "info": {
+      "address": "123 Main Ave, San Isidro, Lima - Peru",
+      "phone": "+51 (01) 123-4567",
+      "email": "contact@faynshteyn.com",
+      "hours": "Mon - Fri: 9:00 AM - 6:00 PM"
+    },
+    "recipientEmail": "xxxxx@gmail.com",
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.234567890123!2d-77.036!3d-12.096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8651a000001%3A0x1234567890abcdef!2sSan%20Isidro!5e0!3m2!1ses-419!2spe!4v1620000000000!5m2!1ses-419!2spe"
+  }
+}
