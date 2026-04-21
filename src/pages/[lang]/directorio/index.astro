@@ -2,6 +2,7 @@
 import '../../../styles/pages/directorio.css';
 import Layout from '../../../layouts/Layout.astro';
 import TeamCard from '../../../components/TeamCard.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import directorioData from '../../../data/directorio.json';
 import es from '../../../data/es.json';
 import en from '../../../data/en.json';
@@ -21,6 +22,9 @@ const searchLabel = lang === 'en' ? 'Search by name...' : '¿Buscas a alguien en
 const catLabel = lang === 'en' ? 'Category' : 'Categoría';
 const areaLabel = lang === 'en' ? 'Area' : 'Área';
 const sedeLabel = lang === 'en' ? 'Office' : 'Sede';
+
+const { categories, areas, locations } = directorioData.filters;
+const members = directorioData.members;
 ---
 
 <Layout title={t["nav.directory"]} lang={lang}>
@@ -28,18 +32,66 @@ const sedeLabel = lang === 'en' ? 'Office' : 'Sede';
 		<h1>{t["nav.directory"]}</h1>
 	</div>
 
+	<Breadcrumbs lang={lang!} items={[{ label: t["nav.directory"] }]} />
+
 	<section class="container" style="padding-top: 3rem;">
 		<div class="filters">
-			<select><option>{catLabel}</option></select>
-			<select><option>{areaLabel}</option></select>
-			<select><option>{sedeLabel}</option></select>
-			<input type="text" placeholder={searchLabel} />
+			<select id="categoryFilter">
+				{categories.map((cat: any) => (
+					<option value={cat.id}>{cat[lang!]}</option>
+				))}
+			</select>
+			<select id="areaFilter">
+				{areas.map((area: any) => (
+					<option value={area.id}>{area[lang!]}</option>
+				))}
+			</select>
+			<select id="sedeFilter">
+				{locations.map((loc: any) => (
+					<option value={loc.id}>{loc[lang!]}</option>
+				))}
+			</select>
+			<input type="text" id="nameSearch" placeholder={searchLabel} />
 		</div>
 
-		<div class="team-grid">
-			{directorioData.map((member: any) => (
-				<TeamCard member={member} lang={lang} />
+		<div class="team-grid" id="teamGrid">
+			{members.map((member: any) => (
+				<TeamCard member={member} lang={lang!} />
 			))}
 		</div>
 	</section>
 </Layout>
+
+<script>
+	const categoryFilter = document.getElementById('categoryFilter') as HTMLSelectElement;
+	const areaFilter = document.getElementById('areaFilter') as HTMLSelectElement;
+	const sedeFilter = document.getElementById('sedeFilter') as HTMLSelectElement;
+	const nameSearch = document.getElementById('nameSearch') as HTMLInputElement;
+	const teamGrid = document.getElementById('teamGrid');
+	const cards = teamGrid?.querySelectorAll('.team-card') as NodeListOf<HTMLElement>;
+
+	function filterCards() {
+		const cat = categoryFilter.value;
+		const area = areaFilter.value;
+		const sede = sedeFilter.value;
+		const name = nameSearch.value.toLowerCase();
+
+		cards.forEach(card => {
+			const matchesCat = cat === 'todos' || card.dataset.category === cat;
+			const matchesArea = area === 'todos' || card.dataset.area === area;
+			const matchesSede = sede === 'todos' || card.dataset.location === sede;
+			const matchesName = card.dataset.name?.includes(name);
+
+			if (matchesCat && matchesArea && matchesSede && matchesName) {
+				card.style.display = 'flex';
+			} else {
+				card.style.display = 'none';
+			}
+		});
+	}
+
+	categoryFilter?.addEventListener('change', filterCards);
+	areaFilter?.addEventListener('change', filterCards);
+	sedeFilter?.addEventListener('change', filterCards);
+	nameSearch?.addEventListener('input', filterCards);
+</script>

@@ -1,7 +1,10 @@
 ---
 import '../../styles/pages/nosotros.css';
 import Layout from '../../layouts/Layout.astro';
+import { Image, getImage } from 'astro:assets';
 import aboutData from '../../data/about.json';
+import homeData from '../../data/home.json';
+import NovedadesCarousel from '../../components/NovedadesCarousel.astro';
 import es from '../../data/es.json';
 import en from '../../data/en.json';
 
@@ -21,7 +24,13 @@ const mision = aboutData.mision[lang as 'es' | 'en'];
 const vision = aboutData.vision[lang as 'es' | 'en'];
 const fundadora = aboutData.fundadora[lang as 'es' | 'en'];
 const comp = aboutData.compromiso[lang as 'es' | 'en'];
-const heroImg = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80';
+
+const optimizedHero = await getImage({
+    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80',
+    width: 1600,
+    height: 600,
+    format: 'webp'
+});
 
 const svgIcons: Record<string, string> = {
   eye: '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
@@ -33,8 +42,8 @@ const svgIcons: Record<string, string> = {
 };
 ---
 
-<Layout title={t["nav.about"]} lang={lang}>
-	<div class="page-header" style={`background-image: url('${heroImg}')`}>
+<Layout title={t["nav.about"]} lang={lang} preloadImage={optimizedHero.src}>
+	<div class="page-header" style={`background-image: url('${optimizedHero.src}')`}>
 		<h1>{t["nav.about"]}</h1>
 	</div>
 
@@ -67,7 +76,13 @@ const svgIcons: Record<string, string> = {
 	<section class="fundadora-section container">
 		<div class="fundadora-grid">
 			<div class="fundadora-image">
-				<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt={fundadora.name} />
+				<Image 
+					src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" 
+					alt={fundadora.name}
+					width={600}
+					height={800}
+					loading="lazy"
+				/>
 			</div>
 			<div class="fundadora-info">
 				<span class="fundadora-label">{fundadora.title}</span>
@@ -91,6 +106,16 @@ const svgIcons: Record<string, string> = {
 					</div>
 				))}
 			</div>
+		</div>
+	</section>
+
+	<!-- NOVEDADES REUTILIZADO -->
+	<section class="home-novedades" style="background: var(--bg-white); padding: 5rem 0;">
+		<div class="container">
+			<div class="section-title">
+				<h2 style="text-align: center; margin-bottom: 3rem; font-size: 2rem; letter-spacing: 2px;">{homeData.novedades_empresas[lang as 'es' | 'en'].title}</h2>
+			</div>
+			<NovedadesCarousel lang={lang!} items={homeData.novedades_empresas[lang as 'es' | 'en'].items} />
 		</div>
 	</section>
 </Layout>

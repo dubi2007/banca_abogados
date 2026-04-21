@@ -1,0 +1,23 @@
+---
+interface Item {
+    title: string;
+    date: string;
+}
+
+interface Props {
+    lang: string;
+    items: Item[];
+}
+
+const { lang, items } = Astro.props;
+---
+
+<div class="carousel">
+    {items.map((item) => (
+        <div class="card">
+            <span class="date">{item.date}</span>
+            <h3>{item.title}</h3>
+            <a href={`/${lang}/novedades`} class="read-more" aria-label={lang === 'en' ? 'Read more about ' + item.title : 'Leer más sobre ' + item.title}>→</a>
+        </div>
+    ))}
+</div>

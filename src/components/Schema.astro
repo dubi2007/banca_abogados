@@ -1,0 +1,48 @@
+---
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Faynshteyn Abogados & Consultores",
+  "image": "https://faynshteyn-abogados.vercel.app/og-image.jpg",
+  "@id": "https://faynshteyn-abogados.vercel.app",
+  "url": "https://faynshteyn-abogados.vercel.app",
+  "telephone": "+51123456789", // Ajustar al real
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Principal 123, San Isidro", // Ajustar al real
+    "addressLocality": "Lima",
+    "addressRegion": "Lima",
+    "postalCode": "15046",
+    "addressCountry": "PE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -12.0931, // Ajustar al real
+    "longitude": -77.0331
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/faynshteyn-abogados",
+    "https://twitter.com/faynshteyn_law"
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

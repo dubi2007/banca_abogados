@@ -1,15 +1,97 @@
 {
   "hero": {
-    "videoSrc": "https://v.ftcdn.net/04/77/14/78/700_F_477147854_fA9x66K8XF2uG6p9Uj9z3v6v3y7jYj9Y_ST.mp4",
-    "videoPoster": "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1600&q=80",
-    "es": {
-      "title": "EXCELENCIA LEGAL SIN FRONTERAS",
-      "subtitle": "Asesoría integral para desafíos globales"
-    },
-    "en": {
-      "title": "LEGAL EXCELLENCE WITHOUT BORDERS",
-      "subtitle": "Comprehensive advice for global challenges"
-    }
+    "slides": [
+      {
+        "id": "pro-bono",
+        "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80",
+        "es": {
+          "title": "Compromiso Pro Bono",
+          "subtitle": "Brindamos asesoría legal de élite con un alto sentido de responsabilidad social.",
+          "ctaText": "NUESTRA LABOR"
+        },
+        "en": {
+          "title": "Pro Bono Commitment",
+          "subtitle": "We provide elite legal advice with a high sense of social responsibility.",
+          "ctaText": "OUR WORK"
+        },
+        "ctaHref": "/es/nosotros"
+      },
+      {
+        "id": "nosotros",
+        "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80",
+        "es": {
+          "title": "Firma de Élite",
+          "subtitle": "Más de 25 años liderando el mercado legal peruano con soluciones estratégicas.",
+          "ctaText": "SOBRE NOSOTROS"
+        },
+        "en": {
+          "title": "Elite Law Firm",
+          "subtitle": "Over 25 years leading the Peruvian legal market with strategic solutions.",
+          "ctaText": "ABOUT US"
+        },
+        "ctaHref": "/es/nosotros"
+      },
+      {
+        "id": "areas",
+        "image": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1600&q=80",
+        "es": {
+          "title": "Especialización Legal",
+          "subtitle": "Asesoría experta en todas las ramas del derecho corporativo y civil.",
+          "ctaText": "VER ÁREAS"
+        },
+        "en": {
+          "title": "Legal Specialization",
+          "subtitle": "Expert advice in all branches of corporate and civil law.",
+          "ctaText": "VIEW AREAS"
+        },
+        "ctaHref": "/es/areas"
+      },
+      {
+        "id": "internacional",
+        "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80",
+        "es": {
+          "title": "Visión Global",
+          "subtitle": "Representamos a clientes nacionales e internacionales en transacciones complejas.",
+          "ctaText": "ASESORÍA GLOBAL"
+        },
+        "en": {
+          "title": "Global Vision",
+          "subtitle": "We represent national and international clients in complex transactions.",
+          "ctaText": "GLOBAL ADVISORY"
+        },
+        "ctaHref": "/es/contactenos"
+      },
+      {
+        "id": "digital",
+        "image": "https://images.unsplash.com/photo-1563986768609-322da13575f2?w=1600&q=80",
+        "es": {
+          "title": "Innovación Digital",
+          "subtitle": "Liderando la transformación legal en Fintech, IA y Activos Digitales.",
+          "ctaText": "TECNOLOGÍA LEGAL"
+        },
+        "en": {
+          "title": "Digital Innovation",
+          "subtitle": "Leading the legal transformation in Fintech, AI, and Digital Assets.",
+          "ctaText": "LEGAL TECH"
+        },
+        "ctaHref": "/es/areas/negocios-digitales"
+      },
+      {
+        "id": "sedes",
+        "image": "https://images.unsplash.com/photo-1449156001931-83149574a49c?w=1600&q=80",
+        "es": {
+          "title": "Presencia Nacional",
+          "subtitle": "Ubicaciones estratégicas en Lima, Arequipa y Trujillo para estar más cerca de usted.",
+          "ctaText": "NUESTRAS SEDES"
+        },
+        "en": {
+          "title": "National Presence",
+          "subtitle": "Strategic locations in Lima, Arequipa, and Trujillo to be closer to you.",
+          "ctaText": "OUR OFFICES"
+        },
+        "ctaHref": "/es/sedes"
+      }
+    ]
   },
   "stats": {
     "es": [

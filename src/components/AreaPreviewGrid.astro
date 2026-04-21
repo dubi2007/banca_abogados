@@ -1,0 +1,23 @@
+---
+interface Area {
+    num: string;
+    title: string;
+    href: string;
+}
+
+interface Props {
+    lang: string;
+    areas: Area[];
+}
+
+const { lang, areas } = Astro.props;
+---
+
+<div class="areas-preview-grid">
+    {areas.map(area => (
+        <a href={area.href} class="area-preview-card">
+            <span class="area-num">{area.num}</span>
+            <h3>{area.title}</h3>
+        </a>
+    ))}
+</div>

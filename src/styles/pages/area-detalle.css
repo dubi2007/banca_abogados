@@ -26,10 +26,33 @@
     z-index: 1;
 }
 
+.area-breadcrumbs-nav {
+    position: absolute;
+    top: 9rem;
+    left: 2rem;
+    z-index: 10;
+}
+
+.area-breadcrumbs-nav .breadcrumbs {
+    padding: 0;
+}
+
+.area-breadcrumbs-nav .breadcrumbs a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.area-breadcrumbs-nav .breadcrumbs a:hover {
+    color: var(--color-gold);
+}
+
+.area-breadcrumbs-nav .breadcrumbs .current {
+    color: var(--color-gold);
+}
+
 /* BACK BUTTON - top right */
 .area-back {
     position: absolute;
-    top: 2rem;
+    top: 9rem;
     right: 2.5rem;
     z-index: 10;
     display: flex;
@@ -138,9 +161,15 @@
         gap: 2rem;
     }
 
+    .area-breadcrumbs-nav {
+        top: 7rem;
+        left: 1.5rem;
+    }
+
     .area-back {
-        top: 1.5rem;
-        right: 1.5rem;
+        top: 9.5rem;
+        left: 1.5rem; /* Lo movemos a la izquierda en móvil para que no choque con el toggle del menú */
+        right: auto;
     }
 
     .area-text h1 {

@@ -2,22 +2,27 @@
 import '../styles/components/videohero.css';
 
 interface Props {
-	videoSrc: string;
-	videoPoster: string;
+	videoSrc?: string;
+	videoPoster?: string;
+	imageSrc?: string;
 	title: string;
 	subtitle: string;
 	ctaText?: string;
 	ctaHref?: string;
 }
 
-const { videoSrc, videoPoster, title, subtitle, ctaText, ctaHref } = Astro.props;
+const { videoSrc, videoPoster, imageSrc, title, subtitle, ctaText, ctaHref } = Astro.props;
 ---
 
 <section class="video-hero">
 	<div class="video-overlay"></div>
-	<video class="bg-video" autoplay loop muted playsinline poster={videoPoster} id="heroVideo">
-		<source src={videoSrc} type="video/mp4" />
-	</video>
+	{imageSrc ? (
+		<img src={imageSrc} alt={title} class="bg-image" />
+	) : (
+		<video class="bg-video" autoplay loop muted playsinline poster={videoPoster} id="heroVideo">
+			{videoSrc && <source src={videoSrc} type="video/mp4" />}
+		</video>
+	)}
 
 	<div class="hero-content">
 		<h1>{title}</h1>
@@ -31,18 +36,32 @@ const { videoSrc, videoPoster, title, subtitle, ctaText, ctaHref } = Astro.props
 		<span></span>
 	</div>
 
-	<button id="soundToggle" class="sound-toggle" aria-label="Toggle sound">
-		<svg id="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-			<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-			<line x1="23" y1="9" x2="17" y2="15"></line>
-			<line x1="17" y1="9" x2="23" y2="15"></line>
-		</svg>
-		<svg id="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
-			<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-			<path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-		</svg>
-	</button>
+	{!imageSrc && videoSrc && (
+		<button id="soundToggle" class="sound-toggle" aria-label="Toggle sound">
+			<svg id="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+				<line x1="23" y1="9" x2="17" y2="15"></line>
+				<line x1="17" y1="9" x2="23" y2="15"></line>
+			</svg>
+			<svg id="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+				<path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+				<path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+			</svg>
+		</button>
+	)}
 </section>
+
+<style>
+	.bg-image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: -1;
+	}
+</style>
 
 <script>
 	function initVideoHero() {

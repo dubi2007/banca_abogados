@@ -1,7 +1,14 @@
 ---
 import '../../styles/pages/home.css';
 import Layout from '../../layouts/Layout.astro';
-import VideoHero from '../../components/VideoHero.astro';
+import Intro from '../../components/Intro.astro';
+import HeroSlider from '../../components/HeroSlider.astro';
+import AreaPreviewGrid from '../../components/AreaPreviewGrid.astro';
+import StatsGrid from '../../components/StatsGrid.astro';
+import CommitmentGrid from '../../components/CommitmentGrid.astro';
+import NovedadesCarousel from '../../components/NovedadesCarousel.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import { getImage } from 'astro:assets';
 import homeData from '../../data/home.json';
 import es from '../../data/es.json';
 import en from '../../data/en.json';
@@ -17,20 +24,40 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = lang === 'en' ? en : es;
-const heroData = homeData.hero[lang as 'es' | 'en'];
+const slides = homeData.hero.slides;
 const novedadesData = homeData.novedades_empresas[lang as 'es' | 'en'];
 const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
+
+// Optimizar imágenes de fondo
+const parallax1 = await getImage({
+    src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80',
+    width: 1600,
+    height: 900,
+    format: 'webp'
+});
+
+const parallax2 = await getImage({
+    src: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80',
+    width: 1600,
+    height: 900,
+    format: 'webp'
+});
+
+const areaItems = [
+    { num: '01', title: lang === 'en' ? 'Corporate Law' : 'Derecho Corporativo', href: `/${lang}/areas/derecho-corporativo` },
+    { num: '02', title: lang === 'en' ? 'Mergers & Acquisitions' : 'Fusiones y Adquisiciones', href: `/${lang}/areas/fusiones-adquisiciones` },
+    { num: '03', title: lang === 'en' ? 'Litigation' : 'Litigios', href: `/${lang}/areas/litigios` },
+    { num: '04', title: lang === 'en' ? 'Tax Law' : 'Derecho Tributario', href: `/${lang}/areas/derecho-tributario` }
+];
 ---
 
-<Layout title={heroData.title} lang={lang}>
-	<VideoHero
-		videoSrc={homeData.hero.videoSrc}
-		videoPoster={homeData.hero.videoPoster}
-		title={heroData.title}
-		subtitle={heroData.subtitle}
-		ctaText={ctaText}
-		ctaHref={`/${lang}/nosotros`}
-	/>
+<Layout 
+    title={slides[0][lang as 'es' | 'en'].title} 
+    lang={lang}
+    description={slides[0][lang as 'es' | 'en'].subtitle}
+>
+	<Intro />
+	<HeroSlider slides={slides} lang={lang!} />
 
 	<!-- AREAS PREVIEW -->
 	<section class="home-areas">
@@ -39,24 +66,9 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 				<h2>{lang === 'en' ? 'PRACTICE AREAS' : 'ÁREAS DE PRÁCTICA'}</h2>
 				<p>{lang === 'en' ? 'Excellence in every specialization' : 'Excelencia en cada especialización'}</p>
 			</div>
-			<div class="areas-preview-grid">
-				<a href={`/${lang}/areas/derecho-corporativo`} class="area-preview-card">
-					<span class="area-num">01</span>
-					<h3>{lang === 'en' ? 'Corporate Law' : 'Derecho Corporativo'}</h3>
-				</a>
-				<a href={`/${lang}/areas/fusiones-adquisiciones`} class="area-preview-card">
-					<span class="area-num">02</span>
-					<h3>{lang === 'en' ? 'Mergers & Acquisitions' : 'Fusiones y Adquisiciones'}</h3>
-				</a>
-				<a href={`/${lang}/areas/litigios`} class="area-preview-card">
-					<span class="area-num">03</span>
-					<h3>{lang === 'en' ? 'Litigation' : 'Litigios'}</h3>
-				</a>
-				<a href={`/${lang}/areas/derecho-tributario`} class="area-preview-card">
-					<span class="area-num">04</span>
-					<h3>{lang === 'en' ? 'Tax Law' : 'Derecho Tributario'}</h3>
-				</a>
-			</div>
+			
+            <AreaPreviewGrid lang={lang!} areas={areaItems} />
+
 			<div class="view-more-link">
 				<a href={`/${lang}/areas`}>{lang === 'en' ? 'VIEW ALL AREAS →' : 'VER TODAS LAS ÁREAS →'}</a>
 			</div>
@@ -66,19 +78,12 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 	<!-- STATISTICS SECTION -->
 	<section class="home-stats">
 		<div class="container">
-			<div class="stats-grid">
-				{homeData.stats[lang as 'es' | 'en'].map((stat: { label: string; value: string }) => (
-					<div class="stat-item">
-						<span class="stat-value">{stat.value}</span>
-						<span class="stat-label">{stat.label}</span>
-					</div>
-				))}
-			</div>
+			<StatsGrid stats={homeData.stats[lang as 'es' | 'en']} />
 		</div>
 	</section>
 
 	<!-- PARALLAX SECTION 1 - RECONOCIMIENTOS -->
-	<section class="parallax-section" data-parallax style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')">
+	<section class="parallax-section" data-parallax style={`background-image: url('${parallax1.src}')`}>
 		<div class="parallax-overlay"></div>
 		<div class="parallax-content container">
 			<span class="parallax-label">{lang === 'en' ? 'THE MAIN LEGAL GUIDES CONSIDER US' : 'LAS PRINCIPALES GUÍAS LEGALES NOS CONSIDERAN'}</span>
@@ -94,14 +99,7 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 			<div class="section-title">
 				<h2>{homeData.commitment[lang as 'es' | 'en'].title}</h2>
 			</div>
-			<div class="commitment-grid">
-				{homeData.commitment[lang as 'es' | 'en'].items.map((item: { title: string; desc: string }) => (
-					<div class="commitment-item">
-						<h3>{item.title}</h3>
-						<p>{item.desc}</p>
-					</div>
-				))}
-			</div>
+			<CommitmentGrid items={homeData.commitment[lang as 'es' | 'en'].items} />
 		</div>
 	</section>
 
@@ -111,15 +109,7 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 			<div class="section-title">
 				<h2>{novedadesData.title}</h2>
 			</div>
-			<div class="carousel">
-				{novedadesData.items.map((item: { title: string; date: string }) => (
-					<div class="card">
-						<span class="date">{item.date}</span>
-						<h3>{item.title}</h3>
-						<a href={`/${lang}/novedades`} class="read-more">→</a>
-					</div>
-				))}
-			</div>
+			<NovedadesCarousel lang={lang!} items={novedadesData.items} />
 		</div>
 	</section>
 
@@ -129,24 +119,12 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 			<div class="section-title">
 				<h2>{homeData.faqs[lang as 'es' | 'en'].title}</h2>
 			</div>
-			<div class="faq-accordion">
-				{homeData.faqs[lang as 'es' | 'en'].items.map((item: { q: string; a: string }) => (
-					<div class="faq-item">
-						<button class="faq-question">
-							{item.q}
-							<span class="icon"></span>
-						</button>
-						<div class="faq-answer">
-							<p>{item.a}</p>
-						</div>
-					</div>
-				))}
-			</div>
+			<FaqAccordion items={homeData.faqs[lang as 'es' | 'en'].items} />
 		</div>
 	</section>
 
 	<!-- PARALLAX SECTION 2 - CONTACTO -->
-	<section class="parallax-section" data-parallax style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80')">
+	<section class="parallax-section" data-parallax style={`background-image: url('${parallax2.src}')`}>
 		<div class="parallax-overlay"></div>
 		<div class="parallax-content container" style="text-align:center;">
 			<span class="parallax-label">{lang === 'en' ? 'WE WANT TO HEAR FROM YOU' : 'QUEREMOS SABER DE USTED'}</span>
@@ -159,26 +137,12 @@ const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
 
 <script>
 	function initAnimations() {
-		// FAQ ACCORDION
-		const faqItems = document.querySelectorAll('.faq-item');
-		faqItems.forEach(item => {
-			const question = item.querySelector('.faq-question');
-			question?.addEventListener('click', () => {
-				const isOpen = item.classList.contains('active');
-				// Close all other items
-				faqItems.forEach(otherItem => otherItem.classList.remove('active'));
-				// Toggle current
-				if (!isOpen) item.classList.add('active');
-			});
-		});
-
 		// PARALLAX EFFECT
 		const parallaxSections = document.querySelectorAll('[data-parallax]');
 		
 		function handleParallax() {
 			parallaxSections.forEach(section => {
 				const rect = (section as HTMLElement).getBoundingClientRect();
-				const scrolled = window.scrollY;
 				// Only animate if section is in viewport
 				if (rect.top < window.innerHeight && rect.bottom > 0) {
 					const rate = (rect.top) * 0.15; // Slower, smoother rate

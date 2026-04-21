@@ -11,8 +11,8 @@
     --bg-darker: #111111;
     --bg-card: #ffffff;
 
-    --color-gold: #C5A059;
-    --color-gold-light: #d4b574;
+    --color-gold: #AF8B45; /* Oscurecido para mejor contraste */
+    --color-gold-light: #C5A059;
     --color-gold-dark: #8A6632;
     --color-gold-gradient: linear-gradient(135deg, #d4b574, #C5A059, #8A6632);
 

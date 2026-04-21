@@ -1,7 +1,11 @@
 ---
 import '../../../styles/pages/area-detalle.css';
 import Layout from '../../../layouts/Layout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { getImage } from 'astro:assets';
 import areasData from '../../../data/areas.json';
+import homeData from '../../../data/home.json';
+import NovedadesCarousel from '../../../components/NovedadesCarousel.astro';
 import es from '../../../data/es.json';
 import en from '../../../data/en.json';
 
@@ -26,11 +30,37 @@ const t = lang === 'en' ? en : es;
 const { area } = Astro.props as { area: any };
 const backLabel = lang === 'en' ? 'BACK' : 'REGRESAR';
 const contactLabel = lang === 'en' ? 'CONTACT US' : 'CONTÁCTENOS';
+const relatedLabel = lang === 'en' ? 'OTHER RELATED AREAS' : 'OTRAS ÁREAS RELACIONADAS';
+
+// Lógica de Internal Linking: Obtener 3 áreas aleatorias (que no sea la actual)
+const allAreas = areasData[lang as 'es' | 'en'].items;
+const otherAreas = allAreas
+    .filter((a: any) => a.id !== area.id)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
+
+const optimizedHero = await getImage({
+    src: area.heroImage,
+    width: 1600,
+    height: 900,
+    format: 'webp'
+});
 ---
 
-<Layout title={area.title} lang={lang}>
-	<section class="area-fullscreen" style={`background-image: url('${area.heroImage}')`}>
+<Layout title={area.title} lang={lang} description={area.description} preloadImage={optimizedHero.src}>
+	<section class="area-fullscreen" style={`background-image: url('${optimizedHero.src}')`}>
 		<div class="area-overlay"></div>
+
+		<!-- BREADCRUMBS -->
+		<div class="area-breadcrumbs-nav">
+			<Breadcrumbs 
+				lang={lang!} 
+				items={[
+					{ label: t["nav.areas"], href: `/${lang}/areas` },
+					{ label: area.title }
+				]} 
+			/>
+		</div>
 
 		<!-- BACK BUTTON -->
 		<a href={`/${lang}/areas`} class="area-back">
@@ -53,4 +83,90 @@ const contactLabel = lang === 'en' ? 'CONTACT US' : 'CONTÁCTENOS';
 		<!-- VERTICAL LINE -->
 		<div class="area-vline"></div>
 	</section>
+
+	<!-- RELATED AREAS SECTION (SEO Internal Linking) -->
+	<section class="related-areas">
+		<div class="container">
+			<div class="v-line"></div>
+			<h2>{relatedLabel}</h2>
+			<div class="related-grid">
+				{otherAreas.map((item: any) => (
+					<a href={`/${lang}/areas/${item.id}`} class="related-card">
+						<h3>{item.title}</h3>
+						<p>{item.description.substring(0, 100)}...</p>
+						<span class="read-more">→</span>
+					</a>
+				))}
+			</div>
+		</div>
+	<!-- NOVEDADES REUTILIZADO -->
+	<section class="home-novedades" style="background: var(--bg-light); padding: 5rem 0;">
+		<div class="container">
+			<div class="section-title">
+				<h2 style="text-align: center; margin-bottom: 3rem; font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase;">{homeData.novedades_empresas[lang as 'es' | 'en'].title}</h2>
+			</div>
+			<NovedadesCarousel lang={lang!} items={homeData.novedades_empresas[lang as 'es' | 'en'].items} />
+		</div>
+	</section>
 </Layout>
+
+<style>
+	.related-areas {
+		background: var(--bg-white);
+		padding: 5rem 0 8rem;
+		text-align: center;
+	}
+	.related-areas h2 {
+		font-size: 1.5rem;
+		letter-spacing: 3px;
+		margin-bottom: 4rem;
+		text-transform: uppercase;
+		color: var(--text-dark);
+	}
+	.related-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2.5rem;
+	}
+	.related-card {
+		padding: 3rem 2rem;
+		border: 1px solid var(--border-light);
+		transition: all var(--transition-normal);
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		text-decoration: none;
+	}
+	.related-card:hover {
+		border-color: var(--color-gold);
+		transform: translateY(-5px);
+		box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+	}
+	.related-card h3 {
+		font-size: 1.1rem;
+		margin-bottom: 1.5rem;
+		color: var(--text-dark);
+		line-height: 1.3;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+	.related-card p {
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		margin-bottom: 2rem;
+		flex-grow: 1;
+		line-height: 1.6;
+	}
+	.related-card .read-more {
+		color: var(--color-gold);
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+
+	@media (max-width: 768px) {
+		.related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -1,0 +1,77 @@
+---
+import partnersData from '../data/partners.json';
+
+const { partners } = partnersData;
+// Duplicamos los partners para el efecto infinito
+const duplicatedPartners = [...partners, ...partners, ...partners];
+---
+
+<section class="logo-carousel-section">
+    <div class="carousel-container">
+        <div class="logo-track">
+            {duplicatedPartners.map((partner) => (
+                <div class="logo-item">
+                    <img src={partner.logo} alt={partner.name} title={partner.name} />
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .logo-carousel-section {
+        padding: 3rem 0;
+        background: var(--bg-light);
+        border-top: 1px solid var(--border-light);
+        overflow: hidden;
+    }
+
+    .carousel-container {
+        width: 100%;
+        max-width: var(--container-width);
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .logo-track {
+        display: flex;
+        width: max-content;
+        animation: scroll 30s linear infinite;
+    }
+
+    .logo-track:hover {
+        animation-play-state: paused;
+    }
+
+    .logo-item {
+        padding: 0 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+
+    .logo-item:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    .logo-item img {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-100% / 3)); }
+    }
+
+    @media (max-width: 768px) {
+        .logo-item { padding: 0 1.5rem; }
+        .logo-item img { height: 40px; }
+    }
+</style>

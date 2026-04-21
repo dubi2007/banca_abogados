@@ -2,6 +2,7 @@
 import '../../styles/pages/areas.css';
 import Layout from '../../layouts/Layout.astro';
 import AreaIcon from '../../components/AreaIcon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import areasData from '../../data/areas.json';
 import es from '../../data/es.json';
 import en from '../../data/en.json';
@@ -21,11 +22,13 @@ const data = areasData[lang as 'es' | 'en'];
 const heroImg = 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1600&q=80';
 ---
 
-<Layout title={t["nav.areas"]} lang={lang}>
+<Layout title={t["nav.areas"]} lang={lang} description={data.subtitle}>
 	<div class="page-header" style={`background-image: url('${heroImg}')`}>
 		<h1>{data.title}</h1>
 		<p>{data.subtitle}</p>
 	</div>
+
+	<Breadcrumbs lang={lang!} items={[{ label: t["nav.areas"] }]} />
 
 	<div class="container">
 		<div class="areas-search">

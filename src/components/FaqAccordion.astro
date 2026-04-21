@@ -1,0 +1,52 @@
+---
+interface FAQ {
+    q: string;
+    a: string;
+}
+
+interface Props {
+    items: FAQ[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq-accordion">
+    {items.map((item, index) => (
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls={`faq-answer-${index}`}>
+                {item.q}
+                <span class="icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer" id={`faq-answer-${index}`} role="region">
+                <p>{item.a}</p>
+            </div>
+        </div>
+    ))}
+</div>
+
+<script>
+	function initFaq() {
+		const faqItems = document.querySelectorAll('.faq-item');
+		faqItems.forEach(item => {
+			const question = item.querySelector('.faq-question') as HTMLButtonElement;
+			question?.addEventListener('click', () => {
+				const isOpen = item.classList.contains('active');
+				
+				// Close all other items
+				faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+                });
+
+				// Toggle current
+				if (!isOpen) {
+                    item.classList.add('active');
+                    question.setAttribute('aria-expanded', 'true');
+                }
+			});
+		});
+	}
+
+	document.addEventListener('astro:page-load', initFaq);
+</script>

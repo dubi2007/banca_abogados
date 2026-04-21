@@ -1,0 +1,21 @@
+---
+interface Item {
+    title: string;
+    desc: string;
+}
+
+interface Props {
+    items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="commitment-grid">
+    {items.map((item) => (
+        <div class="commitment-item">
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+        </div>
+    ))}
+</div>

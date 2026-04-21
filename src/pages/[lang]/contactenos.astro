@@ -18,7 +18,7 @@ const data = contactData[lang as 'es' | 'en'];
 const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80';
 ---
 
-<Layout title={data.title} lang={lang}>
+<Layout title={data.title} lang={lang} description={data.subtitle}>
 	<div class="page-header" style={`background-image: url('${heroImg}')`}>
 		<h1>{data.title}</h1>
 		<p>{data.subtitle}</p>
@@ -52,28 +52,28 @@ const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=
 					<form class="contact-form" id="contactForm">
 						<div class="form-row">
 							<div class="form-group">
-								<label>{data.form.name}</label>
-								<input type="text" name="name" required />
+								<label for="name">{data.form.name}</label>
+								<input type="text" id="name" name="name" required />
 							</div>
 							<div class="form-group">
-								<label>{data.form.email}</label>
-								<input type="email" name="email" required />
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group">
-								<label>{data.form.phone}</label>
-								<input type="tel" name="phone" />
-							</div>
-							<div class="form-group">
-								<label>{data.form.company}</label>
-								<input type="text" name="company" />
+								<label for="email">{data.form.email}</label>
+								<input type="email" id="email" name="email" required />
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group">
-								<label>{data.form.service}</label>
-								<select name="service" required>
+								<label for="phone">{data.form.phone}</label>
+								<input type="tel" id="phone" name="phone" />
+							</div>
+							<div class="form-group">
+								<label for="company">{data.form.company}</label>
+								<input type="text" id="company" name="company" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="service">{data.form.service}</label>
+								<select id="service" name="service" required>
 									<option value="" disabled selected>--</option>
 									<option value="corporate">{data.form.serviceOptions.corporate}</option>
 									<option value="tax">{data.form.serviceOptions.tax}</option>
@@ -82,19 +82,20 @@ const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=
 								</select>
 							</div>
 							<div class="form-group">
-								<label>{data.form.subject}</label>
-								<input type="text" name="subject" required />
+								<label for="subject">{data.form.subject}</label>
+								<input type="text" id="subject" name="subject" required />
 							</div>
 						</div>
 						<div class="form-group">
-							<label>{data.form.message}</label>
-							<textarea rows="6" name="message" required></textarea>
+							<label for="message">{data.form.message}</label>
+							<textarea id="message" rows="6" name="message" required></textarea>
 						</div>
 						
 						<button type="submit" class="btn-gold" id="submitBtn">
 							<span class="btn-text">{data.form.submit}</span>
+							<span class="loader" style="display:none;"></span>
 						</button>
-						<div id="formStatus" class="form-status"></div>
+						<div id="formStatus" class="form-status" role="alert"></div>
 					</form>
 				</div>
 			</div>
@@ -136,12 +137,17 @@ const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=
 		const form = document.getElementById('contactForm') as HTMLFormElement;
 		const status = document.getElementById('formStatus');
 		const btn = document.getElementById('submitBtn') as HTMLButtonElement;
+		const btnText = btn?.querySelector('.btn-text');
+		const loader = btn?.querySelector('.loader');
 
 		if (form && status && btn) {
 			form.addEventListener('submit', async (e) => {
 				e.preventDefault();
 				
 				btn.disabled = true;
+				if (btnText) (btnText as HTMLElement).style.opacity = '0.5';
+				if (loader) (loader as HTMLElement).style.display = 'inline-block';
+				
 				status.textContent = window.location.pathname.includes('/en/') ? 'Sending...' : 'Enviando...';
 				status.className = 'form-status info';
 
@@ -162,7 +168,7 @@ const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=
 
 					if (response.ok) {
 						status.textContent = window.location.pathname.includes('/en/') 
-							? 'Message sent successfully!' 
+							? '¡Message sent successfully!' 
 							: '¡Mensaje enviado con éxito!';
 						status.className = 'form-status success';
 						form.reset();
@@ -178,6 +184,8 @@ const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=
 					status.className = 'form-status error';
 				} finally {
 					btn.disabled = false;
+					if (btnText) (btnText as HTMLElement).style.opacity = '1';
+					if (loader) (loader as HTMLElement).style.display = 'none';
 				}
 			});
 		}

@@ -7,6 +7,9 @@ interface Props {
     name: string;
     role: { [key: string]: string };
     image: string;
+    category: string;
+    area: string;
+    location: string;
   };
   lang: string;
 }
@@ -15,7 +18,14 @@ const { member, lang } = Astro.props;
 const displayRole = member.role[lang];
 ---
 
-<a href={`/${lang}/directorio/${member.id}`} class="team-card">
+<a 
+  href={`/${lang}/directorio/${member.id}`} 
+  class="team-card"
+  data-category={member.category}
+  data-area={member.area}
+  data-location={member.location}
+  data-name={member.name.toLowerCase()}
+>
   <div class="image-wrapper">
     <img src={member.image} alt={member.name} loading="lazy" />
   </div>

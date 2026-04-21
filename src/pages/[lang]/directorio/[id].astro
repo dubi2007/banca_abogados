@@ -1,14 +1,17 @@
 ---
 import '../../../styles/pages/perfil.css';
 import Layout from '../../../layouts/Layout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { useTranslations } from '../../../utils/i18n';
+import { Image } from 'astro:assets';
 import directorioData from '../../../data/directorio.json';
 
 export const prerender = true;
 
 export function getStaticPaths() {
     const paths: any[] = [];
-    ['es', 'en'].forEach(lang => {
-        directorioData.forEach((member: any) => {
+    (['es', 'en'] as const).forEach(lang => {
+        directorioData.members.forEach((member: any) => {
             paths.push({
                 params: { lang, id: member.id },
                 props: { member }
@@ -19,20 +22,36 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
+const t = useTranslations(lang!);
 const { member } = Astro.props as { member: any };
-const displayRole = member.role[lang];
-const experience = member.experience[lang];
+const displayRole = member.role[lang as 'es' | 'en'];
+const experience = member.experience[lang as 'es' | 'en'];
 const backLabel = lang === 'en' ? '← Back to directory' : '← Volver al directorio';
 const expLabel = lang === 'en' ? 'Experience' : 'Experiencia';
+
+const seoDescription = `${member.name} - ${displayRole} en Faynshteyn Abogados. ${experience.substring(0, 150)}...`;
 ---
 
-<Layout title={member.name} lang={lang}>
+<Layout title={member.name} lang={lang} description={seoDescription}>
 	<div class="profile-wrapper">
+		<Breadcrumbs 
+			lang={lang!} 
+			items={[
+				{ label: t("nav.directory"), href: `/${lang}/directorio` },
+				{ label: member.name }
+			]} 
+		/>
 		<a href={`/${lang}/directorio`} class="back-link">{backLabel}</a>
 
 		<div class="profile-card">
 			<div class="image-col">
-				<img src={member.image} alt={member.name} />
+				<Image 
+					src={member.image} 
+					alt={`Retrato de ${member.name}, ${displayRole}`} 
+					width={500}
+					height={600}
+					loading="eager"
+				/>
 			</div>
 			<div class="info-col">
 				<h1>{member.name}</h1>

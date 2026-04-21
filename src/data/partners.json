@@ -1,0 +1,10 @@
+{
+  "partners": [
+    { "name": "Empresa 1", "logo": "https://img.icons8.com/color/96/google-logo.png" },
+    { "name": "Empresa 2", "logo": "https://img.icons8.com/color/96/microsoft.png" },
+    { "name": "Empresa 3", "logo": "https://img.icons8.com/color/96/amazon.png" },
+    { "name": "Empresa 4", "logo": "https://img.icons8.com/color/96/apple-logo.png" },
+    { "name": "Empresa 5", "logo": "https://img.icons8.com/color/96/facebook-new.png" },
+    { "name": "Empresa 6", "logo": "https://img.icons8.com/color/96/netflix.png" }
+  ]
+}
