@@ -1,0 +1,138 @@
+---
+import '../styles/components/videocarousel.css';
+
+interface VideoItem {
+    id: string;
+    title: string;
+    description: string;
+    videoUrl: string;
+}
+
+interface Props {
+    lang: string;
+    title: string;
+    items: VideoItem[];
+}
+
+const { lang, title, items } = Astro.props;
+---
+
+<section class="video-carousel-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>{title}</h2>
+        </div>
+
+        <div class="video-carousel-container">
+            <div class="video-track" id="videoTrack">
+                {items.map((item) => (
+                    <div class="video-card" data-video-url={item.videoUrl}>
+                        <div class="video-placeholder"></div>
+                        <video 
+                            src={item.videoUrl} 
+                            muted 
+                            loop 
+                            playsinline 
+                            preload="auto"
+                            class="preview-video"
+                        ></video>
+                        <div class="play-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <div class="video-info">
+                            <h3>{item.title}</h3>
+                            <p>{item.description}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div class="carousel-nav">
+                <button class="nav-btn" id="prevBtn" aria-label="Previous">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <button class="nav-btn" id="nextBtn" aria-label="Next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL ESTRUCTURA -->
+<div class="video-modal" id="videoModal">
+    <div class="modal-content">
+        <button class="close-modal" id="closeModal">&times;</button>
+        <video id="modalVideo" controls playsinline></video>
+    </div>
+</div>
+
+<script>
+    function initVideoCarousel() {
+        const track = document.getElementById('videoTrack');
+        const prev = document.getElementById('prevBtn');
+        const next = document.getElementById('nextBtn');
+        const cards = document.querySelectorAll('.video-card');
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo') as HTMLVideoElement;
+        const closeModal = document.getElementById('closeModal');
+
+        if (!track || !prev || !next || !modal || !modalVideo || !closeModal) return;
+
+        // SCROLL LOGIC
+        const scrollAmount = 450 + 32;
+        next.addEventListener('click', () => track.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
+        prev.addEventListener('click', () => track.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
+
+        // HOVER PREVIEW LOGIC
+        cards.forEach(card => {
+            const video = card.querySelector('.preview-video') as HTMLVideoElement;
+            
+            card.addEventListener('mouseenter', () => {
+                if (video) {
+                    video.play().catch(e => console.warn("Autoplay blocked or load failed", e));
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                if (video) {
+                    video.pause();
+                }
+            });
+
+            // OPEN MODAL LOGIC
+            card.addEventListener('click', () => {
+                const url = card.getAttribute('data-video-url');
+                if (url) {
+                    modalVideo.src = url;
+                    modal.classList.add('active');
+                    modalVideo.play();
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        const close = () => {
+            modal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.src = '';
+            document.body.style.overflow = '';
+        };
+
+        closeModal.addEventListener('click', close);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) close();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') close();
+        });
+    }
+
+    document.addEventListener('astro:page-load', initVideoCarousel);
+</script>

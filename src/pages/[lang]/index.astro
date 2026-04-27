@@ -7,6 +7,7 @@ import AreaPreviewGrid from '../../components/AreaPreviewGrid.astro';
 import StatsGrid from '../../components/StatsGrid.astro';
 import CommitmentGrid from '../../components/CommitmentGrid.astro';
 import NovedadesCarousel from '../../components/NovedadesCarousel.astro';
+import VideoCarousel from '../../components/VideoCarousel.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import { getImage } from 'astro:assets';
 import homeData from '../../data/home.json';
@@ -49,6 +50,33 @@ const areaItems = [
     { num: '03', title: lang === 'en' ? 'Litigation' : 'Litigios', href: `/${lang}/areas/litigios` },
     { num: '04', title: lang === 'en' ? 'Tax Law' : 'Derecho Tributario', href: `/${lang}/areas/derecho-tributario` }
 ];
+
+const videoCarouselItems = [
+    {
+        id: '1',
+        title: lang === 'en' ? 'Legal Excellence' : 'Excelencia Legal',
+        description: lang === 'en' ? 'Our commitment to your defense' : 'Nuestro compromiso con su defensa',
+        videoUrl: 'https://cdn.pixabay.com/video/2026/04/08/345137_large.mp4'
+    },
+    {
+        id: '2',
+        title: lang === 'en' ? 'Corporate Strategy' : 'Estrategia Corporativa',
+        description: lang === 'en' ? 'Protecting your business assets' : 'Protegiendo los activos de su empresa',
+        videoUrl: 'https://cdn.pixabay.com/video/2024/02/09/199738-911197779_tiny.mp4'
+    },
+    {
+        id: '3',
+        title: lang === 'en' ? 'Expert Consultation' : 'Asesoría Especializada',
+        description: lang === 'en' ? 'Direct contact with experts' : 'Contacto directo con especialistas',
+        videoUrl: 'https://cdn.pixabay.com/video/2021/04/01/71340-539066606_tiny.mp4'
+    },
+    {
+        id: '4',
+        title: lang === 'en' ? 'Global Reach' : 'Alcance Global',
+        description: lang === 'en' ? 'Legal solutions worldwide' : 'Soluciones legales en todo el mundo',
+        videoUrl: 'https://cdn.pixabay.com/video/2021/08/13/84931-587289569_tiny.mp4'
+    }
+];
 ---
 
 <Layout 
@@ -57,7 +85,13 @@ const areaItems = [
     description={slides[0][lang as 'es' | 'en'].subtitle}
 >
 	<Intro />
-	<HeroSlider slides={slides} lang={lang!} />
+	<HeroSlider slides={slides} lang={lang!} videoSrc="https://videos.pexels.com/video-files/5598970/5598970-uhd_2560_1440_24fps.mp4" />
+
+    <VideoCarousel 
+        lang={lang!} 
+        title={lang === 'en' ? 'CORPORATE INSIGHTS' : 'CÁPSULAS LEGALES'} 
+        items={videoCarouselItems} 
+    />
 
 	<!-- AREAS PREVIEW -->
 	<section class="home-areas">

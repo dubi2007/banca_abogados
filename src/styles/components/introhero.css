@@ -1,0 +1,153 @@
+  :root {
+        --intro-gold: #AF8B45;
+        --intro-bg: #0a0a0a;
+        --intro-text: #ffffff;
+        --intro-muted: rgba(255, 255, 255, 0.6);
+        --intro-duration-exit: 1200ms;
+        --intro-z: 100000;
+    }
+
+    .intro-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: var(--intro-z);
+        display: grid;
+        place-items: center;
+        background-color: var(--intro-bg);
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity var(--intro-duration-exit) cubic-bezier(0.4, 0, 0.2, 1),
+                    visibility var(--intro-duration-exit) step-end;
+    }
+
+    .intro-overlay.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .intro-bg-gradient {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(175, 139, 69, 0.18) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .intro-bg-noise {
+        position: absolute;
+        inset: 0;
+        opacity: 0.04;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .intro-frame {
+        position: absolute;
+        inset: 60px;
+        pointer-events: none;
+    }
+
+    .line {
+        position: absolute;
+        background: linear-gradient(90deg, transparent, var(--intro-gold), transparent);
+        opacity: 0;
+    }
+
+    .line-top, .line-bottom {
+        height: 1px;
+        width: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .line-top { top: 0; animation: drawWidth 2s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards; }
+    .line-bottom { bottom: 0; animation: drawWidth 2s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards; }
+
+    .line-left, .line-right {
+        width: 1px;
+        height: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(180deg, transparent, var(--intro-gold), transparent);
+    }
+
+    .line-left { left: 0; animation: drawHeight 2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards; }
+    .line-right { right: 0; animation: drawHeight 2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards; }
+
+    .intro-content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .intro-logo-wrap {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        animation: logoReveal 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    }
+
+    .intro-logo {
+        width: clamp(150px, 18vw, 210px);
+        height: auto;
+        filter: drop-shadow(0 15px 35px rgba(0,0,0,0.7));
+    }
+
+    .intro-title {
+        color: var(--intro-text);
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.5rem, 6vw, 4.2rem);
+        font-weight: 400;
+        letter-spacing: 1.4rem;
+        margin: 0;
+        opacity: 0;
+        transform: translateY(35px);
+        animation: textReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
+        text-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .intro-separator {
+        width: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--intro-gold), transparent);
+        margin: 1.5rem auto;
+        animation: drawWidth 2.2s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;
+    }
+
+    .intro-subtitle {
+        color: var(--intro-muted);
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+        font-weight: 300;
+        letter-spacing: 0.8rem;
+        margin: 0;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: textReveal 1.4s ease 3s forwards;
+    }
+
+    @keyframes drawWidth {
+        to { width: 100%; opacity: 1; }
+    }
+
+    @keyframes drawHeight {
+        to { height: 100%; opacity: 1; }
+    }
+
+    @keyframes logoReveal {
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes textReveal {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .intro-frame { inset: 30px; }
+        .intro-title { letter-spacing: 0.7rem; }
+        .intro-subtitle { letter-spacing: 0.5rem; }
+    }

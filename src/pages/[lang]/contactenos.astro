@@ -5,6 +5,8 @@ import contactData from '../../data/contact.json';
 import es from '../../data/es.json';
 import en from '../../data/en.json';
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return [
     { params: { lang: 'es' } },
@@ -156,31 +158,29 @@ const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=
 				const jsonData = Object.fromEntries(formData.entries());
 
 				try {
-					const response = await fetch('/api/send-email', {
+					const formData = new FormData(form);
+					
+					const response = await fetch('https://formspree.io/f/mgorbywq', {
 						method: 'POST',
+						body: formData,
 						headers: {
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify(jsonData)
+							'Accept': 'application/json'
+						}
 					});
-
-					const result = await response.json();
 
 					if (response.ok) {
 						status.textContent = window.location.pathname.includes('/en/') 
-							? '¡Message sent successfully!' 
+							? 'Message sent successfully!' 
 							: '¡Mensaje enviado con éxito!';
 						status.className = 'form-status success';
 						form.reset();
 					} else {
-						console.error('Server Error:', result);
-						throw new Error(result.error || 'Unknown error');
+						const result = await response.json();
+						throw new Error(result.errors ? result.errors.map((e:any) => e.message).join(', ') : 'Error en el servicio');
 					}
 				} catch (error: any) {
-					console.error('Fetch Error:', error);
-					status.textContent = window.location.pathname.includes('/en/')
-						? `Error: ${error.message}`
-						: `Error: ${error.message}`;
+					console.error('Form Error:', error);
+					status.textContent = 'Ocurrió un error. Por favor, intenta de nuevo o escribe a info@faynshteynjuridico.com';
 					status.className = 'form-status error';
 				} finally {
 					btn.disabled = false;

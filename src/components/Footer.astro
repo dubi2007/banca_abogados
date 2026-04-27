@@ -45,6 +45,32 @@ const t = useTranslations(lang);
 
   <div class="footer-bottom container">
     <hr class="footer-divider" />
-    <p class="footer-copyright">&copy; {new Date().getFullYear()} {t("footer.copyright")}</p>
+    <div class="footer-bottom-flex">
+      <p class="footer-copyright">&copy; {new Date().getFullYear()} {t("footer.copyright")}</p>
+      <div class="footer-trust">
+        <a href="#" onclick="window.open('https://www.sitelock.com/verify.php?site=faynshteynjuridico.com','SiteLock','width=600,height=600,left=160,top=170');" ><img class="img-fluid sitelock-shield" alt="SiteLock" title="SiteLock" src="https://shield.sitelock.com/shield/faynshteynjuridico.com" /></a>
+      </div>
+    </div>
   </div>
 </footer>
+
+<style>
+  .footer-bottom-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .sitelock-shield {
+    max-width: 100px;
+    height: auto;
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    .footer-bottom-flex {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

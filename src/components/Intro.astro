@@ -1,15 +1,15 @@
+---
+import '../styles/components/introhero.css';
+---
 <div id="intro-overlay" class="intro-overlay" aria-hidden="true">
     <div class="intro-bg-gradient"></div>
     <div class="intro-bg-noise"></div>
 
     <div class="intro-frame" aria-hidden="true">
-        <span class="line line-bottom-left"></span>
-        <span class="line line-bottom-right"></span>
+        <span class="line line-top"></span>
+        <span class="line line-bottom"></span>
         <span class="line line-left"></span>
         <span class="line line-right"></span>
-        <span class="line line-top-left"></span>
-        <span class="line line-top-right"></span>
-        <span class="intro-spark"></span>
     </div>
 
     <div class="intro-content">
@@ -26,392 +26,49 @@
         <div class="intro-text">
             <h1 class="intro-title">FAYNSHTEYN</h1>
             <div class="intro-separator"></div>
-            <p class="intro-subtitle">ABOGADOS &amp; CONSULTORES</p>
+            <p class="intro-subtitle" id="intro-last-element">ABOGADOS &amp; CONSULTORES</p>
         </div>
     </div>
 </div>
 
-<style>
-    :root {
-        --intro-gold: #d4af37;
-        --intro-gold-soft: #f3e5ab;
-        --intro-bg: #0a0a0a;
-        --intro-text: #f6f1e7;
-        --intro-muted: rgba(255, 255, 255, 0.82);
-        --intro-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
-        --intro-duration-exit: 900ms;
-        --intro-z: 9999;
-        --intro-pad: 20px;
-    }
 
-    .intro-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: var(--intro-z);
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        background:
-            radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 65%),
-            linear-gradient(180deg, #050505 0%, var(--intro-bg) 100%);
-        opacity: 1;
-        visibility: visible;
-        transition:
-            opacity var(--intro-duration-exit) ease,
-            visibility var(--intro-duration-exit) ease;
-    }
-
-    .intro-overlay.is-hidden {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
-
-    .intro-bg-gradient,
-    .intro-bg-noise,
-    .intro-frame,
-    .intro-content {
-        position: absolute;
-        inset: 0;
-    }
-
-    .intro-bg-gradient {
-        background:
-            radial-gradient(circle at 50% 42%, rgba(212, 175, 55, 0.08) 0%, transparent 48%),
-            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
-        pointer-events: none;
-    }
-
-    .intro-bg-noise {
-        opacity: 0.05;
-        pointer-events: none;
-        background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        background-size: 220px 220px;
-    }
-
-    .intro-frame {
-        inset: var(--intro-pad);
-        pointer-events: none;
-    }
-
-    .line {
-        position: absolute;
-        background: linear-gradient(90deg, var(--intro-gold), var(--intro-gold-soft));
-        box-shadow: var(--intro-shadow);
-        transform-origin: center;
-        will-change: transform, opacity;
-    }
-
-    .line-bottom-left,
-    .line-bottom-right,
-    .line-top-left,
-    .line-top-right {
-        height: 1px;
-        width: 50%;
-        transform: scaleX(0);
-    }
-
-    .line-left,
-    .line-right {
-        width: 1px;
-        height: 100%;
-        transform: scaleY(0);
-    }
-
-    .line-bottom-left {
-        bottom: 0;
-        right: 50%;
-        transform-origin: right center;
-        animation: drawX 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    .line-bottom-right {
-        bottom: 0;
-        left: 50%;
-        transform-origin: left center;
-        animation: drawX 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    .line-left {
-        left: 0;
-        bottom: 0;
-        transform-origin: center bottom;
-        animation: drawY 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.75s forwards;
-    }
-
-    .line-right {
-        right: 0;
-        bottom: 0;
-        transform-origin: center bottom;
-        animation: drawY 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.75s forwards;
-    }
-
-    .line-top-left {
-        top: 0;
-        left: 0;
-        transform-origin: left center;
-        animation: drawX 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.65s forwards;
-    }
-
-    .line-top-right {
-        top: 0;
-        right: 0;
-        transform-origin: right center;
-        animation: drawXReverse 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.65s forwards;
-    }
-
-    .intro-spark {
-        position: absolute;
-        top: -4px;
-        left: 50%;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #fff;
-        opacity: 0;
-        transform: translateX(-50%) scale(0);
-        box-shadow:
-            0 0 14px rgba(255, 255, 255, 0.95),
-            0 0 28px rgba(243, 229, 171, 0.85),
-            0 0 42px rgba(212, 175, 55, 0.55);
-        animation: spark 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.2) 2.45s forwards;
-    }
-
-    .intro-content {
-        position: relative;
-        z-index: 2;
-        inset: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding: 2rem;
-        text-align: center;
-    }
-
-    .intro-logo-wrap {
-        opacity: 0;
-        transform: translateY(18px) scale(0.92);
-        animation: logoReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
-    }
-
-    .intro-logo {
-        width: min(220px, 42vw);
-        max-width: 220px;
-        height: auto;
-        display: block;
-        filter:
-            drop-shadow(0 10px 30px rgba(0, 0, 0, 0.45))
-            drop-shadow(0 0 10px rgba(212, 175, 55, 0.12));
-    }
-
-    .intro-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .intro-title {
-        margin: 0;
-        color: var(--intro-text);
-        font-family: "Playfair Display", serif;
-        font-size: clamp(2rem, 5vw, 3.6rem);
-        font-weight: 500;
-        letter-spacing: clamp(0.35rem, 1.2vw, 0.9rem);
-        line-height: 1.05;
-        opacity: 0;
-        transform: translateY(18px);
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
-        animation: textUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
-    }
-
-    .intro-separator {
-        width: 140px;
-        max-width: 60vw;
-        height: 1px;
-        margin: 1.25rem 0 1rem;
-        background: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(212, 175, 55, 0.15) 10%,
-            var(--intro-gold) 50%,
-            rgba(212, 175, 55, 0.15) 90%,
-            transparent 100%
-        );
-        opacity: 0;
-        transform: scaleX(0);
-        transform-origin: center;
-        animation: separatorIn 1s cubic-bezier(0.22, 1, 0.36, 1) 1.55s forwards;
-    }
-
-    .intro-subtitle {
-        margin: 0;
-        color: var(--intro-muted);
-        font-family: "Inter", sans-serif;
-        font-size: clamp(0.74rem, 1.6vw, 0.95rem);
-        font-weight: 300;
-        letter-spacing: clamp(0.22rem, 0.8vw, 0.62rem);
-        opacity: 0;
-        transform: translateY(10px);
-        animation: fadeUp 1s ease 1.95s forwards;
-    }
-
-    @keyframes drawX {
-        to { transform: scaleX(1); }
-    }
-
-    @keyframes drawXReverse {
-        to { transform: scaleX(1); }
-    }
-
-    @keyframes drawY {
-        to { transform: scaleY(1); }
-    }
-
-    @keyframes spark {
-        0% {
-            opacity: 0;
-            transform: translateX(-50%) scale(0);
-        }
-        45% {
-            opacity: 1;
-            transform: translateX(-50%) scale(2.2);
-        }
-        100% {
-            opacity: 0;
-            transform: translateX(-50%) scale(1);
-        }
-    }
-
-    @keyframes logoReveal {
-        from {
-            opacity: 0;
-            transform: translateY(18px) scale(0.92);
-            filter: brightness(0.75);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            filter: brightness(1.06);
-        }
-    }
-
-    @keyframes textUp {
-        from {
-            opacity: 0;
-            transform: translateY(18px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes separatorIn {
-        from {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        to {
-            opacity: 1;
-            transform: scaleX(1);
-        }
-    }
-
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        :root {
-            --intro-pad: 14px;
-        }
-
-        .intro-content {
-            gap: 1.4rem;
-            padding: 1.5rem;
-        }
-
-        .intro-logo {
-            width: min(160px, 44vw);
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .line,
-        .intro-spark,
-        .intro-logo-wrap,
-        .intro-title,
-        .intro-separator,
-        .intro-subtitle,
-        .intro-overlay {
-            animation: none !important;
-            transition: none !important;
-        }
-
-        .line-bottom-left,
-        .line-bottom-right,
-        .line-top-left,
-        .line-top-right {
-            transform: scaleX(1);
-        }
-
-        .line-left,
-        .line-right {
-            transform: scaleY(1);
-        }
-
-        .intro-logo-wrap,
-        .intro-title,
-        .intro-separator,
-        .intro-subtitle {
-            opacity: 1;
-            transform: none;
-        }
-    }
-</style>
 
 <script>
-    (() => {
-        const INTRO_ID = 'intro-overlay';
-        const EXIT_DELAY = 4400;
-        const EXIT_DURATION = 900;
-        let hasRun = false;
+    const setupIntro = () => {
+        const intro = document.getElementById('intro-overlay');
+        if (!intro) return;
 
-        function hideIntro() {
-            const intro = document.getElementById(INTRO_ID);
-            if (!intro || intro.classList.contains('is-hidden')) return;
+        // Usamos una variable en el objeto window. 
+        // Se mantiene mientras navegues (SPA), pero se borra al recargar la página por completo.
+        if ((window as any).introHasPlayed) {
+            intro.remove();
+            return;
+        }
 
+        const FADE_TIME = 1200;
+        const DISPLAY_TIME = 6500; // Tiempo total que la intro permanece visible
+
+        const hide = () => {
             intro.classList.add('is-hidden');
-
-            window.setTimeout(() => {
+            (window as any).introHasPlayed = true;
+            
+            setTimeout(() => {
                 if (intro && intro.parentNode) {
                     intro.remove();
                 }
-            }, EXIT_DURATION);
+            }, FADE_TIME);
+        };
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (reduceMotion) {
+            setTimeout(hide, 1000);
+        } else {
+            // Se asegura de que la animación se complete
+            setTimeout(hide, DISPLAY_TIME);
         }
+    };
 
-        function startIntro() {
-            if (hasRun) return;
-            hasRun = true;
-
-            const intro = document.getElementById(INTRO_ID);
-            if (!intro) return;
-
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const delay = reduceMotion ? 1200 : EXIT_DELAY;
-
-            window.setTimeout(hideIntro, delay);
-        }
-
-        document.addEventListener('DOMContentLoaded', startIntro, { once: true });
-        document.addEventListener('astro:page-load', startIntro, { once: true });
-    })();
+    // Ejecutar en cada carga de página (soporta View Transitions)
+    document.addEventListener('astro:page-load', setupIntro);
 </script>
