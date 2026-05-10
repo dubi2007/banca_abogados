@@ -26,22 +26,29 @@
     background: var(--bg-white);
     border: 1px solid var(--border-light);
     overflow: hidden;
+    align-items: stretch;
 }
 
 .profile-card .image-col {
     flex: 0 0 40%;
     background: #eee;
+    display: flex;
 }
 
 .profile-card .image-col img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 700px;
     object-fit: cover;
+    align-self: flex-start;
 }
 
 .profile-card .info-col {
     flex: 1;
     padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .profile-card .info-col h1 {
@@ -86,6 +93,13 @@
     font-weight: 500;
 }
 
+.experience-container {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-top: none;
+    padding: 3rem;
+}
+
 .experience-section h3 {
     font-family: var(--font-body);
     font-size: 0.95rem;
@@ -105,4 +119,5 @@
 @media (max-width: 768px) {
     .profile-card { flex-direction: column; }
     .profile-card .info-col { padding: 2rem 1.5rem; }
+    .experience-container { padding: 2rem 1.5rem; }
 }

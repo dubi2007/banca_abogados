@@ -9,13 +9,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "admin": "node scripts/admin.js"
   },
   "dependencies": {
-    "@astrojs/node": "^10.0.4",
+    "@astrojs/node": "^10.1.0",
     "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/vercel": "^10.0.4",
-    "astro": "^6.1.5",
+    "@astrojs/vercel": "^10.0.6",
+    "astro": "^6.3.1",
     "resend": "^6.11.0"
+  },
+  "devDependencies": {
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.33.5"
   }
 }

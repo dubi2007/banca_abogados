@@ -20,6 +20,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# local admin tool
+scripts/
+public/images/team/
+
 # macOS-specific files
 .DS_Store
 
