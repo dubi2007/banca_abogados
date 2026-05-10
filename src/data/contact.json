@@ -19,13 +19,13 @@
       "submit": "ENVIAR MENSAJE"
     },
     "info": {
-      "address": "Av. Principal 123, San Isidro, Lima - Perú",
+      "address": "Calle Chinchón 886, San Isidro, Lima - Perú",
       "phone": "+51 (01) 123-4567",
       "email": "contacto@faynshteyn.com",
       "hours": "Lun - Vie: 9:00 AM - 6:00 PM"
     },
     "recipientEmail": "Jinganaupa@gmail.com",
-    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.234567890123!2d-77.036!3d-12.096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8651a000001%3A0x1234567890abcdef!2sSan%20Isidro!5e0!3m2!1ses-419!2spe!4v1620000000000!5m2!1ses-419!2spe"
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3901.2409769844908!2d-77.0276248!3d-12.0956486!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c865e27b0c87%3A0x35bf28740df5bd9f!2sC.%20Chinch%C3%B3n%20886%2C%20San%20Isidro%2015046!5e0!3m2!1ses-419!2spe!4v1778383867006!5m2!1ses-419!2spe](https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3901.2409769844908!2d-77.0276248!3d-12.0956486!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c865e27b0c87%3A0x35bf28740df5bd9f!2sC.%20Chinch%C3%B3n%20886%2C%20San%20Isidro%2015046!5e0!3m2!1ses-419!2spe!4v1778383867006!5m2!1ses-419!2spe"
   },
   "en": {
     "title": "CONTACT US",

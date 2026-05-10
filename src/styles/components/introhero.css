@@ -98,7 +98,7 @@
     }
 
     .intro-title {
-        color: var(--intro-text);
+        color: var(--intro-gold);
         font-family: 'Playfair Display', serif;
         font-size: clamp(2.5rem, 6vw, 4.2rem);
         font-weight: 400;
@@ -119,7 +119,7 @@
     }
 
     .intro-subtitle {
-        color: var(--intro-muted);
+        color: var(--intro-gold);
         font-family: 'Inter', sans-serif;
         font-size: clamp(0.8rem, 1.4vw, 1.1rem);
         font-weight: 300;
