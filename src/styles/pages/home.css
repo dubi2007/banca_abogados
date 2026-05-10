@@ -226,7 +226,7 @@
 
 .home-novedades .carousel {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 1rem;
 }
@@ -410,16 +410,28 @@
 }
 
 @media (max-width: 900px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-    .commitment-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .commitment-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .section-title h2 { font-size: 2rem; }
 }
 
 @media (max-width: 768px) {
     .areas-preview-grid { grid-template-columns: 1fr; }
-    .area-preview-card { border-right: none; border-bottom: 1px solid var(--border-light); }
+    .area-preview-card { border-right: none; border-bottom: 1px solid var(--border-light); padding: 2.5rem 1.5rem; }
     .area-preview-card:last-child { border-bottom: none; }
-    .parallax-section { padding: 6rem 0; background-attachment: scroll; }
+    .parallax-section { padding: 5rem 0; background-attachment: scroll; }
     .home-novedades .carousel { grid-template-columns: 1fr; }
-    .parallax-content p { font-size: 1.05rem; }
-    .stats-grid { grid-template-columns: 1fr; }
+    .parallax-content p { font-size: 1rem; margin-bottom: 2rem; }
+    .stats-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .commitment-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .commitment-item { padding: 1.5rem; }
+    .home-stats { padding: 4rem 0; }
+}
+
+@media (max-width: 480px) {
+    .section-title h2 { font-size: 1.7rem; }
+    .stat-value { font-size: 2.5rem; }
+    .view-more-link { padding: 2rem 0 0; }
+    .home-novedades .card { padding: 2rem 1.5rem; }
+    .container { padding: 0 1.2rem; }
 }

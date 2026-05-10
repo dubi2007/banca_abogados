@@ -100,14 +100,16 @@
     .intro-title {
         color: var(--intro-gold);
         font-family: 'Playfair Display', serif;
-        font-size: clamp(2.5rem, 6vw, 4.2rem);
+        font-size: clamp(2rem, 5vw, 4.2rem);
         font-weight: 400;
-        letter-spacing: 1.4rem;
+        letter-spacing: clamp(0.5rem, 4vw, 1.4rem);
         margin: 0;
         opacity: 0;
         transform: translateY(35px);
         animation: textReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
         text-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .intro-separator {
@@ -116,18 +118,21 @@
         background: linear-gradient(90deg, transparent, var(--intro-gold), transparent);
         margin: 1.5rem auto;
         animation: drawWidth 2.2s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;
+        max-width: 80%;
     }
 
     .intro-subtitle {
         color: var(--intro-gold);
         font-family: 'Inter', sans-serif;
-        font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+        font-size: clamp(0.7rem, 1.2vw, 1.1rem);
         font-weight: 300;
-        letter-spacing: 0.8rem;
+        letter-spacing: clamp(0.3rem, 2vw, 0.8rem);
         margin: 0;
         opacity: 0;
         transform: translateY(20px);
         animation: textReveal 1.4s ease 3s forwards;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     @keyframes drawWidth {
@@ -147,7 +152,14 @@
     }
 
     @media (max-width: 768px) {
-        .intro-frame { inset: 30px; }
-        .intro-title { letter-spacing: 0.7rem; }
-        .intro-subtitle { letter-spacing: 0.5rem; }
+        .intro-frame { inset: 20px; }
+        .intro-content { padding: 0 1.5rem; width: 100%; }
+        .intro-title { letter-spacing: 0.5rem; font-size: 1.8rem; }
+        .intro-subtitle { letter-spacing: 0.3rem; font-size: 0.8rem; }
+    }
+
+    @media (max-width: 480px) {
+        .intro-title { letter-spacing: 0.3rem; font-size: 1.5rem; }
+        .intro-subtitle { letter-spacing: 0.2rem; font-size: 0.7rem; }
+        .intro-logo { width: 140px; }
     }

@@ -79,21 +79,45 @@
 }
 
 .logo a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.header-logo {
+    height: 50px;
+    width: auto;
+    transition: all var(--transition-normal);
+    filter: brightness(0) invert(1); /* Logo blanco por defecto */
+}
+
+.brand-name {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-white);
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     transition: all var(--transition-normal);
 }
 
-.main-header.scrolled .logo a {
+.main-header.scrolled .header-logo {
+    height: 40px;
+    filter: none; /* Color original al hacer scroll */
+}
+
+.main-header.scrolled .brand-name {
     color: var(--text-dark);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .logo a:hover {
-    color: var(--color-gold) !important;
+    opacity: 0.8;
+}
+
+.logo a:hover .brand-name {
+    color: var(--color-gold);
 }
 
 .nav-links {
@@ -203,5 +227,33 @@
         color: var(--text-dark) !important;
         font-size: 1.1rem;
         letter-spacing: 3px;
+    }
+
+    .brand-name {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    .header-logo {
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-name {
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+    }
+
+    .header-logo {
+        height: 35px;
+    }
+
+    .logo a {
+        gap: 0.6rem;
+    }
+
+    .top-bar {
+        display: none; /* Hide top bar on very small screens to save space */
     }
 }
