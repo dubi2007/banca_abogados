@@ -27,7 +27,7 @@ const { lang } = Astro.params;
 const t = lang === 'en' ? en : es;
 const slides = homeData.hero.slides;
 const novedadesData = homeData.novedades_empresas[lang as 'es' | 'en'];
-const ctaText = lang === 'en' ? 'ABOUT US' : 'QUIÉNES SOMOS';
+const ctaText = t["home.cta.about"];
 
 // Optimizar imágenes de fondo
 const parallax1 = await getImage({
@@ -44,13 +44,13 @@ const parallax2 = await getImage({
     format: 'webp'
 });
 
-const areaItems = [
-    { num: '01', title: lang === 'en' ? 'Corporate Law' : 'Derecho Corporativo', href: `/${lang}/areas/derecho-corporativo` },
-    { num: '02', title: lang === 'en' ? 'Mergers & Acquisitions' : 'Fusiones y Adquisiciones', href: `/${lang}/areas/fusiones-adquisiciones` },
-    { num: '03', title: lang === 'en' ? 'Litigation' : 'Litigios', href: `/${lang}/areas/litigios` },
-    { num: '04', title: lang === 'en' ? 'Tax Law' : 'Derecho Tributario', href: `/${lang}/areas/derecho-tributario` }
-];
+const areaItems = homeData.practice_areas[lang as 'es' | 'en'].map((item, index) => ({
+    ...item,
+    num: `0${index + 1}`,
+    href: `/${lang}${item.link}`
+}));
 
+/* 
 const videoCarouselItems = [
     {
         id: '1',
@@ -77,6 +77,7 @@ const videoCarouselItems = [
         videoUrl: 'https://cdn.pixabay.com/video/2021/08/13/84931-587289569_tiny.mp4'
     }
 ];
+*/
 ---
 
 <Layout 
@@ -84,133 +85,97 @@ const videoCarouselItems = [
     lang={lang}
     description={slides[0][lang as 'es' | 'en'].subtitle}
 >
-	<Intro />
-	<HeroSlider slides={slides} lang={lang!} videoSrc="https://videos.pexels.com/video-files/5598970/5598970-uhd_2560_1440_24fps.mp4" />
+    <Intro />
+    <HeroSlider slides={slides} lang={lang!} videoSrc="https://videos.pexels.com/video-files/5598970/5598970-uhd_2560_1440_24fps.mp4" />
 
+    <!-- Se comenta también el componente en el HTML ya que los datos no están disponibles -->
+    <!-- 
     <VideoCarousel 
         lang={lang!} 
-        title={lang === 'en' ? 'CORPORATE INSIGHTS' : 'CÁPSULAS LEGALES'} 
+        title={t["home.videoCarousel.title"]} 
         items={videoCarouselItems} 
     />
+    -->
 
-	<!-- AREAS PREVIEW -->
-	<section class="home-areas">
-		<div class="container">
-			<div class="section-title">
-				<h2>{lang === 'en' ? 'PRACTICE AREAS' : 'ÁREAS DE PRÁCTICA'}</h2>
-				<p>{lang === 'en' ? 'Excellence in every specialization' : 'Excelencia en cada especialización'}</p>
-			</div>
-			
+    <!-- AREAS PREVIEW -->
+    <section class="home-areas content-below-diagonal diagonal-left">
+        <div class="container">
+            <div class="section-title">
+                <h2>{t["home.areas.title"]}</h2>
+                <p>{t["home.areas.subtitle"]}</p>
+            </div>
+            
             <AreaPreviewGrid lang={lang!} areas={areaItems} />
 
-			<div class="view-more-link">
-				<a href={`/${lang}/areas`}>{lang === 'en' ? 'VIEW ALL AREAS →' : 'VER TODAS LAS ÁREAS →'}</a>
-			</div>
-		</div>
-	</section>
+            <div class="view-more-link">
+                <a href={`/${lang}/areas`}>{t["home.areas.viewAll"]}</a>
+            </div>
+        </div>
+    </section>
 
-	<!-- STATISTICS SECTION -->
-	<section class="home-stats">
-		<div class="container">
-			<StatsGrid stats={homeData.stats[lang as 'es' | 'en']} />
-		</div>
-	</section>
+    <!-- STATISTICS SECTION -->
+    <section class="home-stats content-below-diagonal diagonal-right">
+        <div class="container">
+            <StatsGrid stats={homeData.stats[lang as 'es' | 'en']} />
+        </div>
+    </section>
 
-	<!-- PARALLAX SECTION 1 - RECONOCIMIENTOS -->
-	<section class="parallax-section" data-parallax style={`background-image: url('${parallax1.src}')`}>
-		<div class="parallax-overlay"></div>
-		<div class="parallax-content container">
-			<span class="parallax-label">{lang === 'en' ? 'THE MAIN LEGAL GUIDES CONSIDER US' : 'LAS PRINCIPALES GUÍAS LEGALES NOS CONSIDERAN'}</span>
-			<h2>{lang === 'en' ? 'LEADING FIRM IN PERU' : 'FIRMA LÍDER EN PERÚ'}</h2>
-			<p>{lang === 'en' ? 'Maintaining a high level of specialization in various areas of law' : 'Manteniendo un alto nivel de especialización en diversas áreas del derecho'}</p>
-			<a href={`/${lang}/nosotros`} class="btn-outline">{t["nav.about"]}</a>
-		</div>
-	</section>
+    <!-- PARALLAX SECTION 1 - RECONOCIMIENTOS -->
+    <section class="parallax-section content-below-diagonal diagonal-left" data-parallax style={`background-image: url('${parallax1.src}')`}>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content container">
+            <span class="parallax-label">{t["home.parallax1.label"]}</span>
+            <h2>{t["home.parallax1.title"]}</h2>
+            <p>{t["home.parallax1.desc"]}</p>
+            <a href={`/${lang}/nosotros`} class="btn-outline">{t["nav.about"]}</a>
+        </div>
+    </section>
 
-	<!-- COMMITMENT SECTION -->
-	<section class="home-commitment">
-		<div class="container">
-			<div class="section-title">
-				<h2>{homeData.commitment[lang as 'es' | 'en'].title}</h2>
-			</div>
-			<CommitmentGrid items={homeData.commitment[lang as 'es' | 'en'].items} />
-		</div>
-	</section>
+    <!-- COMMITMENT SECTION -->
+    <section class="home-commitment content-below-diagonal diagonal-right">
+        <div class="container">
+            <div class="section-title">
+                <h2>{homeData.commitment[lang as 'es' | 'en'].title}</h2>
+            </div>
+            <CommitmentGrid items={homeData.commitment[lang as 'es' | 'en'].items} />
+        </div>
+    </section>
 
-	<!-- NOVEDADES -->
-	<section class="home-novedades">
-		<div class="container">
-			<div class="section-title">
-				<h2>{novedadesData.title}</h2>
-			</div>
-			<NovedadesCarousel lang={lang!} items={novedadesData.items} />
-		</div>
-	</section>
+    <!-- NOVEDADES -->
+    <section class="home-novedades content-below-diagonal diagonal-left">
+        <div class="container">
+            <div class="section-title">
+                <h2>{novedadesData.title}</h2>
+            </div>
+            <NovedadesCarousel lang={lang!} items={novedadesData.items} />
+        </div>
+    </section>
 
-	<!-- FAQ SECTION -->
-	<section class="home-faq">
-		<div class="container">
-			<div class="section-title">
-				<h2>{homeData.faqs[lang as 'es' | 'en'].title}</h2>
-			</div>
-			<FaqAccordion items={homeData.faqs[lang as 'es' | 'en'].items} />
-		</div>
-	</section>
+    <!-- FAQ SECTION -->
+    <section class="home-faq content-below-diagonal diagonal-right">
+        <div class="container">
+            <div class="section-title">
+                <h2>{homeData.faqs[lang as 'es' | 'en'].title}</h2>
+            </div>
+            <FaqAccordion items={homeData.faqs[lang as 'es' | 'en'].items} />
+        </div>
+    </section>
 
-	<!-- PARALLAX SECTION 2 - CONTACTO -->
-	<section class="parallax-section" data-parallax style={`background-image: url('${parallax2.src}')`}>
-		<div class="parallax-overlay"></div>
-		<div class="parallax-content container" style="text-align:center;">
-			<span class="parallax-label">{lang === 'en' ? 'WE WANT TO HEAR FROM YOU' : 'QUEREMOS SABER DE USTED'}</span>
-			<h2>{lang === 'en' ? 'CONTACT US' : 'CONTÁCTENOS'}</h2>
-			<p>{lang === 'en' ? 'Let us know how we can help with your legal needs' : 'Permítanos saber cómo podemos ayudarle con sus necesidades legales'}</p>
-			<a href={`/${lang}/contactenos`} class="btn-outline">{t["nav.contact"]}</a>
-		</div>
-	</section>
+    <!-- PARALLAX SECTION 2 - CONTACTO -->
+    <section class="parallax-section content-below-diagonal" data-parallax style={`background-image: url('${parallax2.src}')`}>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content container" style="text-align:center;">
+            <span class="parallax-label">{t["home.parallax2.label"]}</span>
+            <h2>{t["home.parallax2.title"]}</h2>
+            <p>{t["home.parallax2.desc"]}</p>
+            <a href={`/${lang}/contactenos`} class="btn-outline">{t["nav.contact"]}</a>
+        </div>
+    </section>
 </Layout>
 
 <script>
-	function initAnimations() {
-		// PARALLAX EFFECT
-		const parallaxSections = document.querySelectorAll('[data-parallax]');
-		
-		function handleParallax() {
-			parallaxSections.forEach(section => {
-				const rect = (section as HTMLElement).getBoundingClientRect();
-				// Only animate if section is in viewport
-				if (rect.top < window.innerHeight && rect.bottom > 0) {
-					const rate = (rect.top) * 0.15; // Slower, smoother rate
-					(section as HTMLElement).style.backgroundPosition = `center ${rate}px`;
-				}
-			});
-		}
+    import { initScrollAnimations } from '../../utils/animations';
 
-		if (window.innerWidth > 768) {
-			window.addEventListener('scroll', handleParallax, { passive: true });
-		}
-
-		// FADE-IN ON SCROLL
-		const observerOptions = { 
-			threshold: 0.15, 
-			rootMargin: '0px 0px -80px 0px' 
-		};
-
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('visible');
-					// Once visible, no need to observe anymore for performance
-					observer.unobserve(entry.target);
-				}
-			});
-		}, observerOptions);
-
-		document.querySelectorAll('.area-preview-card, .card, .section-title, .parallax-content, .stat-item, .commitment-item, .faq-item').forEach(el => {
-			el.classList.add('fade-up');
-			observer.observe(el);
-		});
-	}
-
-	// Initialize on first load and after every View Transition
-	document.addEventListener('astro:page-load', initAnimations);
+    // Initialize on first load and after every View Transition
+    document.addEventListener('astro:page-load', initScrollAnimations);
 </script>

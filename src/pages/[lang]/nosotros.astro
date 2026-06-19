@@ -45,10 +45,11 @@ const svgIcons: Record<string, string> = {
 <Layout title={t["nav.about"]} lang={lang} preloadImage={optimizedHero.src}>
 	<div class="page-header" style={`background-image: url('${optimizedHero.src}')`}>
 		<h1>{t["nav.about"]}</h1>
+		<p>{t["header.subtitle.about"]}</p>
 	</div>
 
 	<!-- HISTORIA -->
-	<section class="about-section container">
+	<section class="about-section container content-below-diagonal diagonal-left">
 		<div class="history">
 			<h2>Faynshteyn Abogados & Consultores</h2>
 			<div class="v-line-sm"></div>
@@ -57,7 +58,7 @@ const svgIcons: Record<string, string> = {
 	</section>
 
 	<!-- MISIÓN Y VISIÓN -->
-	<section class="mv-section">
+	<section class="mv-section content-below-diagonal diagonal-right">
 		<div class="container mv-grid">
 			<div class="mv-card">
 				<h3>{mision.title}</h3>
@@ -73,7 +74,7 @@ const svgIcons: Record<string, string> = {
 	</section>
 
 	<!-- FUNDADORA -->
-	<section class="fundadora-section container">
+	<section class="fundadora-section container content-below-diagonal diagonal-left">
 		<div class="fundadora-grid">
 			<div class="fundadora-image">
 				<Image 
@@ -95,7 +96,7 @@ const svgIcons: Record<string, string> = {
 	</section>
 
 	<!-- COMPROMISO -->
-	<section class="compromiso-section">
+	<section class="compromiso-section content-below-diagonal diagonal-right">
 		<div class="container">
 			<h2>{comp.title}</h2>
 			<div class="cards-grid">
@@ -110,7 +111,7 @@ const svgIcons: Record<string, string> = {
 	</section>
 
 	<!-- NOVEDADES REUTILIZADO -->
-	<section class="home-novedades" style="background: var(--bg-white); padding: 5rem 0;">
+	<section class="home-novedades content-below-diagonal" style="background: var(--bg-white); padding: 5rem 0;">
 		<div class="container">
 			<div class="section-title">
 				<h2 style="text-align: center; margin-bottom: 3rem; font-size: 2rem; letter-spacing: 2px;">{homeData.novedades_empresas[lang as 'es' | 'en'].title}</h2>

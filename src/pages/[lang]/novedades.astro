@@ -17,11 +17,13 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const t = lang === 'en' ? en : es;
 const data = novedadesData[lang as 'es' | 'en'];
+const heroImg = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80';
 ---
 
 <Layout title={t["nav.news"]} lang={lang}>
-	<div class="page-header">
+	<div class="page-header" style={`background-image: url('${heroImg}')`}>
 		<h1>{data.title}</h1>
+		<p>{t["header.subtitle.news"]}</p>
 		<div class="news-tabs">
 			<button class="active" data-tab="eventos">{data.tabs.eventos}</button>
 			<button data-tab="noticias">{data.tabs.noticias}</button>
@@ -30,7 +32,7 @@ const data = novedadesData[lang as 'es' | 'en'];
 		</div>
 	</div>
 
-	<div class="news-content container">
+	<div class="news-content container content-below-diagonal">
 		<!-- EVENTOS -->
 		<div class="news-section active" id="tab-eventos">
 			<div class="events-grid">

@@ -23,9 +23,10 @@ const heroImg = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=
 <Layout title={t["nav.locations"]} lang={lang}>
 	<div class="page-header" style={`background-image: url('${heroImg}')`}>
 		<h1>{data.title}</h1>
-		<p>{data.subtitle}</p>
+		<p>{t["header.subtitle.locations"]}</p>
 	</div>
 
+	<section class="content-below-diagonal">
 	<div class="container">
 		<div class="sedes-grid">
 			{data.items.map((sede: { city: string; address: string; phone: string; email: string; mapUrl: string; image: string }) => (
@@ -36,11 +37,11 @@ const heroImg = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=
 					</div>
 					<div class="sede-info">
 						<div class="detail">
-							<span class="detail-icon">📍</span>
+							<span class="detail-icon"></span>
 							<span>{sede.address}</span>
 						</div>
 						<div class="detail">
-							<span class="detail-icon">📞</span>
+							<span class="detail-icon"></span>
 							<span>{sede.phone}</span>
 						</div>
 						<div class="detail">
@@ -55,4 +56,5 @@ const heroImg = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=
 			))}
 		</div>
 	</div>
+	</section>
 </Layout>

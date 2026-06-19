@@ -160,5 +160,19 @@
         { "date": "01 MAR 2024", "title": "Trends in international arbitration" }
       ]
     }
+  },
+  "practice_areas": {
+    "es": [
+      { "icon": "briefcase", "title": "Derecho Corporativo", "desc": "Asesoramiento legal integral para el desarrollo y operaciones de su empresa.", "link": "/areas/derecho-corporativo" },
+      { "icon": "handshake", "title": "Fusiones y Adquisiciones", "desc": "Asesoría en procesos de reestructuración, compras y fusiones corporativas.", "link": "/areas/fusiones-adquisiciones" },
+      { "icon": "scale", "title": "Litigios", "desc": "Representación experta en controversias civiles, comerciales y corporativas.", "link": "/areas/litigios" },
+      { "icon": "calculator", "title": "Derecho Tributario", "desc": "Planificación fiscal estratégica y cumplimiento normativo para empresas.", "link": "/areas/derecho-tributario" }
+    ],
+    "en": [
+      { "icon": "briefcase", "title": "Corporate Law", "desc": "Comprehensive legal advice for the development and operations of your company.", "link": "/areas/derecho-corporativo" },
+      { "icon": "handshake", "title": "Mergers & Acquisitions", "desc": "Advisory in corporate restructuring, acquisitions, and mergers processes.", "link": "/areas/fusiones-adquisiciones" },
+      { "icon": "scale", "title": "Litigation", "desc": "Expert representation in civil, commercial, and corporate disputes.", "link": "/areas/litigios" },
+      { "icon": "calculator", "title": "Tax Law", "desc": "Strategic tax planning and regulatory compliance for businesses.", "link": "/areas/derecho-tributario" }
+    ]
   }
 }

@@ -17,14 +17,16 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const t = lang === 'en' ? en : es;
 const data = productosData[lang as 'es' | 'en'];
+const heroImg = 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80';
 ---
 
 <Layout title={t["nav.products"]} lang={lang}>
-	<div class="page-header">
+	<div class="page-header" style={`background-image: url('${heroImg}')`}>
 		<h1>{data.title}</h1>
-		<p>{data.subtitle}</p>
+		<p>{t["header.subtitle.products"]}</p>
 	</div>
 
+	<section class="content-below-diagonal">
 	<div class="container">
 		<div class="productos-grid">
 			{data.items.map((item: { title: string; icon: string; description: string; price: string }) => (
@@ -37,4 +39,5 @@ const data = productosData[lang as 'es' | 'en'];
 			))}
 		</div>
 	</div>
+	</section>
 </Layout>

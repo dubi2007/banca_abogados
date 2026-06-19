@@ -1,0 +1,23 @@
+milestones:
+  - id: m1
+    title: "Project Initialization"
+    status: completed
+  - id: m2
+    title: "Architecture Refactoring"
+    status: completed
+  - id: m3
+    title: "Contact Page Redesign (Iteration 1)"
+    status: completed
+  - id: m4
+    title: "ACP Adoption & Contact Page Premium Redesign"
+    status: completed
+    tasks:
+      - id: t1
+        description: "Setup ACP harness"
+        status: completed
+      - id: t2
+        description: "Implement premium CSS (No AI look)"
+        status: completed
+      - id: t3
+        description: "Replace emojis with SVGs"
+        status: completed

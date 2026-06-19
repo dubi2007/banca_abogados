@@ -25,13 +25,14 @@ const heroImg = 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=
 <Layout title={t["nav.areas"]} lang={lang} description={data.subtitle}>
 	<div class="page-header" style={`background-image: url('${heroImg}')`}>
 		<h1>{data.title}</h1>
-		<p>{data.subtitle}</p>
+		<p>{t["header.subtitle.areas"]}</p>
 	</div>
 
-	<Breadcrumbs lang={lang!} items={[{ label: t["nav.areas"] }]} />
+	<section class="content-below-diagonal">
+		<Breadcrumbs lang={lang!} items={[{ label: t["nav.areas"] }]} />
 
-	<div class="container">
-		<div class="areas-search">
+		<div class="container">
+			<div class="areas-search">
 			<input type="text" id="areaSearch" placeholder={data.searchPlaceholder} />
 		</div>
 
@@ -44,6 +45,7 @@ const heroImg = 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=
 			))}
 		</div>
 	</div>
+	</section>
 </Layout>
 
 <script>

@@ -25,17 +25,20 @@ const sedeLabel = lang === 'en' ? 'Office' : 'Sede';
 
 const { categories, areas, locations } = directorioData.filters;
 const members = directorioData.members;
+const heroImg = 'https://images.unsplash.com/photo-1556761175-5973dc0f32b7?w=1600&q=80';
 ---
 
 <Layout title={t["nav.directory"]} lang={lang}>
-	<div class="page-header">
+	<div class="page-header" style={`background-image: url('${heroImg}')`}>
 		<h1>{t["nav.directory"]}</h1>
+		<p>{t["header.subtitle.directory"]}</p>
 	</div>
 
-	<Breadcrumbs lang={lang!} items={[{ label: t["nav.directory"] }]} />
+	<div class="content-below-diagonal">
+		<Breadcrumbs lang={lang!} items={[{ label: t["nav.directory"] }]} />
 
-	<section class="container" style="padding-top: 3rem;">
-		<div class="filters">
+		<section class="container" style="padding-top: 3rem;">
+			<div class="filters">
 			<select id="categoryFilter">
 				{categories.map((cat: any) => (
 					<option value={cat.id}>{cat[lang!]}</option>
@@ -59,7 +62,8 @@ const members = directorioData.members;
 				<TeamCard member={member} lang={lang!} />
 			))}
 		</div>
-	</section>
+		</section>
+	</div>
 </Layout>
 
 <script>

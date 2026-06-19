@@ -1,10 +1,6 @@
 {
   "partners": [
-    { "name": "Empresa 1", "logo": "https://img.icons8.com/color/96/google-logo.png" },
-    { "name": "Empresa 2", "logo": "https://img.icons8.com/color/96/microsoft.png" },
-    { "name": "Empresa 3", "logo": "https://img.icons8.com/color/96/amazon.png" },
-    { "name": "Empresa 4", "logo": "https://img.icons8.com/color/96/apple-logo.png" },
-    { "name": "Empresa 5", "logo": "https://img.icons8.com/color/96/facebook-new.png" },
-    { "name": "Empresa 6", "logo": "https://img.icons8.com/color/96/netflix.png" }
+    { "name": "Ziphy Care", "logo": "https://ziphycare.com/wp-content/themes/zipnostic/images/logo/logo-header-black.svg" },
+    { "name": "Aspis Cyber", "logo": "https://aspiscyber.com/wp-content/uploads/2025/08/Aspis-Logo-Horizontal-Command-Blue-v3-scaled.png" }
   ]
 }

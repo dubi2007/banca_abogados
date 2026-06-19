@@ -68,7 +68,6 @@ body {
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
 }
 
 /* TYPOGRAPHY */
@@ -106,14 +105,42 @@ ul {
     padding: 0 2rem;
 }
 
+/* DIAGONAL SYSTEM */
+.diagonal-right {
+    position: relative;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    padding-bottom: 5vh;
+}
+
+.diagonal-left {
+    position: relative;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+    padding-bottom: 5vh;
+}
+
+.content-below-diagonal {
+    position: relative;
+    margin-top: -10vh;
+    padding-top: 25vh;
+    z-index: 0;
+}
+
 /* PAGE HEADER - shared across internal pages */
 .page-header {
     padding: clamp(10rem, 20vh, 16rem) 1.5rem clamp(5rem, 10vh, 8rem);
     text-align: center;
     background: var(--bg-dark);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 50vh;
     color: var(--text-white);
     position: relative;
     overflow: hidden;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
 }
 
 .page-header::before {
@@ -132,7 +159,7 @@ ul {
 .page-header::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;

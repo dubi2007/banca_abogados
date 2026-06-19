@@ -21,175 +21,110 @@ const heroImg = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=
 ---
 
 <Layout title={data.title} lang={lang} description={data.subtitle}>
-	<div class="page-header" style={`background-image: url('${heroImg}')`}>
-		<h1>{data.title}</h1>
-		<p>{data.subtitle}</p>
-	</div>
+	<section class="contact-hero">
+		<h1 class="hero-title">{data.title}</h1>
+		<p class="hero-subtitle">{data.subtitle}</p>
+	</section>
 
-	<div class="contact-main-section">
-		<div class="container">
-			<div class="contact-grid">
-				<!-- INFO COLUMN -->
-				<div class="contact-info">
-					<div class="info-item">
-						<span class="info-label">{lang === 'en' ? 'ADDRESS' : 'DIRECCIÓN'}</span>
-						<p>{data.info.address}</p>
-					</div>
-					<div class="info-item">
-						<span class="info-label">{lang === 'en' ? 'PHONE' : 'TELÉFONO'}</span>
-						<p>{data.info.phone}</p>
-					</div>
-					<div class="info-item">
-						<span class="info-label">{lang === 'en' ? 'EMAIL' : 'CORREO'}</span>
-						<p>{data.info.email}</p>
-					</div>
-					<div class="info-item">
-						<span class="info-label">{lang === 'en' ? 'HOURS' : 'HORARIO'}</span>
-						<p>{data.info.hours}</p>
-					</div>
-				</div>
+	<section class="contact-section">
+		<div class="contact-content">
+		  
+		  <!-- MITAD IZQUIERDA (Info + Mapa) -->
+		  <div class="contact-left-sticky">
+		    <div class="contact-details fade-up">
+		      <div class="contact-item">
+		        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+		        <div class="item-text">
+		          <strong>{t['contact.label.address']}</strong>
+		          <span>{data.info.address}</span>
+		        </div>
+		      </div>
+		      <div class="contact-item">
+		        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+		        <div class="item-text">
+		          <strong>{t['contact.label.phone']}</strong>
+		          <a href={`tel:${data.info.phone.replace(/[^0-9+]/g, '')}`}>{data.info.phone}</a>
+		        </div>
+		      </div>
+		      <div class="contact-item">
+		        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+		        <div class="item-text">
+		          <strong>{t['contact.label.email']}</strong>
+		          <a href={`mailto:${data.info.email}`}>{data.info.email}</a>
+		        </div>
+		      </div>
+		      <div class="contact-item">
+		        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+		        <div class="item-text">
+		          <strong>{t['contact.label.hours']}</strong>
+		          <span>{data.info.hours}</span>
+		        </div>
+		      </div>
+		    </div>
 
-				<!-- FORM COLUMN -->
-				<div class="contact-form-wrapper">
-					<form class="contact-form" id="contactForm">
-						<div class="form-row">
-							<div class="form-group">
-								<label for="name">{data.form.name}</label>
-								<input type="text" id="name" name="name" required />
-							</div>
-							<div class="form-group">
-								<label for="email">{data.form.email}</label>
-								<input type="email" id="email" name="email" required />
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group">
-								<label for="phone">{data.form.phone}</label>
-								<input type="tel" id="phone" name="phone" />
-							</div>
-							<div class="form-group">
-								<label for="company">{data.form.company}</label>
-								<input type="text" id="company" name="company" />
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group">
-								<label for="service">{data.form.service}</label>
-								<select id="service" name="service" required>
-									<option value="" disabled selected>--</option>
-									<option value="corporate">{data.form.serviceOptions.corporate}</option>
-									<option value="tax">{data.form.serviceOptions.tax}</option>
-									<option value="litigation">{data.form.serviceOptions.litigation}</option>
-									<option value="other">{data.form.serviceOptions.other}</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="subject">{data.form.subject}</label>
-								<input type="text" id="subject" name="subject" required />
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="message">{data.form.message}</label>
-							<textarea id="message" rows="6" name="message" required></textarea>
-						</div>
-						
-						<button type="submit" class="btn-gold" id="submitBtn">
-							<span class="btn-text">{data.form.submit}</span>
-							<span class="loader" style="display:none;"></span>
-						</button>
-						<div id="formStatus" class="form-status" role="alert"></div>
-					</form>
-				</div>
-			</div>
+		    <!-- Mapa Minimalista Invertido -->
+		    <div class="map-container fade-up">
+		       <iframe 
+		        src={data.mapUrl}
+		        width="100%" 
+		        height="100%" 
+		        style="border:0;" 
+		        allowfullscreen="" 
+		        loading="lazy" 
+		        referrerpolicy="no-referrer-when-downgrade">
+		      </iframe>
+		    </div>
+		  </div>
+		  
+		  <!-- MITAD DERECHA (Formulario Largo) -->
+		  <div class="contact-right-scroll fade-up">
+		    <h3 class="form-title">{data.form.submit}</h3>
+		    
+		    <!-- Formulario Elegante -->
+		    <form class="elegant-form" id="contactForm">
+		      <div class="input-group">
+		        <input type="text" id="name" name="name" required placeholder=" " />
+		        <label for="name">{data.form.name}</label>
+		      </div>
+		      
+		      <div class="input-group">
+		        <input type="email" id="email" name="email" required placeholder=" " />
+		        <label for="email">{data.form.email}</label>
+		      </div>
+		      
+		      <div class="input-group">
+		        <input type="tel" id="phone" name="phone" placeholder=" " />
+		        <label for="phone">{data.form.phone}</label>
+		      </div>
+
+		      <div class="input-group">
+		        <select id="service" name="service" required>
+		          <option value="" disabled selected></option>
+		          <option value="corporate">{data.form.serviceOptions.corporate}</option>
+		          <option value="tax">{data.form.serviceOptions.tax}</option>
+		          <option value="litigation">{data.form.serviceOptions.litigation}</option>
+		          <option value="other">{data.form.serviceOptions.other}</option>
+		        </select>
+		        <label for="service">{data.form.service}</label>
+		      </div>
+		      
+		      <div class="input-group">
+		        <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+		        <label for="message">{data.form.message}</label>
+		      </div>
+		      
+		      <button type="submit" class="btn-gold" id="submitBtn">
+		         <span class="btn-text">{data.form.submit}</span>
+		         <span class="loader" style="display:none;"></span>
+		      </button>
+		      <div id="formStatus" class="form-status" role="alert"></div>
+		    </form>
+		  </div>
 		</div>
-	</div>
-
-	<!-- MAP SECTION -->
-	<section class="contact-map">
-		<iframe 
-			src={data.mapUrl} 
-			width="100%" 
-			height="500" 
-			style="border:0;" 
-			allowfullscreen="" 
-			loading="lazy" 
-			referrerpolicy="no-referrer-when-downgrade">
-		</iframe>
 	</section>
 </Layout>
 
 <script>
-	function initContact() {
-		// Animation logic
-		const observerOptions = { threshold: 0.1 };
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('visible');
-				}
-			});
-		}, observerOptions);
-
-		document.querySelectorAll('.info-item, .contact-form-wrapper').forEach(el => {
-			el.classList.add('fade-up');
-			observer.observe(el);
-		});
-
-		// Form logic
-		const form = document.getElementById('contactForm') as HTMLFormElement;
-		const status = document.getElementById('formStatus');
-		const btn = document.getElementById('submitBtn') as HTMLButtonElement;
-		const btnText = btn?.querySelector('.btn-text');
-		const loader = btn?.querySelector('.loader');
-
-		if (form && status && btn) {
-			form.addEventListener('submit', async (e) => {
-				e.preventDefault();
-				
-				btn.disabled = true;
-				if (btnText) (btnText as HTMLElement).style.opacity = '0.5';
-				if (loader) (loader as HTMLElement).style.display = 'inline-block';
-				
-				status.textContent = window.location.pathname.includes('/en/') ? 'Sending...' : 'Enviando...';
-				status.className = 'form-status info';
-
-				// Convertimos FormData a un objeto JSON para el servidor
-				const formData = new FormData(form);
-				const jsonData = Object.fromEntries(formData.entries());
-
-				try {
-					const formData = new FormData(form);
-					
-					const response = await fetch('https://formspree.io/f/mgorbywq', {
-						method: 'POST',
-						body: formData,
-						headers: {
-							'Accept': 'application/json'
-						}
-					});
-
-					if (response.ok) {
-						status.textContent = window.location.pathname.includes('/en/') 
-							? 'Message sent successfully!' 
-							: '¡Mensaje enviado con éxito!';
-						status.className = 'form-status success';
-						form.reset();
-					} else {
-						const result = await response.json();
-						throw new Error(result.errors ? result.errors.map((e:any) => e.message).join(', ') : 'Error en el servicio');
-					}
-				} catch (error: any) {
-					console.error('Form Error:', error);
-					status.textContent = 'Ocurrió un error. Por favor, intenta de nuevo o escribe a info@faynshteynjuridico.com';
-					status.className = 'form-status error';
-				} finally {
-					btn.disabled = false;
-					if (btnText) (btnText as HTMLElement).style.opacity = '1';
-					if (loader) (loader as HTMLElement).style.display = 'none';
-				}
-			});
-		}
-	}
-
-	document.addEventListener('astro:page-load', initContact);
+	import { initContactForm } from '../../utils/formHandler';
+	document.addEventListener('astro:page-load', initContactForm);
 </script>

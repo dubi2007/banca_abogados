@@ -5,25 +5,25 @@
         "items": [
             {
                 "title": "Informe Legal Corporativo",
-                "icon": "📄",
+                "icon": "",
                 "description": "Informes periódicos sobre cambios normativos relevantes para su sector empresarial.",
                 "price": "Suscripción mensual"
             },
             {
                 "title": "Kit de Compliance",
-                "icon": "🛡️",
+                "icon": "",
                 "description": "Paquete integral de documentos y protocolos de cumplimiento normativo personalizados.",
                 "price": "Consultar"
             },
             {
                 "title": "Due Diligence Express",
-                "icon": "🔍",
+                "icon": "",
                 "description": "Servicio de auditoría legal acelerada para operaciones de M&A y financiamientos.",
                 "price": "Por proyecto"
             },
             {
                 "title": "Protección de Datos - LPDP",
-                "icon": "🔒",
+                "icon": "",
                 "description": "Implementación completa del marco normativo de protección de datos personales.",
                 "price": "Consultar"
             }
@@ -35,25 +35,25 @@
         "items": [
             {
                 "title": "Corporate Legal Report",
-                "icon": "📄",
+                "icon": "",
                 "description": "Periodic reports on relevant regulatory changes for your business sector.",
                 "price": "Monthly subscription"
             },
             {
                 "title": "Compliance Kit",
-                "icon": "🛡️",
+                "icon": "",
                 "description": "Comprehensive package of customized compliance documents and protocols.",
                 "price": "Contact us"
             },
             {
                 "title": "Express Due Diligence",
-                "icon": "🔍",
+                "icon": "",
                 "description": "Accelerated legal audit service for M&A operations and financing.",
                 "price": "Per project"
             },
             {
                 "title": "Data Protection - LPDP",
-                "icon": "🔒",
+                "icon": "",
                 "description": "Complete implementation of personal data protection regulatory framework.",
                 "price": "Contact us"
             }
