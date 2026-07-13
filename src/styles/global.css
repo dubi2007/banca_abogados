@@ -38,8 +38,9 @@
     --fs-small: 0.85rem;
 
     /* SPACING */
-    --section-padding: clamp(4rem, 10vw, 8rem) 0;
+    --section-padding: clamp(6rem, 12vw, 10rem) 0;
     --container-width: 1300px;
+    --diagonal-height: clamp(50px, 6vw, 80px);
 
     /* TRANSITIONS - Smoother for lawyer style */
     --transition-fast: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -107,24 +108,24 @@ ul {
 
 /* DIAGONAL SYSTEM */
 .diagonal-right {
-    position: relative;
-    z-index: 1;
-    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-    padding-bottom: 5vh;
+    position: relative !important;
+    z-index: 2 !important;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--diagonal-height)), 0 100%) !important;
+    padding-bottom: calc(var(--diagonal-height) + 2rem) !important;
 }
 
 .diagonal-left {
-    position: relative;
-    z-index: 1;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
-    padding-bottom: 5vh;
+    position: relative !important;
+    z-index: 2 !important;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--diagonal-height))) !important;
+    padding-bottom: calc(var(--diagonal-height) + 2rem) !important;
 }
 
 .content-below-diagonal {
-    position: relative;
-    margin-top: -10vh;
-    padding-top: 25vh;
-    z-index: 0;
+    position: relative !important;
+    margin-top: calc(-1 * var(--diagonal-height)) !important;
+    padding-top: calc(var(--diagonal-height) + 5rem) !important;
+    z-index: 1 !important;
 }
 
 /* PAGE HEADER - shared across internal pages */

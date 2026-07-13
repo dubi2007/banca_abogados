@@ -1,12 +1,6 @@
 ---
-interface Props {
-	title?: string;
-	lang?: string;
-	description?: string;
-	image?: string;
-	canonical?: string;
-	preloadImage?: string;
-}
+const title = "402 ";
+const description = "STATUS_402";
 ---
 
 <!doctype html>
@@ -14,8 +8,8 @@ interface Props {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>402</title>
-		<meta name="description" content="STATUS_402" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
 		<style>
 			body, html {
 				margin: 0;

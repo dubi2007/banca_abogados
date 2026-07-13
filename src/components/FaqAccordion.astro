@@ -19,7 +19,9 @@ const { items } = Astro.props;
                 <span class="icon" aria-hidden="true"></span>
             </button>
             <div class="faq-answer" id={`faq-answer-${index}`} role="region">
-                <p>{item.a}</p>
+                <div class="faq-answer-inner">
+                    <p>{item.a}</p>
+                </div>
             </div>
         </div>
     ))}
