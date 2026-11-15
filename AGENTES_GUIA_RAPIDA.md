@@ -5,7 +5,7 @@
 | Agente | Comando | Especialidad |
 |--------|---------|--------------|
 | 🎨 **Design Web** | `/agent design-web` | UI/UX, Material Design, Accesibilidad |
-| ⚛️ **Frontend** | `/agent frontend` | React, Astro, TypeScript, Componentes |
+| ⚛️ **Frontend** | `/agent frontend` | React, Next.js, TypeScript, Componentes |
 | 🏗️ **Arquitectura** | `/agent architecture` | Estructura, Patrones, Escalabilidad |
 
 ## Comandos Rápidos
@@ -88,7 +88,7 @@ Los tres agentes trabajarán en paralelo.
 ---
 
 **Stack del Proyecto:**
-- Framework: Astro + React
+- Framework: Next.js + React
 - Lenguaje: TypeScript
 - Estilos: Tailwind CSS
 - Diseño: Google Material Design 3

@@ -7,6 +7,6 @@
 4. **Forms**: Inputs should rarely have full borders. Use bottom-border only styles with floating or elegant labels.
 
 ## Project Architecture
-- Framework: Astro + React.
+- Framework: Next.js + React.
 - Styling: Vanilla CSS with Global Design Tokens.
 - Translations: i18n managed via `t()` function and JSON files in `src/data/`.

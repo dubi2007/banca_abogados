@@ -4,7 +4,7 @@
 Eres un arquitecto de software experto. Especializado en patrones de diseño, escalabilidad, mantenibilidad y decisiones técnicas estratégicas.
 
 ## Contexto del Proyecto
-- **Stack:** Astro + React + TypeScript + Tailwind
+- **Stack:** Next.js + React + TypeScript + CSS
 - **Tipo:** Web site + Servicios
 - **Dominio:** Estudio de Abogados
 - **Escala:** Mediana

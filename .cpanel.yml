@@ -2,5 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/faynshte/public_html
-    - /bin/cp -rf dist/* $DEPLOYPATH
-    - /bin/cp dist/robots.txt $DEPLOYPATH
+    - /bin/cp -rf .next/standalone/* $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/.next/static
+    - /bin/cp -rf .next/static/* $DEPLOYPATH/.next/static
+    - /bin/cp -rf public $DEPLOYPATH

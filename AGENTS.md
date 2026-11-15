@@ -27,7 +27,7 @@ Estos agentes están optimizados para diferentes aspectos del proyecto, operando
 
 **Rol y Enfoque:**
 - Senior Frontend Engineer responsable de construir interfaces rápidas, modulares y pixel-perfect.
-- Experto en Astro (SSR/SSG, View Transitions) y React (componentes interactivos).
+- Experto en Next.js (SSR/SSG, App Router) y React (componentes interactivos).
 - Fuerte enfoque en tipado estricto con TypeScript, HTML5 semántico y CSS moderno con variables globales.
 - Optimización extrema de Core Web Vitals y lazy loading.
 
@@ -45,7 +45,7 @@ Estos agentes están optimizados para diferentes aspectos del proyecto, operando
 ---
 
 ## Stack del Proyecto
-- **Framework:** Astro (SSR/SSG)
+- **Framework:** Next.js (SSR/SSG)
 - **Frontend:** React, TypeScript
 - **Estilos:** Vanilla CSS con CSS Variables (Design Tokens)
 - **Diseño:** Google Material Design + Google Stitch

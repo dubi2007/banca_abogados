@@ -1,0 +1,13 @@
+@import "../styles/global.css";
+@import "../styles/components/header.css";
+@import "../styles/components/footer.css";
+@import "../styles/pages/home.css";
+@import "../styles/pages/areas.css";
+@import "../styles/pages/area-detalle.css";
+@import "../styles/pages/directorio.css";
+@import "../styles/pages/perfil.css";
+@import "../styles/pages/nosotros.css";
+@import "../styles/pages/novedades.css";
+@import "../styles/pages/contactenos.css";
+@import "../styles/pages/productos.css";
+@import "../styles/pages/sedes.css";
