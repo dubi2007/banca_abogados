@@ -8,8 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "admin": "node scripts/admin.js"
+    "start": "next start"
   },
   "dependencies": {
     "next": "^15.5.0",

@@ -4,9 +4,9 @@
 
 .productos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 1.5rem;
-    padding: var(--section-padding);
+    padding: 3rem 0 5rem;
 }
 
 .producto-card {
@@ -28,7 +28,7 @@
     margin-bottom: 1.5rem;
 }
 
-.producto-card h3 {
+.producto-card h2 {
     font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 700;
@@ -47,7 +47,7 @@
     display: inline-block;
     padding: 0.4rem 1.2rem;
     background: rgba(197, 160, 89, 0.1);
-    color: var(--color-gold);
+    color: var(--color-gold-dark);
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 1px;

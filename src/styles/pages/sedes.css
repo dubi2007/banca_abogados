@@ -4,15 +4,15 @@
 
 .sedes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
     gap: 1.5rem;
-    padding: var(--section-padding);
+    padding: 3rem 0 5rem;
 }
 
 .sede-card {
     background: var(--bg-white);
     border: 1px solid var(--border-light);
-    padding: 2.5rem;
+    padding: clamp(1rem, 4vw, 2.5rem);
     transition: all var(--transition-normal);
 }
 
@@ -20,13 +20,18 @@
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
-.sede-card h3 {
+.sede-card h2 {
     font-size: 1.5rem;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
     letter-spacing: 1px;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--color-gold);
+}
+
+.sede-card address {
+    font-style: normal;
+    overflow-wrap: anywhere;
 }
 
 .sede-card .detail {
@@ -56,7 +61,7 @@
 .sede-card .map-link {
     display: inline-block;
     margin-top: 1.5rem;
-    color: var(--color-gold);
+    color: var(--color-gold-dark);
     font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 1px;

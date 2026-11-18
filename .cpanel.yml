@@ -1,8 +1,12 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/faynshte/public_html
-    - /bin/cp -rf .next/standalone/* $DEPLOYPATH
-    - /bin/mkdir -p $DEPLOYPATH/.next/static
-    - /bin/cp -rf .next/static/* $DEPLOYPATH/.next/static
-    - /bin/cp -rf public $DEPLOYPATH
+    - |
+      set -e
+      DEPLOYPATH=/home/faynshte/public_html
+      npm ci --include=dev
+      npm run build
+      /bin/mkdir -p "$DEPLOYPATH/.next/static" "$DEPLOYPATH/public"
+      /bin/cp -a .next/standalone/. "$DEPLOYPATH/"
+      /bin/cp -a .next/static/. "$DEPLOYPATH/.next/static/"
+      /bin/cp -a public/. "$DEPLOYPATH/public/"

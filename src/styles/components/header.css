@@ -8,7 +8,7 @@
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: transparent;
+    background: var(--bg-darker);
     transition: all var(--transition-normal);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -166,18 +166,18 @@
     background: none;
     border: none;
     cursor: pointer;
-    width: 30px;
-    height: 20px;
+    width: 44px;
+    height: 44px;
     position: relative;
 }
 
 .mobile-toggle span {
     display: block;
-    width: 100%;
+    width: 24px;
     height: 2px;
     background: var(--text-white);
     position: absolute;
-    left: 0;
+    left: 10px;
     transition: all 0.3s ease;
 }
 
@@ -185,17 +185,15 @@
     background: var(--text-dark);
 }
 
-.mobile-toggle span:first-child { top: 4px; }
-.mobile-toggle span:last-child { bottom: 4px; }
+.mobile-toggle span:first-child { top: 16px; }
+.mobile-toggle span:last-child { bottom: 16px; }
 
-.mobile-toggle.active span:first-child {
-    transform: translateY(4px) rotate(45deg);
-    top: 50%;
+.mobile-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(5px) rotate(45deg);
 }
 
-.mobile-toggle.active span:last-child {
-    transform: translateY(-4px) rotate(-45deg);
-    bottom: 50%;
+.mobile-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-5px) rotate(-45deg);
 }
 
 @media (max-width: 1100px) {
@@ -206,27 +204,26 @@
 @media (max-width: 900px) {
     .mobile-toggle { display: block; }
     .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        height: 100vh;
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: min(100%, 22rem);
+        max-height: calc(100dvh - 8rem);
+        overflow-y: auto;
         background: var(--bg-white);
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2.5rem;
-        transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        gap: 0;
+        padding: 0.5rem 1.5rem;
         box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-        z-index: 999;
     }
     
-    .nav-links.open { right: 0; }
+    .nav-links.open { display: flex; }
     
     .nav-links a {
-        color: var(--text-dark) !important;
-        font-size: 1.1rem;
-        letter-spacing: 3px;
+        display: block;
+        padding: 0.85rem 0;
+        color: var(--text-dark);
     }
 
     .brand-name {
@@ -254,6 +251,6 @@
     }
 
     .top-bar {
-        display: none; /* Hide top bar on very small screens to save space */
+        padding-block: 0.25rem;
     }
 }

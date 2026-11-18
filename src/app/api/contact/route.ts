@@ -1,51 +1,62 @@
 import { NextResponse } from 'next/server';
+import { contactLimits, contactServices } from '../../../utils/contact';
 
 const formEndpoint =
   process.env.CONTACT_FORM_ENDPOINT ?? 'https://formspree.io/f/mgorbywq';
 
-export async function POST(request: Request) {
-  const body = await request.json().catch(() => null);
+function requiredText(value: unknown, maxLength: number) {
+  if (typeof value !== 'string' || value.length > maxLength) return undefined;
+  return value.trim() || undefined;
+}
 
-  if (!body || typeof body !== 'object') {
+export async function POST(request: Request) {
+  const body: unknown = await request.json().catch(() => null);
+
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
     return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
   }
 
-  const { name, email, phone, service, message } = body as Record<
-    string,
-    unknown
-  >;
+  const fields = body as Record<string, unknown>;
+  const name = requiredText(fields.name, contactLimits.name);
+  const email = requiredText(fields.email, contactLimits.email);
+  const message = requiredText(fields.message, contactLimits.message);
+  const service = contactServices.find((option) => option === fields.service);
+  const phone = fields.phone;
 
   if (
-    typeof name !== 'string' ||
-    !name.trim() ||
-    typeof email !== 'string' ||
-    !email.trim() ||
-    typeof service !== 'string' ||
-    !service.trim() ||
-    typeof message !== 'string' ||
-    !message.trim()
+    !name ||
+    !email ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+    !service ||
+    !message ||
+    (phone !== undefined && (typeof phone !== 'string' || phone.length > contactLimits.phone))
   ) {
-    return NextResponse.json(
-      { error: 'Name, email, service and message are required.' },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: 'Invalid contact fields.' }, { status: 400 });
   }
 
-  const response = await fetch(formEndpoint, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ name, email, phone, service, message }),
-  });
+  try {
+    const response = await fetch(formEndpoint, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, phone: phone?.trim(), service, message }),
+      signal: AbortSignal.timeout(8_000),
+    });
 
-  if (!response.ok) {
-    return NextResponse.json(
-      { error: 'The contact service is unavailable.' },
-      { status: 502 },
-    );
+    if (response.ok) return NextResponse.json({ ok: true });
+  } catch (error) {
+    if (error instanceof Error && error.name === 'TimeoutError') {
+      return NextResponse.json(
+        { error: 'The contact service timed out.' },
+        { status: 504 },
+      );
+    }
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json(
+    { error: 'The contact service is unavailable.' },
+    { status: 502 },
+  );
 }

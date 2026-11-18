@@ -1,6 +1,7 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { type FormEvent, useState } from 'react';
+import { contactLimits, contactServices } from '../../utils/contact';
 
 type ContactFormProps = {
   labels: {
@@ -8,6 +9,7 @@ type ContactFormProps = {
     email: string;
     phone: string;
     service: string;
+    serviceOptions: Record<(typeof contactServices)[number], string>;
     message: string;
     submit: string;
   };
@@ -57,29 +59,28 @@ export default function ContactForm({ labels, language }: ContactFormProps) {
   return (
     <form className="elegant-form" onSubmit={submit}>
       <div className="input-group">
-        <input id="name" name="name" required placeholder=" " />
+        <input id="name" name="name" required maxLength={contactLimits.name} placeholder=" " />
         <label htmlFor="name">{labels.name}</label>
       </div>
       <div className="input-group">
-        <input id="email" name="email" type="email" required placeholder=" " />
+        <input id="email" name="email" type="email" required maxLength={contactLimits.email} placeholder=" " />
         <label htmlFor="email">{labels.email}</label>
       </div>
       <div className="input-group">
-        <input id="phone" name="phone" type="tel" placeholder=" " />
+        <input id="phone" name="phone" type="tel" maxLength={contactLimits.phone} placeholder=" " />
         <label htmlFor="phone">{labels.phone}</label>
       </div>
       <div className="input-group">
         <select id="service" name="service" required defaultValue="">
           <option value="" disabled />
-          <option value="corporate">Corporate</option>
-          <option value="tax">Tax</option>
-          <option value="litigation">Litigation</option>
-          <option value="other">Other</option>
+          {contactServices.map((service) => (
+            <option key={service} value={service}>{labels.serviceOptions[service]}</option>
+          ))}
         </select>
         <label htmlFor="service">{labels.service}</label>
       </div>
       <div className="input-group">
-        <textarea id="message" name="message" rows={4} required placeholder=" " />
+        <textarea id="message" name="message" rows={4} required maxLength={contactLimits.message} placeholder=" " />
         <label htmlFor="message">{labels.message}</label>
       </div>
       <button type="submit" className="btn-gold" disabled={sending}>

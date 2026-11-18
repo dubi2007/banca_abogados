@@ -21,7 +21,6 @@ pnpm-debug.log*
 
 # local admin tool
 scripts/
-public/images/team/
 
 # macOS-specific files
 .DS_Store
