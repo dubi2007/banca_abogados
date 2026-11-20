@@ -1,0 +1,313 @@
+/* -----------------------
+   HERO BANNER DIAGONAL
+------------------------- */
+.contact-hero {
+  position: relative;
+  width: 100%;
+  height: 65vh; /* Altura del banner */
+  min-height: 500px;
+  background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efecto Parallax */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 5rem;
+  /* El secreto de la división diagonal: corta la esquina inferior derecha */
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  z-index: 1;
+}
+
+.contact-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.6) 100%);
+  z-index: -1;
+}
+
+.hero-title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 4rem;
+  color: var(--color-gold, #D4AF37);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1.2rem;
+  color: rgba(250, 250, 248, 0.9);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+
+/* -----------------------
+   CONTENIDO Y EFECTO STICKY
+------------------------- */
+.contact-section {
+  background-color: var(--bg-dark, #0A0A0A);
+  width: 100%;
+  position: relative;
+  /* Subimos el section para cubrir el hueco transparente dejado por el clip-path del hero */
+  margin-top: -15vh; 
+  padding-top: 15vh;
+  padding-bottom: 4rem;
+  z-index: 0;
+}
+
+.contact-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  /* Subimos el contenido un poco para que solape bajo la diagonal */
+  margin-top: -5vh;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .contact-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* Columna Izquierda (Sticky) */
+.contact-left-sticky {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .contact-left-sticky {
+    width: 45%;
+    position: sticky;
+    top: 120px; /* Aquí sucede la magia de flotar al hacer scroll */
+  }
+}
+
+.contact-details {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 3rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.contact-item .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-gold, #D4AF37);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.item-text strong {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gold-light, #E8D48B);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.item-text span, .item-text a {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(250, 250, 248, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.item-text a:hover {
+  color: var(--color-gold, #D4AF37);
+}
+
+.map-container {
+  width: 100%;
+  height: 250px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.map-container iframe {
+  filter: grayscale(100%) invert(90%) contrast(1.2);
+}
+
+
+/* -----------------------
+   COLUMNA DERECHA (FORMULARIO)
+------------------------- */
+.contact-right-scroll {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .contact-right-scroll {
+    width: 55%;
+    padding-left: 2rem;
+  }
+}
+
+.form-title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 2.5rem;
+  color: var(--bg-white, #FAFAF8);
+  margin-bottom: 3rem;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 1rem;
+}
+
+/* Formulario Minimalista Premium */
+.elegant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(250, 250, 248, 0.2);
+  color: var(--bg-white, #FAFAF8);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  transition: border-color 0.3s ease;
+  resize: none;
+}
+
+.input-group select option {
+  background: var(--bg-dark);
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  outline: none;
+  border-bottom-color: var(--color-gold, #D4AF37);
+}
+
+/* Efecto Floating Labels */
+.input-group label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: var(--color-gold-light, #E8D48B);
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input-group select ~ label {
+  top: -1.25rem;
+  font-size: 0.8rem;
+  color: var(--color-gold, #D4AF37);
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label {
+  top: -1.25rem;
+  font-size: 0.8rem;
+  color: var(--color-gold, #D4AF37);
+}
+
+.btn-gold {
+  background-color: var(--color-gold, #D4AF37);
+  color: var(--bg-dark, #0A0A0A);
+  border: none;
+  padding: 1.2rem 2rem;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 2rem;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-light, #E8D48B);
+  transform: translateY(-2px);
+}
+
+/* Utilidades */
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--bg-dark);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.form-status {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  display: none;
+  text-align: center;
+}
+
+.form-status.success {
+  display: block;
+  background: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.form-status.error {
+  display: block;
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.2);
+}

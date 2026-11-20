@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Faynshteyn</title>
+  <rect width="64" height="64" fill="#101b29"/>
+  <path fill="#d1ad6c" d="M13 11h40l1 13h-3c-2-8-5-10-13-10h-7v17h6c5 0 7-2 8-7h3v17h-3c-1-5-3-7-8-7h-6v12c0 5 1 6 8 6v3H13v-3c6 0 8-1 8-6V20c0-5-2-6-8-6z"/>
+</svg>

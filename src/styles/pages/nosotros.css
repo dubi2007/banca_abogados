@@ -1,0 +1,195 @@
+/* ============================================
+   NOSOTROS PAGE - Complete
+   ============================================ */
+
+/* HISTORIA */
+.about-section {
+    padding: 5rem 0;
+}
+
+.history {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.history h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+}
+
+.v-line-sm {
+    width: 2px;
+    height: 30px;
+    background: var(--color-gold);
+    margin: 0 auto 2rem;
+}
+
+.history p {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--text-body);
+}
+
+/* MISIÓN Y VISIÓN */
+.mv-section {
+    padding: 5rem 0;
+    background: var(--bg-dark);
+}
+
+.mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.mv-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--color-gold);
+    margin-bottom: 1.2rem;
+    font-family: var(--font-body);
+}
+
+.mv-line {
+    width: 40px;
+    height: 2px;
+    background: var(--color-gold);
+    margin-bottom: 1.5rem;
+}
+
+.mv-card p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* FUNDADORA */
+.fundadora-section {
+    padding: 5rem 0;
+}
+
+.fundadora-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.fundadora-image {
+    overflow: hidden;
+}
+
+.fundadora-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: filter var(--transition-slow);
+}
+
+.fundadora-image:hover img {
+    filter: grayscale(0%);
+}
+
+.fundadora-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+
+.fundadora-info h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+}
+
+.fundadora-role {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.fundadora-info p {
+    font-size: 0.98rem;
+    line-height: 1.9;
+    color: var(--text-body);
+}
+
+/* COMPROMISO */
+.compromiso-section {
+    padding: 5rem 0;
+    background: var(--bg-light);
+    text-align: center;
+}
+
+.compromiso-section h2 {
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    color: var(--text-dark);
+    margin-bottom: 3rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+}
+
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.compromiso-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    padding: 2rem 1.5rem;
+    width: 180px;
+    text-align: center;
+    transition: all var(--transition-normal);
+}
+
+.compromiso-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+}
+
+.compromiso-card svg {
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+.compromiso-card h3 {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .mv-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .fundadora-grid {
+        grid-template-columns: 1fr;
+    }
+    .fundadora-image img {
+        height: 350px;
+    }
+    .compromiso-card {
+        width: 140px;
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "es": {
+        "title": "Nuestras sedes",
+        "subtitle": "Presencia estratégica para estar cerca de nuestros clientes",
+        "items": [
+            {
+                "city": "Lima",
+                "address": "Calle Chinchón 886 , San Isidro , Lima",
+                "phone": "+51 1 612 3000",
+                "email": "levan@faynshteynjuridico.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "/images/estudio/sala-directorio.webp"
+            },
+            {
+                "city": "Estados Unidos",
+                "address": "16639 Chesapeake Bay Court, Delray Beach, Florida 33446",
+                "phone": "+1 561 402 9642",
+                "email": "levan@faynshteynjuridico.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "/images/estudio/despacho-principal.webp"
+            }
+        ]
+    },
+    "en": {
+        "title": "Our offices",
+        "subtitle": "Strategic presence to be close to our clients",
+        "items": [
+            {
+                "city": "Lima",
+                "address": "Calle Chinchón 886 , San Isidro , Lima",
+                "phone": "+51 1 612 3000",
+                "email": "levan@faynshteynjuridico.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "/images/estudio/sala-directorio.webp"
+            },
+            {
+                "city": "United States",
+                "address": "16639 Chesapeake Bay Court, Delray Beach, Florida 33446",
+                "phone": "+1 561 402 9642",
+                "email": "levan@faynshteynjuridico.com",
+                "mapUrl": "https://maps.google.com",
+                "image": "/images/estudio/despacho-principal.webp"
+            }
+        ]
+    }
+}

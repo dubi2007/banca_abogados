@@ -1,0 +1,100 @@
+/* ============================================
+   AREAS PAGE - Premium Grid Style
+   ============================================ */
+
+/* SEARCH */
+.areas-search {
+    max-width: 600px;
+    margin: -3rem auto 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+.areas-search input {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: var(--bg-white);
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-dark);
+    transition: all var(--transition-normal);
+}
+
+.areas-search input:focus {
+    outline: none;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(197, 160, 89, 0.15);
+}
+
+/* GRID */
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding-bottom: 6rem;
+}
+
+.area-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.area-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--color-gold);
+    opacity: 0;
+    transition: all var(--transition-normal);
+    transform: scale(0.95);
+}
+
+.area-card:hover {
+    transform: translateY(-8px);
+    border-color: transparent;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.area-card:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.area-icon {
+    font-size: 2.5rem;
+    color: var(--color-gold);
+    margin-bottom: 1.5rem;
+    transition: all var(--transition-normal);
+}
+
+.area-card:hover .area-icon {
+    transform: scale(1.1);
+}
+
+.area-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 1024px) {
+    .areas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .areas-grid { grid-template-columns: 1fr; }
+    .areas-search { margin-top: -2rem; padding: 0 1.5rem; }
+}

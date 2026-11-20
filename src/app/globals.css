@@ -1,0 +1,81 @@
+@import "tailwindcss" source("./");
+
+@theme {
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-serif: "Playfair Display Variable", Georgia, serif;
+  --color-ink: #181b1f;
+  --color-ink-deep: #0a0a0a;
+  --color-ink-muted: #4c4e51;
+  --color-paper: #ffffff;
+  --color-parchment: #f5f4f1;
+  --color-line: #dedbd4;
+  --color-gold: #cfaa65;
+  --color-gold-dark: #75541f;
+  --animate-intro-logo: intro-logo 650ms ease-out both;
+
+  @keyframes intro-logo {
+    from { opacity: 0.65; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  html:has(#firm-intro:modal) {
+    overflow: hidden;
+    scrollbar-gutter: auto;
+  }
+
+  /* Reveal the page even when the JavaScript that promotes the dialog never loads. */
+  #firm-intro[open]:not(:modal) {
+    animation: end-static-intro 0s 2.1s forwards;
+  }
+
+  @keyframes end-static-intro {
+    to { visibility: hidden; pointer-events: none; }
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink-muted antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif font-normal text-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-dark);
+    outline-offset: 4px;
+  }
+
+  :where(.on-dark) :focus-visible {
+    outline-color: var(--color-gold);
+  }
+}
+
+@utility site-container {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+}
+
+@utility section-heading {
+  @apply text-3xl leading-tight sm:text-[2.6rem];
+}
+
+@utility card-surface {
+  @apply min-w-0 border border-line bg-paper;
+}
+
+@utility button-primary {
+  @apply inline-flex min-h-11 items-center justify-center gap-3 border border-ink bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-gold-dark hover:bg-gold-dark;
+}
+
+@utility text-link {
+  @apply inline-flex min-h-11 items-center gap-2 text-sm font-medium text-gold-dark underline-offset-4 transition-colors hover:text-ink hover:underline;
+}
+
+@utility form-field {
+  @apply w-full min-w-0 border-b border-[#8d8980] bg-transparent py-3 text-base text-ink placeholder:text-ink-muted;
+}

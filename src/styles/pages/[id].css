@@ -1,0 +1,87 @@
+.container {
+		max-width: 1000px;
+		margin: 6rem auto 4rem auto;
+		padding: 2rem 1rem;
+	}
+	.back-link {
+		display: inline-block;
+		margin-bottom: 2rem;
+		color: var(--color-gold);
+		font-weight: 500;
+	}
+    .back-link:hover {
+        color: var(--color-gold-light);
+    }
+	.profile-card {
+		display: flex;
+		gap: 3rem;
+		background: var(--bg-card);
+		border: 1px solid rgba(255,255,255,0.05);
+		padding: 0;
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	.image-col {
+		flex: 0 0 40%;
+	}
+	.image-col img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.info-col {
+		flex: 1;
+		padding: 3rem 3rem 3rem 0;
+	}
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+	}
+	.role {
+		color: var(--color-gold);
+		font-size: 1.2rem;
+		font-weight: 400;
+		margin-bottom: 1.5rem;
+		letter-spacing: 1px;
+	}
+	hr {
+		border: none;
+		border-top: 1px solid rgba(255,255,255,0.1);
+		margin-bottom: 2rem;
+	}
+	.contact-info {
+		margin-bottom: 2rem;
+	}
+	.contact-info p {
+		margin-bottom: 0.5rem;
+		color: var(--text-muted);
+	}
+	.contact-info a {
+		color: var(--color-accent-blue);
+	}
+	.contact-info a:hover {
+		text-decoration: underline;
+	}
+    .capitalize {
+        text-transform: capitalize;
+    }
+	.experience h3 {
+		font-size: 1.2rem;
+		color: var(--color-gold);
+		margin-bottom: 1rem;
+        font-family: var(--font-body);
+        font-weight: 500;
+	}
+	.experience p {
+		line-height: 1.6;
+		color: var(--text-main);
+	}
+
+	@media (max-width: 768px) {
+		.profile-card {
+			flex-direction: column;
+		}
+		.info-col {
+			padding: 2rem;
+		}
+	}

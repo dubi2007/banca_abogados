@@ -1,0 +1,138 @@
+{
+    "historia": {
+        "es": "Faynshteyn Abogados & Consultores es un estudio jurídico fundado con la visión de ofrecer servicios legales de excelencia, combinando el rigor académico con una profunda comprensión de las necesidades del mercado peruano e internacional. Desde nuestra fundación, hemos construido una reputación sólida basada en la confianza, la innovación y el compromiso con nuestros clientes. Nuestro equipo multidisciplinario de profesionales altamente calificados trabaja de manera coordinada para brindar soluciones legales integrales, adaptadas a los desafíos más complejos del entorno empresarial contemporáneo.",
+        "en": "Faynshteyn Abogados & Consultores is a law firm founded with the vision of providing excellent legal services, combining academic rigor with a deep understanding of the needs of the Peruvian and international market. Since our founding, we have built a solid reputation based on trust, innovation and commitment to our clients. Our multidisciplinary team of highly qualified professionals works in coordination to provide comprehensive legal solutions, adapted to the most complex challenges of the contemporary business environment."
+    },
+    "mision": {
+        "es": {
+            "title": "MISIÓN",
+            "text": "Brindar asesoría legal integral de la más alta calidad, generando valor para nuestros clientes a través de soluciones innovadoras, éticas y eficientes que contribuyan al desarrollo sostenible de sus negocios y de la sociedad."
+        },
+        "en": {
+            "title": "MISSION",
+            "text": "To provide comprehensive legal advice of the highest quality, generating value for our clients through innovative, ethical and efficient solutions that contribute to the sustainable development of their businesses and society."
+        }
+    },
+    "vision": {
+        "es": {
+            "title": "VISIÓN",
+            "text": "Ser reconocidos como el estudio de abogados líder en Perú y Latinoamérica, destacándonos por la excelencia profesional, la integridad y la capacidad de anticipar las necesidades legales del mercado global."
+        },
+        "en": {
+            "title": "VISION",
+            "text": "To be recognized as the leading law firm in Peru and Latin America, standing out for professional excellence, integrity and the ability to anticipate the legal needs of the global market."
+        }
+    },
+    "fundadora": {
+        "es": {
+            "title": "NUESTRA FUNDADORA",
+            "name": "Dra. Lila Huari Faynshteyn",
+            "role": "Socia Fundadora & Managing Partner",
+            "bio": "Con más de 25 años de trayectoria en el ejercicio del derecho, la Dra. Lila Huari Faynshteyn fundó el estudio con el propósito de crear una firma legal que combinara la tradición jurídica con la innovación."
+        },
+        "en": {
+            "title": "OUR FOUNDER",
+            "name": "Dr. Lila Huari Faynshteyn",
+            "role": "Founding Partner & Managing Partner",
+            "bio": "With over 25 years of legal practice, Dr. Lila Huari Faynshteyn founded the firm with the purpose of creating a legal practice that combines legal tradition with innovation."
+        }
+    },
+    "compromiso": {
+        "es": {
+            "title": "NUESTRO COMPROMISO CON EL PAÍS",
+            "cards": [
+                { "title": "Transparencia", "icon": "eye" },
+                { "title": "Innovación", "icon": "lightbulb" },
+                { "title": "Excelencia", "icon": "star" },
+                { "title": "Integridad", "icon": "shield" },
+                { "title": "Responsabilidad Social", "icon": "heart" },
+                { "title": "Sostenibilidad", "icon": "leaf" }
+            ]
+        },
+        "en": {
+            "title": "OUR COMMITMENT TO THE COUNTRY",
+            "cards": [
+                { "title": "Transparency", "icon": "eye" },
+                { "title": "Innovation", "icon": "lightbulb" },
+                { "title": "Excellence", "icon": "star" },
+                { "title": "Integrity", "icon": "shield" },
+                { "title": "Social Responsibility", "icon": "heart" },
+                { "title": "Sustainability", "icon": "leaf" }
+            ]
+        }
+    },
+    "instalaciones": {
+        "es": {
+            "title": "Nuestras instalaciones",
+            "subtitle": "Ambientes diseñados para brindar atención reservada, estratégica y de primer nivel a nuestros clientes.",
+            "items": [
+                {
+                    "src": "/images/estudio/sala-directorio.webp",
+                    "title": "Sala de Directorio",
+                    "caption": "Espacio principal para juntas corporativas, negociaciones y sesiones estratégicas."
+                },
+                {
+                    "src": "/images/estudio/despacho-principal.webp",
+                    "title": "Despacho Principal",
+                    "caption": "Atención personalizada y confidencial para socios y clientes corporativos."
+                },
+                {
+                    "src": "/images/estudio/sala-conferencias.webp",
+                    "title": "Sala de Conferencias",
+                    "caption": "Equipada para audiencias virtuales, arbitrajes internacionales y presentaciones."
+                },
+                {
+                    "src": "/images/estudio/despacho-ejecutivo.webp",
+                    "title": "Despacho Ejecutivo",
+                    "caption": "Ambiente privado de dirección y análisis jurídico especializado."
+                },
+                {
+                    "src": "/images/estudio/oficina-asociados.webp",
+                    "title": "Área de Asociados",
+                    "caption": "Gabinete de trabajo colaborativo para nuestros equipos de litigios y consultoría."
+                },
+                {
+                    "src": "/images/estudio/recepcion.webp",
+                    "title": "Recepción y Acceso",
+                    "caption": "Ingreso principal a nuestras oficinas en San Isidro."
+                }
+            ]
+        },
+        "en": {
+            "title": "Our offices & facilities",
+            "subtitle": "Spaces designed to provide confidential, strategic, and first-class service to our clients.",
+            "items": [
+                {
+                    "src": "/images/estudio/sala-directorio.webp",
+                    "title": "Main Boardroom",
+                    "caption": "Primary space for corporate board meetings, negotiations, and strategic sessions."
+                },
+                {
+                    "src": "/images/estudio/despacho-principal.webp",
+                    "title": "Managing Partner Office",
+                    "caption": "Personalized and confidential attention for partners and corporate clients."
+                },
+                {
+                    "src": "/images/estudio/sala-conferencias.webp",
+                    "title": "Conference Room",
+                    "caption": "Equipped for virtual hearings, international arbitrations, and presentations."
+                },
+                {
+                    "src": "/images/estudio/despacho-ejecutivo.webp",
+                    "title": "Executive Office",
+                    "caption": "Private environment for legal direction and specialized analysis."
+                },
+                {
+                    "src": "/images/estudio/oficina-asociados.webp",
+                    "title": "Associates Workspace",
+                    "caption": "Collaborative study for our litigation and corporate advisory teams."
+                },
+                {
+                    "src": "/images/estudio/recepcion.webp",
+                    "title": "Reception & Entrance",
+                    "caption": "Main entrance to our offices in San Isidro."
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,604 @@
+{
+    "es": {
+        "title": "Áreas de práctica",
+        "subtitle": "Brindamos asesoría legal de élite en las principales ramas del derecho en el Perú",
+        "searchPlaceholder": "Ej. Derecho corporativo",
+        "items": [
+            {
+                "id": "aeronautico",
+                "title": "Derecho Aeronáutico y Aviación",
+                "icon": "plane",
+                "description": "Especialistas en regulación aeronáutica, permisos de operación y vuelo para aviación comercial en Perú, así como contratos de leasing y seguros.",
+                "heroImage": "https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=1600&q=80"
+            },
+            {
+                "id": "agraria-forestal",
+                "title": "Derecho Agrario, Forestal y Recursos Hídricos",
+                "icon": "leaf",
+                "description": "Asesoría integral en regulación agraria, forestal y de recursos hídricos en el Perú, incluyendo permisos, concesiones y cumplimiento ambiental.",
+                "heroImage": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+            },
+            {
+                "id": "ambiental",
+                "title": "Derecho Ambiental y Sostenibilidad",
+                "icon": "globe",
+                "description": "Consultoría experta en normativa ambiental, evaluaciones de impacto, certificaciones y cumplimiento de estándares nacionales e internacionales.",
+                "heroImage": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80"
+            },
+            {
+                "id": "arbitraje-internacional",
+                "title": "Especialistas en Arbitraje Internacional",
+                "icon": "scale",
+                "description": "Representación de alto nivel en arbitrajes internacionales comerciales y de inversión ante las principales instituciones arbitrales del mundo.",
+                "heroImage": "/images/headers/areas.webp"
+            },
+            {
+                "id": "comercio-exterior",
+                "title": "Derecho de Comercio Exterior y Aduanas",
+                "icon": "ship",
+                "description": "Asesoría en operaciones de comercio internacional, regulación aduanera, tratados de libre comercio (TLC) y resolución de controversias.",
+                "heroImage": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&q=80"
+            },
+            {
+                "id": "competencia",
+                "title": "Libre Competencia y Barreras Burocráticas",
+                "icon": "shield",
+                "description": "Defensa y asesoría en materia de libre competencia, prácticas anticompetitivas, control de concentraciones e Indecopi.",
+                "heroImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+            },
+            {
+                "id": "compliance",
+                "title": "Compliance y Ética Corporativa",
+                "icon": "check-shield",
+                "description": "Diseño e implementación de programas de cumplimiento normativo, prevención de lavado de activos y gestión de riesgos empresariales.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "derecho-administrativo",
+                "title": "Derecho Administrativo y Gestión Pública",
+                "icon": "building-gov",
+                "description": "Representación ante entidades del Estado Peruano, procedimientos administrativos, contrataciones públicas y defensa sancionadora.",
+                "heroImage": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&q=80"
+            },
+            {
+                "id": "derecho-corporativo",
+                "title": "Especialistas en Derecho Corporativo en Perú",
+                "icon": "briefcase",
+                "description": "Asesoramiento integral a empresas nacionales e internacionales en constitución, fusiones, adquisiciones y reestructuraciones societarias.",
+                "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80"
+            },
+            {
+                "id": "derecho-tributario",
+                "title": "Especialistas en Derecho Tributario y Fiscal",
+                "icon": "calculator",
+                "description": "Planificación fiscal estratégica, cumplimiento tributario y defensa ante SUNAT y el Tribunal Fiscal.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80"
+            },
+            {
+                "id": "digital-investments",
+                "title": "Digital Investments y Activos Digitales",
+                "icon": "chip",
+                "description": "Asesoría legal en inversiones digitales, blockchain, criptoactivos, tokenización y regulación de activos digitales en Perú.",
+                "heroImage": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1600&q=80"
+            },
+            {
+                "id": "educacion",
+                "title": "Derecho Educativo y Licenciamiento",
+                "icon": "graduation",
+                "description": "Asesoría a instituciones educativas en licenciamiento (SUNEDU), acreditación y cumplimiento de la normativa del sector.",
+                "heroImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&q=80"
+            },
+            {
+                "id": "electricidad",
+                "title": "Derecho de la Electricidad y Energía",
+                "icon": "bolt",
+                "description": "Regulación del sector eléctrico peruano, generación, transmisión y distribución de energía, y tarifas eléctricas.",
+                "heroImage": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1600&q=80"
+            },
+            {
+                "id": "financiamiento-proyectos",
+                "title": "Financiamiento de Proyectos e Infraestructura",
+                "icon": "bank",
+                "description": "Estructuración de financiamientos de proyectos (Project Finance), créditos sindicados y emisiones de bonos.",
+                "heroImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
+            },
+            {
+                "id": "fintech",
+                "title": "Derecho Fintech y Servicios Financieros Digitales",
+                "icon": "mobile-pay",
+                "description": "Asesoría regulatoria para empresas fintech, plataformas de pago, crowdfunding y sandbox regulatorio en Perú.",
+                "heroImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80"
+            },
+            {
+                "id": "fusiones-adquisiciones",
+                "title": "Expertos en Fusiones y Adquisiciones (M&A)",
+                "icon": "handshake",
+                "description": "Asesoría integral en procesos de M&A, due diligence legal, negociación de contratos y autorizaciones regulatorias.",
+                "heroImage": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80"
+            },
+            {
+                "id": "infraestructura-app",
+                "title": "Infraestructura, APP y Obras por Impuestos",
+                "icon": "crane",
+                "description": "Asesoría en asociaciones público-privadas (APP), obras por impuestos (OxI) y licitaciones de infraestructura pública.",
+                "heroImage": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80"
+            },
+            {
+                "id": "inmobiliaria",
+                "title": "Derecho Inmobiliario y de la Construcción",
+                "icon": "building",
+                "description": "Asesoría legal en desarrollo inmobiliario, contratos de construcción, licencias y saneamiento físico legal.",
+                "heroImage": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80"
+            },
+            {
+                "id": "innovacion-emprendimiento",
+                "title": "Innovación, Emprendimiento y Startups",
+                "icon": "rocket",
+                "description": "Apoyo legal especializado a startups y emprendedores en constitución, rondas de inversión y propiedad intelectual.",
+                "heroImage": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1600&q=80"
+            },
+            {
+                "id": "laboral",
+                "title": "Derecho Laboral y Seguridad Social",
+                "icon": "users",
+                "description": "Asesoría integral en relaciones laborales, negociaciones colectivas, SUNAFIL y prevención de contingencias.",
+                "heroImage": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80"
+            },
+            {
+                "id": "life-sciences",
+                "title": "Life Sciences y Derecho de la Salud",
+                "icon": "heartbeat",
+                "description": "Regulación farmacéutica, dispositivos médicos, registros sanitarios ante DIGEMID y cumplimiento en el sector salud.",
+                "heroImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80"
+            },
+            {
+                "id": "litigios",
+                "title": "Expertos en Litigios y Resolución de Conflictos",
+                "icon": "gavel",
+                "description": "Representación legal estratégica ante tribunales civiles, comerciales y constitucionales en todo el Perú.",
+                "heroImage": "/images/headers/areas.webp"
+            },
+            {
+                "id": "maritima-portuaria",
+                "title": "Derecho Marítimo y Portuario",
+                "icon": "anchor",
+                "description": "Asesoría en derecho marítimo, regulación portuaria, contratos de transporte y resolución de disputas del sector.",
+                "heroImage": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&q=80"
+            },
+            {
+                "id": "mercado-capitales",
+                "title": "Mercado de Capitales y Regulación Bancaria",
+                "icon": "chart",
+                "description": "Emisiones de valores, regulación bancaria (SBS), fondos de inversión y cumplimiento financiero.",
+                "heroImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80"
+            },
+            {
+                "id": "mineria",
+                "title": "Derecho de Minería y Sostenibilidad",
+                "icon": "mountain",
+                "description": "Asesoría legal a empresas mineras en concesiones, permisos, fiscalización ambiental y desarrollo sostenible.",
+                "heroImage": "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=1600&q=80"
+            },
+            {
+                "id": "moda-retail",
+                "title": "Derecho de la Moda y Retail",
+                "icon": "tag",
+                "description": "Asesoría legal en la industria de la moda, franquicias, e-commerce y protección de marcas de retail.",
+                "heroImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+            },
+            {
+                "id": "negocios-digitales",
+                "title": "Derecho de Negocios e Innovación Digital",
+                "icon": "code",
+                "description": "Asesoría en transformación digital, e-commerce, protección de datos e inteligencia artificial.",
+                "heroImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80"
+            },
+            {
+                "id": "penal",
+                "title": "Derecho Penal Corporativo y Compliance Penal",
+                "icon": "lock",
+                "description": "Defensa penal corporativa, prevención del delito empresarial y representación en procesos penales complejos.",
+                "heroImage": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1600&q=80"
+            },
+            {
+                "id": "pesquera",
+                "title": "Derecho Pesquero y Acuícola",
+                "icon": "fish",
+                "description": "Regulación pesquera en Perú, permisos de pesca, cuotas y sostenibilidad del recurso marino.",
+                "heroImage": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1600&q=80"
+            },
+            {
+                "id": "petroleo-gas",
+                "title": "Derecho de Petróleo y Gas (Oil & Gas)",
+                "icon": "flame",
+                "description": "Asesoría en exploración y explotación de hidrocarburos, contratos de licencia y regulación energética.",
+                "heroImage": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1600&q=80"
+            },
+            {
+                "id": "previsional",
+                "title": "Derecho Previsional y Pensiones",
+                "icon": "umbrella",
+                "description": "Asesoría especializada en sistemas de pensiones (AFP, ONP), jubilación y beneficios previsionales.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "procesos-seleccion",
+                "title": "Licitaciones y Procesos de Selección con el Estado",
+                "icon": "clipboard",
+                "description": "Asesoría estratégica en contrataciones públicas, licitaciones (OSCE) e impugnaciones administrativas.",
+                "heroImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+            },
+            {
+                "id": "propiedad-intelectual",
+                "title": "Protección de Propiedad Intelectual y Marcas",
+                "icon": "lightbulb",
+                "description": "Registro y defensa de marcas, patentes y derechos de autor ante Indecopi y organismos internacionales.",
+                "heroImage": "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=1600&q=80"
+            },
+            {
+                "id": "publicidad-consumo",
+                "title": "Publicidad, Protección al Consumidor y Privacidad",
+                "icon": "megaphone",
+                "description": "Regulación publicitaria, defensa del consumidor y cumplimiento de protección de datos personales.",
+                "heroImage": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80"
+            },
+            {
+                "id": "recuperaciones",
+                "title": "Recuperación de Activos y Cobranza Judicial",
+                "icon": "refresh",
+                "description": "Gestión eficiente de cobranza judicial, recuperación de cartera pesada y ejecución de garantías.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80"
+            },
+            {
+                "id": "reestructuracion",
+                "title": "Reestructuración Empresarial y Derecho Concursal",
+                "icon": "layers",
+                "description": "Asesoría en procesos concursales ante Indecopi, reestructuración patrimonial y liquidaciones corporativas.",
+                "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80"
+            },
+            {
+                "id": "regulacion-municipal",
+                "title": "Regulación Municipal y Licencias",
+                "icon": "city",
+                "description": "Gestión de licencias de funcionamiento, habilitaciones urbanas y cumplimiento de normativa municipal.",
+                "heroImage": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&q=80"
+            },
+            {
+                "id": "saneamiento-predial",
+                "title": "Saneamiento Predial y Titulación de Tierras",
+                "icon": "map",
+                "description": "Regularización de propiedad inmueble, inscripciones registrales y saneamiento físico-legal de predios.",
+                "heroImage": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+            },
+            {
+                "id": "seguros-reaseguros",
+                "title": "Derecho de Seguros y Reaseguros",
+                "icon": "shield-check",
+                "description": "Asesoría en regulación de seguros, gestión de siniestros complejos y controversias del sector asegurador.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "telecomunicaciones",
+                "title": "Derecho de Telecomunicaciones y Media",
+                "icon": "signal",
+                "description": "Regulación de telecomunicaciones, concesiones, espectro radioeléctrico y medios de comunicación.",
+                "heroImage": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80"
+            },
+            {
+                "id": "transporte",
+                "title": "Derecho del Transporte y Logística",
+                "icon": "truck",
+                "description": "Regulación de transporte terrestre, ferroviario y multimodal, y contratos logísticos especializados.",
+                "heroImage": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&q=80"
+            },
+            {
+                "id": "turismo-hoteleria",
+                "title": "Derecho del Turismo y Hotelería",
+                "icon": "hotel",
+                "description": "Asesoría legal integral al sector hotelero, licencias turísticas y contratos de gestión hotelera.",
+                "heroImage": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80"
+            }
+        ]
+    },
+    "en": {
+        "title": "Practice areas",
+        "subtitle": "High-level legal advice in all major branches of law in Peru",
+        "searchPlaceholder": "e.g. Corporate law",
+        "items": [
+            {
+                "id": "aeronautico",
+                "title": "Aeronautical & Aviation Law",
+                "icon": "plane",
+                "description": "Experts in aeronautical regulation, operating permits, and flight authorizations for commercial aviation in Peru.",
+                "heroImage": "https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=1600&q=80"
+            },
+            {
+                "id": "agraria-forestal",
+                "title": "Agricultural, Forestry & Water Law",
+                "icon": "leaf",
+                "description": "Comprehensive advice on agricultural and forestry regulations, including water resource management in Peru.",
+                "heroImage": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+            },
+            {
+                "id": "ambiental",
+                "title": "Environmental Law & Sustainability",
+                "icon": "globe",
+                "description": "Expert consulting on environmental compliance, impact assessments, and international sustainability standards.",
+                "heroImage": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80"
+            },
+            {
+                "id": "arbitraje-internacional",
+                "title": "International Arbitration Specialists",
+                "icon": "scale",
+                "description": "High-level representation in commercial and investment international arbitrations worldwide.",
+                "heroImage": "/images/headers/areas.webp"
+            },
+            {
+                "id": "comercio-exterior",
+                "title": "Foreign Trade & Customs Law",
+                "icon": "ship",
+                "description": "Advisory on international trade operations, customs regulations, and Free Trade Agreements (FTA).",
+                "heroImage": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&q=80"
+            },
+            {
+                "id": "competencia",
+                "title": "Competition & Antitrust Law",
+                "icon": "shield",
+                "description": "Defense and advisory on free competition, anti-competitive practices, and merger control.",
+                "heroImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+            },
+            {
+                "id": "compliance",
+                "title": "Corporate Compliance & Ethics",
+                "icon": "check-shield",
+                "description": "Design and implementation of compliance programs, anti-money laundering, and risk management.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "derecho-administrativo",
+                "title": "Administrative Law & Public Policy",
+                "icon": "building-gov",
+                "description": "Representation before Peruvian government entities, administrative procedures, and public tenders.",
+                "heroImage": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&q=80"
+            },
+            {
+                "id": "derecho-corporativo",
+                "title": "Corporate Law Specialists in Peru",
+                "icon": "briefcase",
+                "description": "Comprehensive advisory for national and international companies on incorporation and M&A.",
+                "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80"
+            },
+            {
+                "id": "derecho-tributario",
+                "title": "Tax Law & Fiscal Advisory",
+                "icon": "calculator",
+                "description": "Strategic tax planning, compliance, and defense before SUNAT and the Tax Court.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80"
+            },
+            {
+                "id": "digital-investments",
+                "title": "Digital Investments & Assets",
+                "icon": "chip",
+                "description": "Legal advisory on digital investments, blockchain, crypto-assets, and tokenization in Peru.",
+                "heroImage": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1600&q=80"
+            },
+            {
+                "id": "educacion",
+                "title": "Education Law & Licensing",
+                "icon": "graduation",
+                "description": "Advisory to educational institutions on licensing (SUNEDU), accreditation, and compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&q=80"
+            },
+            {
+                "id": "electricidad",
+                "title": "Electricity & Energy Law",
+                "icon": "bolt",
+                "description": "Regulation of the Peruvian power sector, generation, transmission, and power tariffs.",
+                "heroImage": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1600&q=80"
+            },
+            {
+                "id": "financiamiento-proyectos",
+                "title": "Project Finance & Infrastructure",
+                "icon": "bank",
+                "description": "Structuring of project finance, syndicated loans, and bond issuances.",
+                "heroImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80"
+            },
+            {
+                "id": "fintech",
+                "title": "Fintech & Digital Financial Services",
+                "icon": "mobile-pay",
+                "description": "Regulatory advisory for fintech companies, payment platforms, and crowdfunding in Peru.",
+                "heroImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80"
+            },
+            {
+                "id": "fusiones-adquisiciones",
+                "title": "M&A Experts (Mergers & Acquisitions)",
+                "icon": "handshake",
+                "description": "Comprehensive M&A advisory, legal due diligence, and regulatory approvals.",
+                "heroImage": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80"
+            },
+            {
+                "id": "infraestructura-app",
+                "title": "Infrastructure & Public-Private Partnerships",
+                "icon": "crane",
+                "description": "Advisory on PPPs, Tax Works (OxI), and public infrastructure tenders.",
+                "heroImage": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80"
+            },
+            {
+                "id": "inmobiliaria",
+                "title": "Real Estate & Construction Law",
+                "icon": "building",
+                "description": "Legal advisory on real estate development, construction contracts, and urban planning.",
+                "heroImage": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80"
+            },
+            {
+                "id": "innovacion-emprendimiento",
+                "title": "Innovation, Entrepreneurship & Startups",
+                "icon": "rocket",
+                "description": "Specialized legal support for startups on incorporation, funding rounds, and IP.",
+                "heroImage": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1600&q=80"
+            },
+            {
+                "id": "laboral",
+                "title": "Labor & Social Security Law",
+                "icon": "users",
+                "description": "Comprehensive advisory on labor relations, collective bargaining, and SUNAFIL compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80"
+            },
+            {
+                "id": "life-sciences",
+                "title": "Life Sciences & Healthcare Law",
+                "icon": "heartbeat",
+                "description": "Pharmaceutical regulation, medical devices, and health sector compliance (DIGEMID).",
+                "heroImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80"
+            },
+            {
+                "id": "litigios",
+                "title": "Litigation & Dispute Resolution Experts",
+                "icon": "gavel",
+                "description": "Strategic legal representation in civil, commercial, and constitutional courts across Peru.",
+                "heroImage": "/images/headers/areas.webp"
+            },
+            {
+                "id": "maritima-portuaria",
+                "title": "Maritime & Port Law",
+                "icon": "anchor",
+                "description": "Advisory on maritime law, port regulation, and transport sector disputes.",
+                "heroImage": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&q=80"
+            },
+            {
+                "id": "mercado-capitales",
+                "title": "Capital Markets & Banking Law",
+                "icon": "chart",
+                "description": "Securities issuances, banking regulation (SBS), and investment funds compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80"
+            },
+            {
+                "id": "mineria",
+                "title": "Mining Law & Sustainability",
+                "icon": "mountain",
+                "description": "Legal advisory for mining companies on concessions, permits, and environmental regulation.",
+                "heroImage": "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=1600&q=80"
+            },
+            {
+                "id": "moda-retail",
+                "title": "Fashion & Retail Law",
+                "icon": "tag",
+                "description": "Legal advisory in the fashion industry, franchises, e-commerce, and brand protection.",
+                "heroImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+            },
+            {
+                "id": "negocios-digitales",
+                "title": "Digital Business & Innovation Law",
+                "icon": "code",
+                "description": "Advisory on digital transformation, e-commerce, and data protection compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80"
+            },
+            {
+                "id": "penal",
+                "title": "Corporate Criminal Law & Compliance",
+                "icon": "lock",
+                "description": "Corporate criminal defense, crime prevention, and representation in complex proceedings.",
+                "heroImage": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1600&q=80"
+            },
+            {
+                "id": "pesquera",
+                "title": "Fishing & Aquaculture Law",
+                "icon": "fish",
+                "description": "Fishery regulation in Peru, fishing permits, quotas, and resource sustainability.",
+                "heroImage": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1600&q=80"
+            },
+            {
+                "id": "petroleo-gas",
+                "title": "Oil & Gas Law",
+                "icon": "flame",
+                "description": "Advisory on hydrocarbon exploration, license agreements, and energy regulation.",
+                "heroImage": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1600&q=80"
+            },
+            {
+                "id": "previsional",
+                "title": "Pension & Social Security Law",
+                "icon": "umbrella",
+                "description": "Specialized advisory on pension systems (AFP, ONP) and retirement benefits.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "procesos-seleccion",
+                "title": "Public Tenders & State Procurement",
+                "icon": "clipboard",
+                "description": "Strategic advisory on public procurement (OSCE) and administrative challenges.",
+                "heroImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80"
+            },
+            {
+                "id": "propiedad-intelectual",
+                "title": "Intellectual Property & Brand Protection",
+                "icon": "lightbulb",
+                "description": "Registration and defense of trademarks and patents before Indecopi and international bodies.",
+                "heroImage": "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=1600&q=80"
+            },
+            {
+                "id": "publicidad-consumo",
+                "title": "Advertising, Consumer & Privacy Law",
+                "icon": "megaphone",
+                "description": "Advertising regulation, consumer defense, and personal data protection compliance.",
+                "heroImage": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80"
+            },
+            {
+                "id": "recuperaciones",
+                "title": "Asset Recovery & Debt Collection",
+                "icon": "refresh",
+                "description": "Efficient judicial collection management and asset recovery strategies.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80"
+            },
+            {
+                "id": "reestructuracion",
+                "title": "Insolvency & Corporate Restructuring",
+                "icon": "layers",
+                "description": "Advisory on insolvency proceedings (Indecopi) and corporate liquidations.",
+                "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80"
+            },
+            {
+                "id": "regulacion-municipal",
+                "title": "Municipal Law & Licensing",
+                "icon": "city",
+                "description": "Management of operating licenses and compliance with municipal regulations.",
+                "heroImage": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&q=80"
+            },
+            {
+                "id": "saneamiento-predial",
+                "title": "Land Title & Real Property Regularization",
+                "icon": "map",
+                "description": "Regularization of real estate property and physical-legal title sanitation.",
+                "heroImage": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+            },
+            {
+                "id": "seguros-reaseguros",
+                "title": "Insurance & Reinsurance Law",
+                "icon": "shield-check",
+                "description": "Advisory on insurance regulation and complex claims management.",
+                "heroImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+            },
+            {
+                "id": "telecomunicaciones",
+                "title": "Telecom & Media Law",
+                "icon": "signal",
+                "description": "Regulation of telecommunications, concessions, and digital media.",
+                "heroImage": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80"
+            },
+            {
+                "id": "transporte",
+                "title": "Transportation & Logistics Law",
+                "icon": "truck",
+                "description": "Regulation of land and multimodal transport and specialized logistic contracts.",
+                "heroImage": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1600&q=80"
+            },
+            {
+                "id": "turismo-hoteleria",
+                "title": "Tourism & Hospitality Law",
+                "icon": "hotel",
+                "description": "Comprehensive legal advisory to the hospitality sector and tourism licenses.",
+                "heroImage": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80"
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+/* ============================================
+   SOCIAL ICONS
+   ============================================ */
+
+.social-icons {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.social-icons a {
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+}
+
+.social-icons a:hover {
+    color: var(--color-gold);
+}
+
+/* Inside dark sections (footer) */
+.main-footer .social-icons a {
+    color: rgba(255, 255, 255, 0.5);
+}
+.main-footer .social-icons a:hover {
+    color: var(--color-gold);
+}

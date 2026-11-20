@@ -1,0 +1,29 @@
+# build output
+# dist/ (Comentado para permitir despliegue en cPanel)
+
+.next/
+
+# dependencies
+node_modules/
+
+# deployment
+.vercel/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# local admin tool
+scripts/
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
