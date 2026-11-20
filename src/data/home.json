@@ -2,21 +2,6 @@
   "hero": {
     "slides": [
       {
-        "id": "pro-bono",
-        "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80",
-        "es": {
-          "title": "Compromiso Pro Bono",
-          "subtitle": "Brindamos asesoría legal de élite con un alto sentido de responsabilidad social.",
-          "ctaText": "Nuestra labor"
-        },
-        "en": {
-          "title": "Pro Bono Commitment",
-          "subtitle": "We provide elite legal advice with a high sense of social responsibility.",
-          "ctaText": "Our work"
-        },
-        "ctaHref": "/es/nosotros"
-      },
-      {
         "id": "nosotros",
         "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80",
         "es": {

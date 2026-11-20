@@ -14,7 +14,6 @@ type Props = {
 
 export default function HomePage({ lang, t }: Props) {
   const english = lang === 'en';
-  const slide = home.hero.slides[0];
   const commitment = home.commitment[lang];
   const facilities = about.instalaciones[lang];
 
@@ -58,7 +57,7 @@ export default function HomePage({ lang, t }: Props) {
         </ul>
       </section>
 
-      <section aria-labelledby="home-facilities" className="border-t border-line bg-parchment py-12 sm:py-16">
+      <section aria-labelledby="home-facilities" className="border-y border-line bg-parchment py-12 sm:py-16">
         <div className="site-container">
           <div className="mb-7 flex flex-wrap items-end justify-between gap-x-8 gap-y-2">
             <div>
@@ -88,28 +87,6 @@ export default function HomePage({ lang, t }: Props) {
                 </figcaption>
               </figure>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="home-pro-bono" className="border-y border-line bg-paper">
-        <div className="site-container grid items-center gap-7 py-10 md:grid-cols-2 lg:gap-14 lg:py-14">
-          <div className="relative aspect-[2.15/1] overflow-hidden bg-line md:aspect-[1.9/1]">
-            <Image
-              src="/images/estudio/despacho-principal.webp"
-              alt=""
-              fill
-              sizes="(min-width: 1280px) 560px, (min-width: 768px) 45vw, 100vw"
-              className="object-cover object-center"
-            />
-          </div>
-          <div>
-            <h2 id="home-pro-bono" className="section-heading">{slide[lang].title}</h2>
-            <p className="mt-3 max-w-xl leading-relaxed">{slide[lang].subtitle}</p>
-            <Link className="text-link mt-2" href={`/${lang}/nosotros`}>
-              {slide[lang].ctaText}
-              <ArrowRight aria-hidden="true" size={16} strokeWidth={1.5} />
-            </Link>
           </div>
         </div>
       </section>
