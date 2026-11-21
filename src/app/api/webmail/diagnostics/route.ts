@@ -23,13 +23,34 @@ export async function POST(request: Request) {
     ? creds.email.split('@')[1].trim().toLowerCase()
     : 'faynshteynjuridico.com';
 
-  const [dnsDiag, rootIps, mailSubdomainIps, connectedHostIps, txtRecords] = await Promise.all([
-    diagnoseDomainEmailDns(creds.email),
-    dns.resolve4(domain).catch(() => [] as string[]),
-    dns.resolve4(`mail.${domain}`).catch(() => [] as string[]),
-    dns.resolve4(creds.imapHost).catch(() => [creds.imapHost]),
-    dns.resolveTxt(domain).catch(() => [] as string[][]),
-  ]);
+  // Check what Google Public DNS (8.8.8.8 - used by Gmail!) currently sees in its cache
+  const googleResolver = new dns.Resolver();
+  try {
+    googleResolver.setServers(['8.8.8.8', '8.8.4.4']);
+  } catch {
+    // Ignore if restricted
+  }
+
+  const [dnsDiag, googleMxList, rootIps, mailSubdomainIps, connectedHostIps, txtRecords] =
+    await Promise.all([
+      diagnoseDomainEmailDns(creds.email),
+      googleResolver.resolveMx(domain).catch(() => [] as { exchange: string; priority: number }[]),
+      dns.resolve4(domain).catch(() => [] as string[]),
+      dns.resolve4(`mail.${domain}`).catch(() => [] as string[]),
+      dns.resolve4(creds.imapHost).catch(() => [creds.imapHost]),
+      dns.resolveTxt(domain).catch(() => [] as string[][]),
+    ]);
+
+  const googleMxDetails: { exchange: string; priority: number; ips: string[] }[] = [];
+  for (const gmx of googleMxList) {
+    const cleanHost = gmx.exchange.replace(/\.$/, '');
+    const ips = await googleResolver.resolve4(cleanHost).catch(() => [] as string[]);
+    googleMxDetails.push({
+      exchange: cleanHost,
+      priority: gmx.priority,
+      ips,
+    });
+  }
 
   let selfTestResult: { ok: boolean; detail: string } | undefined;
   if (sendSelfTest) {
@@ -58,7 +79,6 @@ export async function POST(request: Request) {
       .map((chunks) => chunks.join(''))
       .find((txt) => txt.toLowerCase().startsWith('v=spf1')) || null;
 
-  // Compare MX IP vs connected IMAP server IP
   const cpanelIp = connectedHostIps[0] || creds.imapHost;
   const mxPointingToCpanel = dnsDiag.mxRecords.some((mx) =>
     mx.ips.includes(cpanelIp),
@@ -73,6 +93,7 @@ export async function POST(request: Request) {
     rootDomainIps: rootIps,
     mailSubdomainIps,
     mxRecords: dnsDiag.mxRecords,
+    googleMxDetails,
     spfRecord,
     mxPointingToCpanel,
     warning: dnsDiag.warning,

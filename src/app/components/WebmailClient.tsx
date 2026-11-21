@@ -204,6 +204,7 @@ export default function WebmailClient({ lang }: Props) {
     rootDomainIps: string[];
     mailSubdomainIps: string[];
     mxRecords: { exchange: string; priority: number; ips: string[]; isCloudflareProxy: boolean }[];
+    googleMxDetails?: { exchange: string; priority: number; ips: string[] }[];
     spfRecord: string | null;
     mxPointingToCpanel: boolean;
     warning?: string;
@@ -1738,6 +1739,52 @@ export default function WebmailClient({ lang }: Props) {
                           </li>
                         ))}
                       </ul>
+                    )}
+
+                    {diagData.googleMxDetails && (
+                      <div className="mt-3 border border-line bg-parchment/60 p-3">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <p className="font-semibold text-ink">
+                            ¿Qué ve Google DNS (8.8.8.8 / Gmail) en su caché ahora mismo?
+                          </p>
+                          <a
+                            href={`https://dns.google/cache?domain=${encodeURIComponent(diagData.domain)}&type=MX`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 font-semibold text-gold-dark underline"
+                          >
+                            <span>Limpiar caché MX de Google (Flush Cache)</span>
+                            <ExternalLink size={12} />
+                          </a>
+                        </div>
+                        {diagData.googleMxDetails.length === 0 ? (
+                          <p className="mt-1 text-amber-900">
+                            Google DNS aún no reporta el nuevo MX en caché. Usa el enlace &ldquo;Limpiar caché MX de Google&rdquo; arriba.
+                          </p>
+                        ) : (
+                          <ul className="mt-1.5 space-y-1">
+                            {diagData.googleMxDetails.map((gmx) => (
+                              <li key={`gmx-${gmx.exchange}`}>
+                                <code>{gmx.exchange}</code> &rarr; IP en Google DNS:{' '}
+                                <code
+                                  className={
+                                    gmx.ips.includes(diagData.connectedImapIp)
+                                      ? 'font-bold text-emerald-800'
+                                      : 'font-bold text-red-800'
+                                  }
+                                >
+                                  {gmx.ips.join(', ') || 'Sin IP'}
+                                </code>
+                                {gmx.ips.includes('76.76.21.21') && (
+                                  <span className="ml-2 font-medium text-red-800">
+                                    (¡Google sigue teniendo en caché la IP antigua 76.76.21.21 por el TTL de 4 horas! Haz clic en &ldquo;Limpiar caché MX de Google&rdquo;)
+                                  </span>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     )}
                   </div>
 
