@@ -31,6 +31,7 @@ export default async function LangLayout({
     { path: 'directorio', label: t['nav.directory'] },
     { path: 'productos-legales', label: t['nav.products'] },
     { path: 'novedades', label: t['nav.news'] },
+    { path: 'webmail', label: t['nav.webmail'] },
     { path: 'contactenos', label: t['nav.contact'] },
   ];
 
@@ -70,7 +71,7 @@ export default async function LangLayout({
               <nav aria-label={t['footer.nav']}>
                 <p className="text-xs font-semibold tracking-widest text-gold">{t['footer.nav']}</p>
                 <ul className="mt-2 text-sm">
-                  {links.filter(({ path }) => ['nosotros', 'sedes', 'contactenos'].includes(path)).map(({ path, label }) => (
+                  {links.filter(({ path }) => ['nosotros', 'sedes', 'contactenos', 'webmail'].includes(path)).map(({ path, label }) => (
                     <li key={path}>
                       <Link className="inline-flex min-h-11 items-center hover:text-gold" href={`/${lang}/${path}`}>{label}</Link>
                     </li>

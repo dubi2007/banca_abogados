@@ -16,13 +16,14 @@ import NewsTabs from '../../components/NewsTabs';
 import ContactForm from '../../components/ContactForm';
 import PageHero from '../../components/PageHero';
 import ServiceIcon from '../../components/ServiceIcon';
+import WebmailClient from '../../components/WebmailClient';
 import type { Language } from '../../../utils/i18n';
 import HomePage from './HomePage';
 import PracticeAreas from './PracticeAreas';
 
 type Props = { params: Promise<{ lang: string; slug?: string[] }> };
 const langs = ['es', 'en'] as const;
-const paths = ['', 'areas', 'nosotros', 'sedes', 'directorio', 'productos-legales', 'novedades', 'contactenos'];
+const paths = ['', 'areas', 'nosotros', 'sedes', 'directorio', 'productos-legales', 'novedades', 'contactenos', 'webmail'];
 
 export function generateStaticParams() {
   const result: { lang: Language; slug: string[] }[] = [];
@@ -75,6 +76,7 @@ export default async function RoutePage({ params }: Props) {
   if (section === 'nosotros') return <AboutPage language={language} t={t} />;
   if (section === 'sedes') return <OfficeList language={language} />;
   if (section === 'productos-legales') return <LegalProducts language={language} contactLabel={t['nav.contact']} />;
+  if (section === 'webmail') return <WebmailClient lang={language} />;
   notFound();
 }
 

@@ -2,6 +2,7 @@
 # dist/ (Comentado para permitir despliegue en cPanel)
 
 .next/
+.next-dev/
 
 # dependencies
 node_modules/
