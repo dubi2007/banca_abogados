@@ -65,11 +65,11 @@ export default function SearchAreas({ items, lang, placeholder }: Props) {
         <p role="status" aria-atomic="true" className="mt-3 text-sm">{results.length} {resultLabel}</p>
       </div>
       {results.length === 0 ? (
-        <p id="practice-results" className="border-y border-line py-6 text-ink">
+        <p id="practice-results" className="card-surface p-6 text-ink">
           {english ? 'No practice areas match your search.' : 'No encontramos áreas que coincidan con su búsqueda.'}
         </p>
       ) : (
-        <ul id="practice-results" className="grid border-t border-line sm:grid-cols-2 sm:gap-x-8 xl:gap-x-10">
+        <ul id="practice-results" className="grid gap-4 sm:grid-cols-2 lg:gap-5">
           {results.map(({ id, title, description, icon }) => (
             <li key={id} className="min-w-0">
               <PracticeAreaLink

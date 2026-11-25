@@ -1,7 +1,30 @@
 {
+  "channels": {
+    "email": "faynshteynabogadosyconsultores@gmail.com",
+    "phone": "+51 915 187 218",
+    "socials": [
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/faynshteynestudiojuridico?mdxt=aGppb3hvN2JodmYw&utm_source=qr"
+      },
+      {
+        "label": "TikTok",
+        "href": "https://www.tiktok.com/@faynshteynabogados?_r=1&_t=ZS-9BIFKEPSsJp"
+      },
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/profile.php?id=61594396661823"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/faynshteyn-abogados-y-consultores-1b5477439"
+      }
+    ]
+  },
   "es": {
     "title": "Contáctenos",
     "subtitle": "Estamos a su disposición para atender sus consultas legales.",
+    "whatsappMessage": "Hola, me gustaría recibir información sobre sus servicios legales.",
     "form": {
       "name": "Nombre completo",
       "email": "Correo electrónico",
@@ -20,8 +43,6 @@
     },
     "info": {
       "address": "Calle Chinchón 886, San Isidro, Lima - Perú",
-      "phone": "+51 (01) 123-4567",
-      "email": "contacto@faynshteyn.com",
       "hours": "Lun - Vie: 9:00 AM - 6:00 PM"
     },
     "recipientEmail": "Jinganaupa@gmail.com",
@@ -30,6 +51,7 @@
   "en": {
     "title": "Contact us",
     "subtitle": "We are at your disposal to answer your legal questions.",
+    "whatsappMessage": "Hello, I would like to learn more about your legal services.",
     "form": {
       "name": "Full name",
       "email": "Email address",
@@ -48,8 +70,6 @@
     },
     "info": {
       "address": "123 Main Ave, San Isidro, Lima - Peru",
-      "phone": "+51 (01) 123-4567",
-      "email": "contact@faynshteyn.com",
       "hours": "Mon - Fri: 9:00 AM - 6:00 PM"
     },
     "recipientEmail": "xxxxx@gmail.com",

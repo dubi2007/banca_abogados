@@ -6,3 +6,8 @@ export const contactLimits = {
 };
 
 export const contactServices = ['corporate', 'tax', 'litigation', 'other'] as const;
+
+export function buildWhatsAppHref(phone: string, message: string) {
+  const number = phone.replace(/\D/g, '');
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+}

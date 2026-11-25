@@ -60,7 +60,7 @@ export default function PracticeAreas({ lang, id, subtitle }: Props) {
         <h2 id="other-practice-areas" className="section-heading">
           {english ? 'Other practice areas' : 'Otras áreas de práctica'}
         </h2>
-        <ul className="mt-6 grid border-t border-line sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-3 lg:gap-x-10">
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {related.map(({ id, title, description, icon }) => (
             <li key={id} className="min-w-0">
               <PracticeAreaLink title={title} description={description} icon={icon} href={`/${lang}/areas/${id}`} />

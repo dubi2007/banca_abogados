@@ -52,6 +52,16 @@
         "id": "penal",
         "es": "Derecho Penal",
         "en": "Criminal Law"
+      },
+      {
+        "id": "derecho-administrativo",
+        "es": "Derecho Administrativo",
+        "en": "Administrative Law"
+      },
+      {
+        "id": "gestion-publica",
+        "es": "Gestión Pública",
+        "en": "Public Management"
       }
     ],
     "locations": [
@@ -100,36 +110,90 @@
       "id": "cintya-vera-mejia",
       "name": "CINTYA VERA MEJIA",
       "role": {
-        "es": "ASOCIADA SENIOR",
-        "en": "SENIOR ASSOCIATE"
+        "es": "ABOGADA Y CONSULTORA LEGAL",
+        "en": "ATTORNEY AND LEGAL CONSULTANT"
       },
       "category": "asesor",
       "area": "penal",
       "location": "lima",
       "image": "/images/team/1778373481294-841780001.jpeg",
       "email": "MejiaCintya@faynshteynlaw.com",
-      "linkedin": "https://linkedin.com",
+      "linkedin": "",
       "experience": {
-        "es": "Abogada y Consultora Legal con más de 16 años de experiencia en asesoría integral para los sectores público y privado. Especialista en Derechos Humanos, Políticas Públicas para la Infancia y Gestión de la Calidad Educativa. Posee una sólida trayectoria en litigio civil, comercial y penal, destacándose por su rol actual como Curadora Procesal ante la Corte Superior de Justicia de Lima.\r\n\r\n\r\n2. SECTOR EDUCATIVO (2015 – 2021)\r\nUNIVERSIDAD INCA GARCILASO DE LA VEGA\r\n\r\n2.1. Gestión Administrativa\r\nJefa de la Oficina de Defensoría Universitaria (2019 – 2021).\r\n\r\nJefa de la Oficina de Control y Legajo del Personal (2017 – 2018).\r\n\r\n2.2. Experiencia Docente\r\nFacultad de Derecho y Ciencias Políticas: Catedrática de Historia del Derecho Peruano, Derecho Municipal, Mecanismos Alternativos de Resolución de Conflictos, Derecho Notarial y Registral.\r\n\r\nFacultad de Ciencias Administrativas: Catedrática de Derecho Empresarial, Sociología de la Empresa y Derecho Constitucional.\r\n\r\n3. SECTOR PRIVADO (2013 – 2014)\r\nINMOBILIARIA TLV SRL\r\n\r\nCargo: Abogada Principal.\r\n\r\nONGD “UNIENDO CORAZONES EN EL MUNDO”\r\n\r\nCargo: Abogada Principal.\r\n\r\n4. SECTOR PÚBLICO (2009 – 2012)\r\nRENIEC\r\n\r\nCargo: Abogada Analista de calificación integral para el DNI.\r\n\r\nSUNARP\r\n\r\nCargo: Abogada Analista de transferencia de propiedades (Sección de Bienes Inmuebles de Lima).\r\n\r\nPODER JUDICIAL\r\n\r\nCargo: Técnica Legal del Quincuagésimo Juzgado Penal de Reos en Cárcel de Lima.\r\n\r\nFORMACIÓN ACADÉMICA DESTACADA\r\nEspecialización en Derechos Humanos | Universidad Internacional de la Rioja, España.\r\n\r\nEspecialización en Políticas Públicas para la Infancia y Adolescencia | Universidad Nacional Federico Villarreal.\r\n\r\nEspecialización en Gestión de la Calidad Educativa | Pontificia Universidad Católica del Perú.\r\n\r\nConciliadora Extrajudicial.",
-        "en": "Legal Consultant and Attorney with over 16 years of experience providing comprehensive advisory services for both the public and private sectors. Specialist in Human Rights, Public Policy for Children and Adolescents, and Educational Quality Management. Proven track record in civil, commercial, and criminal litigation, currently serving as a Court-Appointed Guardian (Curadora Procesal) for the Superior Court of Justice of Lima.\r\n\r\n\r\n2. EDUCATION SECTOR (2015 – 2021)\r\nUNIVERSIDAD INCA GARCILASO DE LA VEGA\r\n\r\n2.1. Administrative Management\r\nHead of the University Ombudsman’s Office (2019 – 2021).\r\n\r\nHead of the Personnel Records and Control Office (2017 – 2018).\r\n\r\n2.2. Teaching Experience\r\nFaculty of Law and Political Science: Professor of History of Peruvian Law, Municipal Law, Alternative Dispute Resolution (ADR), and Notarial & Registry Law.\r\n\r\nFaculty of Administrative Sciences: Professor of Corporate Law, Business Sociology, and Constitutional Law.\r\n\r\n3. PRIVATE SECTOR (2013 – 2014)\r\nINMOBILIARIA TLV SRL (Real Estate)\r\n\r\nPosition: General Counsel / Lead Attorney.\r\n\r\nONGD “UNIENDO CORAZONES EN EL MUNDO” (NGO)\r\n\r\nPosition: Lead Attorney.\r\n\r\n4. PUBLIC SECTOR (2009 – 2012)\r\nRENIEC (National Registry of Identification and Civil Status)\r\n\r\nPosition: Legal Analyst for National ID (DNI) comprehensive qualification.\r\n\r\nSUNARP (National Superintendency of Public Registries)\r\n\r\nPosition: Legal Analyst for property transfers (Real Estate Division, Lima).\r\n\r\nJUDICIARY OF PERU (Poder Judicial)\r\n\r\nPosition: Legal Technician at the 50th Criminal Court for Prisoners in Custody of Lima.\r\n\r\nKEY ACADEMIC BACKGROUND\r\nSpecialization in Human Rights | Universidad Internacional de la Rioja, Spain.\r\n\r\nSpecialization in Public Policy for Children and Adolescents | Universidad Nacional Federico Villarreal.\r\n\r\nSpecialization in Educational Quality Management | Pontificia Universidad Católica del Perú.\r\n\r\nCertified Extrajudicial Conciliator."
+        "es": "Abogada y consultora legal con más de 16 años de experiencia en los sectores público y privado. Ha litigado en procesos civiles, penales y administrativos y es conciliadora extrajudicial. Figura en la nómina de curadores procesales de 2026 ante la Corte Superior de Justicia de Lima.\n\nFue jefa de la Oficina de Defensoría Universitaria y docente en la Universidad Inca Garcilaso de la Vega. Desempeñó funciones jurídicas en el RENIEC, la SUNARP y el Poder Judicial. Cuenta con formación especializada en derechos humanos, políticas públicas para la infancia y la adolescencia y gestión de la calidad educativa.",
+        "en": "Attorney and legal consultant with more than 16 years of experience in the public and private sectors. She has litigated civil, criminal, and administrative cases and is an extrajudicial conciliator. She is listed on the 2026 roster of court-appointed procedural representatives before the Superior Court of Justice of Lima.\n\nShe headed the University Ombuds Office and taught at Universidad Inca Garcilaso de la Vega. She held legal roles at RENIEC, SUNARP, and the Peruvian Judiciary. Her training includes human rights, public policy for children and adolescents, and educational quality management."
       }
     },
     {
-      "id": "lila-melissa-huari",
-      "name": "LILA MELISSA HUARI",
+      "id": "julio-fernandez-medrano",
+      "name": "JULIO CESAR MARTÍN FERNÁNDEZ MEDRANO",
       "role": {
-        "es": "SOCIA FUNDADORA",
-        "en": "FOUNDING PARTNER"
+        "es": "ABOGADO",
+        "en": "ATTORNEY"
       },
-      "category": "socio",
-      "area": "derecho-corporativo",
-      "location": "lima",
-      "image": "/images/team/1778385492952-135851474.webp",
+      "category": "",
+      "area": "derecho-administrativo",
+      "location": "",
+      "image": "",
       "email": "",
       "linkedin": "",
       "experience": {
-        "es": "",
-        "en": ""
+        "es": "Abogado por la Universidad de San Martín de Porres con más de 30 años de experiencia profesional en gestión pública y empresarial. Ha dirigido oficinas de asesoría jurídica en empresas de distribución eléctrica y entidades públicas. Su trayectoria incluye la presidencia del directorio de Activos Mineros S.A.C. y la jefatura de la Oficina General de Asesoría Jurídica de la Municipalidad Provincial de Huaral.\n\nTiene un máster en Derecho de la Contratación Pública por la Universidad de Castilla-La Mancha y maestrías en Gestión Empresarial y en Derecho con mención en Ciencias Penales por la Universidad Nacional de la Amazonía Peruana.",
+        "en": "Attorney trained at Universidad de San Martín de Porres with more than 30 years of professional experience in public and business management. He has headed legal advisory offices at electricity distribution companies and public institutions. His experience includes chairing the board of Activos Mineros S.A.C. and heading the General Legal Advisory Office of the Provincial Municipality of Huaral.\n\nHe holds a master's degree in Public Procurement Law from Universidad de Castilla-La Mancha and master's degrees in Business Management and in Law with a focus on criminal sciences from Universidad Nacional de la Amazonía Peruana."
+      }
+    },
+    {
+      "id": "donal-gomez-dominguez",
+      "name": "DONAL ANDRÉS GÓMEZ DOMÍNGUEZ",
+      "role": {
+        "es": "ABOGADO LITIGANTE",
+        "en": "LITIGATION ATTORNEY"
+      },
+      "category": "",
+      "area": "derecho-administrativo",
+      "location": "",
+      "image": "/images/team/donal-gomez-dominguez.webp",
+      "email": "",
+      "linkedin": "",
+      "experience": {
+        "es": "Abogado por la Universidad de San Martín de Porres y magíster en Gestión Pública por la Universidad Peruana de Ciencias Aplicadas. Tiene más de 15 años de experiencia en los sectores público y privado, con especialidad en derecho administrativo. Ha patrocinado procedimientos ante el Tribunal Fiscal, Indecopi y otras entidades públicas y cuenta con experiencia en litigios inmobiliarios.\n\nSe desempeñó como asesor del Despacho Viceministerial de Derechos Humanos del Ministerio de Justicia y Derechos Humanos y como abogado revisor en la Comisión de Protección al Consumidor de Indecopi.",
+        "en": "Attorney trained at Universidad de San Martín de Porres with a master's degree in Public Management from Universidad Peruana de Ciencias Aplicadas. He has more than 15 years of experience in the public and private sectors and specializes in administrative law. He has represented clients in proceedings before the Tax Court, Indecopi, and other public bodies and has experience in real estate litigation.\n\nHe served as an advisor to the Office of the Vice Minister for Human Rights at the Ministry of Justice and Human Rights and as legal counsel reviewing documents for Indecopi's Consumer Protection Commission."
+      }
+    },
+    {
+      "id": "cecilia-marisol-camacho-arana",
+      "name": "CECILIA MARISOL CAMACHO ARANA",
+      "role": {
+        "es": "CONSULTORA EN GESTIÓN PÚBLICA",
+        "en": "PUBLIC MANAGEMENT CONSULTANT"
+      },
+      "category": "asesor",
+      "area": "gestion-publica",
+      "location": "",
+      "image": "",
+      "email": "",
+      "linkedin": "",
+      "experience": {
+        "es": "Ingeniera industrial con más de 20 años de experiencia en gestión de políticas públicas y proyectos sociales. Ha asesorado y coordinado iniciativas de formación profesional, empleo y certificación de competencias, así como programas de fortalecimiento de capacidades para equipos de distintos niveles de gobierno.\n\nCursó estudios de maestría en Gerencia Social con mención en Gerencia de Programas y Proyectos de Desarrollo en la Pontificia Universidad Católica del Perú, donde también realizó estudios de especialización en gestión de políticas públicas y proyectos sociales.",
+        "en": "Industrial engineer with more than 20 years of experience in public policy and social project management. She has advised on and coordinated initiatives in vocational training, employment, and skills certification, as well as capacity-building programs for teams at different levels of government.\n\nShe pursued master's studies in Social Management with a focus on development programs and projects at Pontificia Universidad Católica del Perú, where she also completed specialized training in public policy and social project management."
+      }
+    },
+    {
+      "id": "emerson",
+      "name": "EMERSON",
+      "role": {
+        "es": "ABOGADO",
+        "en": "ATTORNEY"
+      },
+      "category": "",
+      "area": "",
+      "location": "",
+      "image": "/images/team/emerson.webp",
+      "email": "emerson@example.com",
+      "linkedin": "",
+      "experience": {
+        "es": "Información provisional.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "en": "Placeholder information.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       }
     }
   ]

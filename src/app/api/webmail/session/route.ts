@@ -2,9 +2,9 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import {
   decryptWebmailSession,
-  discoverWorkingImapConfig,
   encryptWebmailSession,
   resolveDefaultMailHosts,
+  verifyImapLogin,
   WEBMAIL_COOKIE,
   type WebmailCredentials,
 } from '../../../../utils/webmail';
@@ -44,30 +44,22 @@ export async function POST(request: Request) {
     );
   }
 
-  const defaults = resolveDefaultMailHosts(email);
   const creds: WebmailCredentials = {
     email,
     password,
-    imapHost: typeof body.imapHost === 'string' && body.imapHost.trim() ? body.imapHost.trim() : defaults.imapHost,
-    imapPort: Number(body.imapPort) > 0 ? Number(body.imapPort) : defaults.imapPort,
-    smtpHost: typeof body.smtpHost === 'string' && body.smtpHost.trim() ? body.smtpHost.trim() : defaults.smtpHost,
-    smtpPort: Number(body.smtpPort) > 0 ? Number(body.smtpPort) : defaults.smtpPort,
+    ...resolveDefaultMailHosts(),
   };
 
-  let verifiedCreds: WebmailCredentials;
   try {
-    verifiedCreds = await discoverWorkingImapConfig(creds);
-  } catch (err) {
-    const detail = err instanceof Error ? err.message : 'Error de autenticación IMAP';
+    await verifyImapLogin(creds);
+  } catch {
     return NextResponse.json(
-      {
-        error: `No se pudo conectar al servidor IMAP. Si su dominio usa Cloudflare o un servidor compartido, abra "Configuración de servidor IMAP / SMTP (cPanel)" e ingrese la IP o el nombre del servidor de su cPanel (ej. el host que aparece en cPanel > Cuentas de correo > Connect Devices). Detalle: ${detail}`,
-      },
+      { error: 'No se pudo iniciar sesión. Verifique su correo y contraseña.' },
       { status: 401 },
     );
   }
 
-  const token = encryptWebmailSession(verifiedCreds);
+  const token = encryptWebmailSession(creds);
   const cookieStore = await cookies();
   cookieStore.set(WEBMAIL_COOKIE, token, {
     httpOnly: true,
@@ -79,9 +71,9 @@ export async function POST(request: Request) {
 
   return NextResponse.json({
     ok: true,
-    email: verifiedCreds.email,
-    imapHost: verifiedCreds.imapHost,
-    smtpHost: verifiedCreds.smtpHost,
+    email: creds.email,
+    imapHost: creds.imapHost,
+    smtpHost: creds.smtpHost,
   });
 }
 

@@ -32,8 +32,8 @@ export async function GET(request: Request) {
       if (!Number.isFinite(uid) || uid <= 0) {
         return NextResponse.json({ error: 'UID inválido.' }, { status: 400 });
       }
-      const message = await fetchImapMessageDetail(creds, folder, uid);
-      return NextResponse.json({ message });
+      const { message, thread } = await fetchImapMessageDetail(creds, folder, uid);
+      return NextResponse.json({ message, thread });
     }
 
     const state = await fetchImapMailboxState(creds, folder, 50);

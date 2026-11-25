@@ -20,9 +20,17 @@ export default function HomePage({ lang, t }: Props) {
   return (
     <>
       <section id="firma" aria-labelledby="firm-advisory" className="on-dark relative isolate overflow-hidden bg-ink-deep text-white">
-        <Image src="/images/estudio/sala-directorio.webp" alt="" fill priority sizes="100vw" className="object-cover object-center" />
+        <Image
+          src="/images/estudio/sala-directorio.webp"
+          alt=""
+          fill
+          priority
+          quality={90}
+          sizes="(max-aspect-ratio: 3/4) 75dvh, 100vw"
+          className="rounded-none object-cover object-center"
+        />
         <div aria-hidden="true" className="absolute inset-0 bg-black/70 md:bg-transparent md:bg-linear-to-r md:from-black/90 md:via-black/70 md:to-black/15" />
-        <div className="site-container relative flex min-h-[24rem] flex-col justify-center py-12 sm:min-h-[27rem] lg:min-h-[min(62svh,36rem)] lg:py-16">
+        <div className="site-container relative flex min-h-[calc(100dvh-var(--site-nav-height)-1px)] flex-col justify-center py-12 lg:py-16">
           <h1 id="firm-advisory" className="max-w-[15ch] font-serif text-[clamp(2.55rem,5.1vw,4.65rem)] leading-[1.08] text-white">
             {english ? 'Business legal advisory' : 'Asesoría legal empresarial'}
           </h1>
@@ -48,7 +56,7 @@ export default function HomePage({ lang, t }: Props) {
             <ArrowRight aria-hidden="true" size={16} strokeWidth={1.5} />
           </Link>
         </div>
-        <ul className="grid border-t border-line sm:grid-cols-2 sm:gap-x-10 lg:gap-x-14">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:gap-5">
           {home.practice_areas[lang].map(({ link, title, desc, icon }) => (
             <li key={link} className="min-w-0">
               <PracticeAreaLink href={`/${lang}${link}`} title={title} description={desc} icon={icon} />
@@ -95,7 +103,7 @@ export default function HomePage({ lang, t }: Props) {
         <h2 id="home-commitment" className="section-heading">{commitment.title}</h2>
         <div className="mt-7 grid gap-6 md:grid-cols-3 lg:gap-10">
           {commitment.items.map(({ title, desc }) => (
-            <article key={title} className="border-t border-gold-dark pt-4">
+            <article key={title} className="card-surface border-t-gold-dark p-5 sm:p-6">
               <h3 className="text-xl leading-snug">{title}</h3>
               <p className="mt-2 text-sm leading-relaxed">{desc}</p>
             </article>

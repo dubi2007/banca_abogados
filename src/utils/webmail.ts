@@ -50,6 +50,8 @@ export type ImapAttachment = {
 
 export type ImapMessageDetail = {
   uid: number;
+  folder?: string;
+  isOutgoing?: boolean;
   subject: string;
   from: string;
   to: string;
@@ -100,116 +102,14 @@ export function decryptWebmailSession(token: string | undefined): WebmailCredent
   }
 }
 
-export function resolveDefaultMailHosts(email: string) {
-  const domain = email.includes('@') ? email.split('@')[1].trim().toLowerCase() : 'faynshteynjuridico.com';
-  const defaultHost =
-    domain === 'faynshteynjuridico.com' ? '198.58.106.39' : `mail.${domain}`;
+export function resolveDefaultMailHosts() {
+  const defaultHost = '198.58.106.39';
   return {
-    domain,
     imapHost: process.env.WEBMAIL_IMAP_HOST || defaultHost,
     imapPort: Number(process.env.WEBMAIL_IMAP_PORT || 993),
     smtpHost: process.env.WEBMAIL_SMTP_HOST || defaultHost,
     smtpPort: Number(process.env.WEBMAIL_SMTP_PORT || 465),
   };
-}
-
-export async function discoverWorkingImapConfig(
-  creds: WebmailCredentials,
-): Promise<WebmailCredentials> {
-  const domain = creds.email.includes('@')
-    ? creds.email.split('@')[1].trim().toLowerCase()
-    : 'faynshteynjuridico.com';
-
-  const candidateHosts: string[] = [];
-  const addHost = (h?: string) => {
-    const clean = h?.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/[:/].*$/, '').replace(/\.$/, '');
-    if (clean && !candidateHosts.includes(clean)) {
-      candidateHosts.push(clean);
-    }
-  };
-
-  // If the user entered a specific custom host different from mail.<domain>, prioritize it first
-  const defaultMailHost = `mail.${domain}`;
-  if (creds.imapHost && creds.imapHost.toLowerCase() !== defaultMailHost) {
-    // Always include the known cPanel server IP for faynshteynjuridico.com
-  if (domain === 'faynshteynjuridico.com') {
-    addHost('198.58.106.39');
-  }
-
-  addHost(creds.imapHost);
-  }
-
-  try {
-    const mxRecords = await dns.resolveMx(domain);
-    mxRecords.sort((a, b) => a.priority - b.priority);
-    for (const mx of mxRecords) {
-      addHost(mx.exchange);
-    }
-  } catch {
-    // MX lookup optional fallback
-  }
-
-  // Always include the known cPanel server IP for faynshteynjuridico.com
-  if (domain === 'faynshteynjuridico.com') {
-    addHost('198.58.106.39');
-  }
-
-  addHost(creds.imapHost);
-  addHost(defaultMailHost);
-  addHost(domain);
-  addHost(`cpanel.${domain}`);
-  addHost(`webmail.${domain}`);
-
-  const candidatePorts = Array.from(new Set([creds.imapPort, 993, 143]));
-  const probes: { host: string; port: number }[] = [];
-  for (const host of candidateHosts) {
-    for (const port of candidatePorts) {
-      probes.push({ host, port });
-    }
-  }
-
-  // Probe all candidate (host, port) pairs in parallel to find the reachable IMAP server quickly
-  let reachable: { host: string; port: number };
-  try {
-    reachable = await Promise.any(
-      probes.map(async ({ host, port }) => {
-        const probeConn = new NativeImapConnection();
-        try {
-          await probeConn.connect(host, port, 4500);
-          probeConn.destroy();
-          return { host, port };
-        } catch (err) {
-          probeConn.destroy();
-          throw err;
-        }
-      }),
-    );
-  } catch {
-    throw new Error(
-      `Ningún servidor IMAP respondió en los puertos ${candidatePorts.join('/')} para [${candidateHosts.join(', ')}]. ` +
-        `Esto ocurre cuando Cloudflare tiene activada la nube naranja (Proxy) en el subdominio "mail" o cuando el servidor usa otro hostname/IP.`,
-    );
-  }
-
-  // Authenticate against the reachable IMAP server
-  const imap = new NativeImapConnection();
-  try {
-    await imap.connect(reachable.host, reachable.port, 8000);
-    await imap.command(`LOGIN ${escapeImapString(creds.email)} ${escapeImapString(creds.password)}`);
-    await imap.command('LOGOUT').catch(() => null);
-    return {
-      ...creds,
-      imapHost: reachable.host,
-      imapPort: reachable.port,
-      smtpHost: reachable.host,
-      smtpPort: creds.smtpPort || 465,
-    };
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    throw new Error(`El servidor IMAP (${reachable.host}:${reachable.port}) rechazó las credenciales: ${msg}`);
-  } finally {
-    imap.destroy();
-  }
 }
 
 function escapeImapString(value: string): string {
@@ -860,11 +760,18 @@ export async function fetchImapMailboxState(
   });
 }
 
+export function normalizeSubject(subject: string): string {
+  return (subject || '')
+    .replace(/^(?:\s*(?:Re|RE|Fwd|FW|RV|Resp)\s*(?:\[\d+\])?\s*:\s*)+/i, '')
+    .trim()
+    .toLowerCase();
+}
+
 export async function fetchImapMessageDetail(
   creds: WebmailCredentials,
   folder: string,
   uid: number,
-): Promise<ImapMessageDetail> {
+): Promise<{ message: ImapMessageDetail; thread: ImapMessageDetail[] }> {
   return withImap(creds, async (imap) => {
     await imap.command(`SELECT ${escapeImapString(folder)}`);
     const resp = await imap.command(`UID FETCH ${uid} (UID FLAGS BODY.PEEK[])`);
@@ -875,7 +782,100 @@ export async function fetchImapMessageDetail(
     const byteLen = parseInt(literalMatch[1], 10);
     const rawMime = Buffer.from(literalMatch[2], 'latin1').subarray(0, byteLen).toString('latin1');
     await imap.command(`UID STORE ${uid} +FLAGS (\\Seen)`).catch(() => null);
-    return parseRawMimeMessage(rawMime, uid);
+    const mainMessage = parseRawMimeMessage(rawMime, uid);
+    mainMessage.folder = folder;
+    mainMessage.isOutgoing = mainMessage.from.toLowerCase().includes(creds.email.toLowerCase());
+
+    const baseSubject = normalizeSubject(mainMessage.subject);
+    if (!baseSubject || baseSubject === '(sin asunto)') {
+      return { message: mainMessage, thread: [mainMessage] };
+    }
+
+    // Gather related messages from INBOX and Sent folder to build the full conversation thread
+    const threadMessages: ImapMessageDetail[] = [];
+    const seenMessageKeys = new Set<string>();
+    const foldersToScan = Array.from(new Set([folder, 'INBOX', 'INBOX.Sent', 'Sent']));
+
+    for (const scanFolder of foldersToScan) {
+      try {
+        const sel = await imap.command(`SELECT ${escapeImapString(scanFolder)}`);
+        const exMatch = sel.match(/\* (\d+) EXISTS/i);
+        const count = exMatch ? parseInt(exMatch[1], 10) : 0;
+        if (count === 0) continue;
+
+        const start = Math.max(1, count - 30 + 1);
+        const hdrResp = await imap.command(
+          `FETCH ${start}:${count} (UID FLAGS BODY.PEEK[HEADER.FIELDS (SUBJECT MESSAGE-ID)])`,
+        );
+
+        const matchingUids: number[] = [];
+        const chunks = hdrResp.split(/(?=\* \d+ FETCH \()/);
+        for (const chunk of chunks) {
+          const headMatch = chunk.match(/^\* (\d+) FETCH \(([\s\S]*)/);
+          if (!headMatch) continue;
+          const body = headMatch[2];
+          if (/\\Deleted/i.test(body)) continue;
+          const uMatch = body.match(/UID (\d+)/i);
+          const candidateUid = uMatch ? parseInt(uMatch[1], 10) : 0;
+          if (!candidateUid) continue;
+
+          const lit = body.match(/BODY\[[^\]]*\]\s*\{(\d+)\}\r\n([\s\S]*)/i);
+          if (!lit) continue;
+          const len = parseInt(lit[1], 10);
+          const hRaw = Buffer.from(lit[2], 'latin1').subarray(0, len).toString('utf8');
+          const hdrs = parseHeaders(hRaw);
+          const subj = decodeMimeWords(hdrs['subject'] || '');
+          if (normalizeSubject(subj) === baseSubject) {
+            matchingUids.push(candidateUid);
+          }
+        }
+
+        for (const mUid of matchingUids) {
+          if (scanFolder === folder && mUid === uid) {
+            const key = mainMessage.messageId || `${scanFolder}:${mUid}`;
+            if (!seenMessageKeys.has(key)) {
+              seenMessageKeys.add(key);
+              threadMessages.push(mainMessage);
+            }
+            continue;
+          }
+          const fullResp = await imap
+            .command(`UID FETCH ${mUid} (UID FLAGS BODY.PEEK[])`)
+            .catch(() => '');
+          const fLit = fullResp.match(/BODY\[\] \{(\d+)\}\r\n([\s\S]*)/i);
+          if (!fLit) continue;
+          const fLen = parseInt(fLit[1], 10);
+          const fMime = Buffer.from(fLit[2], 'latin1').subarray(0, fLen).toString('latin1');
+          const parsed = parseRawMimeMessage(fMime, mUid);
+          parsed.folder = scanFolder;
+          parsed.isOutgoing =
+            /sent|enviados/i.test(scanFolder) ||
+            parsed.from.toLowerCase().includes(creds.email.toLowerCase());
+          const key = parsed.messageId || `${scanFolder}:${mUid}`;
+          if (!seenMessageKeys.has(key)) {
+            seenMessageKeys.add(key);
+            threadMessages.push(parsed);
+          }
+        }
+      } catch {
+        // Folder may not exist; continue
+      }
+    }
+
+    if (threadMessages.length === 0) {
+      threadMessages.push(mainMessage);
+    }
+
+    threadMessages.sort((a, b) => {
+      const ta = new Date(a.date).getTime() || 0;
+      const tb = new Date(b.date).getTime() || 0;
+      return ta - tb;
+    });
+
+    return {
+      message: threadMessages[threadMessages.length - 1] || mainMessage,
+      thread: threadMessages,
+    };
   });
 }
 
@@ -978,6 +978,7 @@ function buildMimeMessage(creds: WebmailCredentials, payload: OutgoingEmailPaylo
 
   const headers = [
     `From: <${creds.email}>`,
+    `Reply-To: <${creds.email}>`,
     `To: ${payload.to || ''}`,
     ...(payload.cc ? [`Cc: ${payload.cc}`] : []),
     `Subject: ${subjEncoded}`,

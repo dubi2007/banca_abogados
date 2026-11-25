@@ -5,7 +5,10 @@ export default function nextConfig(phase) {
   return {
     distDir: phase === PHASE_DEVELOPMENT_SERVER ? '.next-dev' : '.next',
     output: 'standalone',
-    images: { remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }] },
+    images: {
+      qualities: [75, 90],
+      remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
+    },
     async redirects() {
       return [{ source: '/', destination: '/es/', permanent: false }];
     },

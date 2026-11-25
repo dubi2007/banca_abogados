@@ -24,6 +24,10 @@
     scrollbar-gutter: stable;
   }
 
+  html:has(#webmail-main) {
+    scrollbar-gutter: auto;
+  }
+
   html:has(#firm-intro:modal) {
     overflow: hidden;
     scrollbar-gutter: auto;
@@ -46,6 +50,15 @@
     @apply font-serif font-normal text-ink;
   }
 
+  img {
+    @apply rounded-xl;
+  }
+
+  /* Card covers follow the outer card's corners. */
+  :where(.card-surface.overflow-hidden > .overflow-hidden) > img {
+    @apply rounded-none;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-gold-dark);
     outline-offset: 4px;
@@ -53,6 +66,12 @@
 
   :where(.on-dark) :focus-visible {
     outline-color: var(--color-gold);
+  }
+}
+
+@layer components {
+  .whatsapp-float ~ footer .footer-bottom {
+    @apply pr-16 sm:pr-36;
   }
 }
 
@@ -65,11 +84,11 @@
 }
 
 @utility card-surface {
-  @apply min-w-0 border border-line bg-paper;
+  @apply min-w-0 rounded-xl border border-line bg-paper;
 }
 
 @utility button-primary {
-  @apply inline-flex min-h-11 items-center justify-center gap-3 border border-ink bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-gold-dark hover:bg-gold-dark;
+  @apply inline-flex min-h-11 items-center justify-center gap-3 rounded-lg border border-ink bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-gold-dark hover:bg-gold-dark;
 }
 
 @utility text-link {

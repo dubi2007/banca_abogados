@@ -11,19 +11,19 @@ import products from '../../../data/productos.json';
 import sedes from '../../../data/sedes.json';
 import es from '../../../data/es.json';
 import en from '../../../data/en.json';
+import { buildWhatsAppHref } from '../../../utils/contact';
 import DirectoryFilters from '../../components/DirectoryFilters';
 import NewsTabs from '../../components/NewsTabs';
 import ContactForm from '../../components/ContactForm';
 import PageHero from '../../components/PageHero';
 import ServiceIcon from '../../components/ServiceIcon';
-import WebmailClient from '../../components/WebmailClient';
 import type { Language } from '../../../utils/i18n';
 import HomePage from './HomePage';
 import PracticeAreas from './PracticeAreas';
 
 type Props = { params: Promise<{ lang: string; slug?: string[] }> };
 const langs = ['es', 'en'] as const;
-const paths = ['', 'areas', 'nosotros', 'sedes', 'directorio', 'productos-legales', 'novedades', 'contactenos', 'webmail'];
+const paths = ['', 'areas', 'nosotros', 'sedes', 'directorio', 'productos-legales', 'novedades', 'contactenos'];
 
 export function generateStaticParams() {
   const result: { lang: Language; slug: string[] }[] = [];
@@ -76,7 +76,6 @@ export default async function RoutePage({ params }: Props) {
   if (section === 'nosotros') return <AboutPage language={language} t={t} />;
   if (section === 'sedes') return <OfficeList language={language} />;
   if (section === 'productos-legales') return <LegalProducts language={language} contactLabel={t['nav.contact']} />;
-  if (section === 'webmail') return <WebmailClient lang={language} />;
   notFound();
 }
 
@@ -85,24 +84,28 @@ function MemberProfile({ member, language }: { member: (typeof directory.members
 
   return (
     <div className="site-container pt-2 pb-12 sm:pb-16">
-      <Link href={`/${language}/directorio`} className="text-link mb-4">
+      <Link href={`/${language}/directorio`} className="text-link mb-4 rounded-lg border border-line px-3 hover:border-gold-dark">
         <ArrowLeft aria-hidden="true" size={18} />
         {english ? 'Back to directory' : 'Volver al directorio'}
       </Link>
-      <div className="card-surface grid gap-7 p-5 sm:grid-cols-[minmax(0,16rem)_1fr] sm:items-center sm:p-8">
-        <Image
-          src={member.image}
-          alt={member.name}
-          width={1280}
-          height={1728}
-          sizes="(min-width: 640px) 256px, (min-width: 400px) 288px, 75vw"
-          className="w-full max-w-72"
-          priority
-        />
+      <div className={`card-surface grid gap-7 p-5 sm:p-8${member.image ? ' sm:grid-cols-[minmax(0,16rem)_1fr] sm:items-center' : ''}`}>
+        {member.image && (
+          <Image
+            src={member.image}
+            alt={member.name}
+            width={1280}
+            height={1728}
+            sizes="(min-width: 640px) 256px, (min-width: 400px) 288px, 75vw"
+            className="w-full max-w-72"
+            priority
+          />
+        )}
         <div className="min-w-0">
           <h1 className="section-heading [overflow-wrap:anywhere]">{member.name}</h1>
           <p className="mt-3 font-medium text-gold-dark">{member.role[language]}</p>
-          <a className="text-link mt-3 [overflow-wrap:anywhere]" href={`mailto:${member.email}`}>{member.email}</a>
+          {member.email && (
+            <a className="text-link mt-3 [overflow-wrap:anywhere]" href={`mailto:${member.email}`}>{member.email}</a>
+          )}
         </div>
       </div>
       <section className="mt-8 max-w-3xl">
@@ -115,7 +118,8 @@ function MemberProfile({ member, language }: { member: (typeof directory.members
 
 function ContactPage({ language, t }: { language: Language; t: typeof es }) {
   const data = contact[language];
-  const { address, email, phone } = data.info;
+  const { email, phone, socials } = contact.channels;
+  const phoneNumber = phone.replace(/\D/g, '');
 
   return (
     <>
@@ -124,13 +128,42 @@ function ContactPage({ language, t }: { language: Language; t: typeof es }) {
         <section className="card-surface p-6 sm:p-8">
           <h2 className="text-2xl leading-tight">{language === 'en' ? 'Contact information' : 'Información de contacto'}</h2>
           <address className="mt-4 grid gap-4 text-sm not-italic">
-            <p>{address}</p>
-            <a className="text-gold-dark underline-offset-4 hover:underline" href={`tel:${phone.replace(/[^+\d]/g, '')}`}>
+            <p>{data.info.address}</p>
+            <a className="text-gold-dark underline-offset-4 hover:underline" href={`tel:+${phoneNumber}`}>
               <span className="mr-2 text-xs font-semibold">{t['contact.label.phone']}</span>
               {phone}
             </a>
             <a className="text-gold-dark underline-offset-4 hover:underline [overflow-wrap:anywhere]" href={`mailto:${email}`}>{email}</a>
           </address>
+          <a
+            className="button-primary mt-5"
+            href={buildWhatsAppHref(phone, data.whatsappMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp
+            <ArrowUpRight aria-hidden="true" size={16} />
+          </a>
+          <nav aria-labelledby="contact-socials" className="mt-6 border-t border-line pt-5">
+            <h3 id="contact-socials" className="font-sans text-sm font-semibold">
+              {language === 'en' ? 'Social media' : 'Redes sociales'}
+            </h3>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {socials.map(({ label, href }) => (
+                <li key={label}>
+                  <a
+                    className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-line px-3 text-sm font-medium text-gold-dark transition-colors hover:border-gold-dark hover:text-ink"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {label}
+                    <ArrowUpRight aria-hidden="true" size={14} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </section>
         <ContactForm language={language} labels={data.form} />
       </div>
@@ -149,7 +182,7 @@ function AboutPage({ language, t }: { language: Language; t: typeof es }) {
         <p className="mt-4 max-w-4xl leading-relaxed">{about.historia[language]}</p>
         <div className="mt-7 grid gap-4 sm:grid-cols-2">
           {[about.mision[language], about.vision[language]].map(({ title, text }) => (
-            <article className="border-t border-gold-dark py-5" key={title}>
+            <article className="card-surface border-t-gold-dark p-5 sm:p-6" key={title}>
               <h3 className="text-2xl leading-tight">{title}</h3>
               <p className="mt-3 leading-relaxed">{text}</p>
             </article>
@@ -247,14 +280,14 @@ function LegalProducts({ language, contactLabel }: { language: Language; contact
         </Link>
       </PageHero>
       <div className="site-container py-10 sm:py-14">
-        <div aria-hidden="true" className={`hidden pb-3 text-xs font-medium tracking-wider text-ink-muted uppercase md:grid ${columns}`}>
+        <div aria-hidden="true" className={`hidden px-7 pb-3 text-xs font-medium tracking-wider text-ink-muted uppercase md:grid ${columns}`}>
           <span>{english ? 'Product' : 'Producto'}</span>
           <span>{english ? 'Scope' : 'Alcance'}</span>
           <span className="text-right">{english ? 'Engagement' : 'Contratación'}</span>
         </div>
-        <ul className="divide-y divide-line border-y border-line">
+        <ul className="grid gap-3">
           {data.items.map(({ title, description, price, priceOnRequest, icon }) => (
-            <li className={`grid items-start gap-2.5 py-5 md:py-7 ${columns}`} key={title}>
+            <li className={`card-surface grid items-start gap-2.5 p-5 md:p-7 ${columns}`} key={title}>
               <div className="flex items-start gap-3">
                 <ServiceIcon name={icon} />
                 <h2 className="text-xl leading-snug sm:text-2xl">{title}</h2>

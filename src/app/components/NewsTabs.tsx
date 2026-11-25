@@ -26,7 +26,7 @@ export default function NewsTabs({
           <button
             key={name}
             type="button"
-            className="min-h-11 cursor-pointer border-b border-line px-3 py-2 text-sm font-medium text-ink-muted transition-colors hover:bg-parchment aria-pressed:border-gold-dark aria-pressed:text-ink sm:px-5"
+            className="min-h-11 cursor-pointer rounded-lg border-b border-line px-3 py-2 text-sm font-medium text-ink-muted transition-colors hover:bg-parchment aria-pressed:border-gold-dark aria-pressed:text-ink sm:px-5"
             aria-pressed={tab === name}
             aria-controls="news-items"
             onClick={() => setTab(name)}
@@ -39,7 +39,7 @@ export default function NewsTabs({
         {tab === 'eventos' && (
           <div className="grid gap-5 md:grid-cols-2">
             {data.eventos.map(({ title, image, date, description }) => (
-              <article className="card-surface" key={title}>
+              <article className="card-surface overflow-hidden" key={title}>
                 <div className="relative aspect-[16/8] overflow-hidden bg-parchment">
                   <ImageWithFallback
                     src={image}

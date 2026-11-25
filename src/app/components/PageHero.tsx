@@ -30,7 +30,7 @@ export default function PageHero({ title, subtitle, image, fallbackImage, childr
           {children && <div className="mt-5 flex flex-wrap items-center gap-3 sm:mt-6">{children}</div>}
         </div>
         {image && (
-          <div className="relative aspect-[2.65/1] overflow-hidden bg-line md:aspect-[1.92/1]">
+          <div className="relative aspect-[2.65/1] overflow-hidden rounded-xl bg-line md:aspect-[1.92/1]">
             {fallbackImage ? (
               <ImageWithFallback src={image} fallbackSrc={fallbackImage} {...imageProps} />
             ) : (

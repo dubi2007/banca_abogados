@@ -13,7 +13,7 @@ export default function PracticeAreaLink({ title, description, href, icon, headi
   return (
     <Link
       href={href}
-      className="group grid h-full auto-rows-min grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 gap-y-2 border-b border-line py-5 transition-colors hover:border-gold-dark focus-visible:border-gold-dark sm:py-6"
+      className="card-surface group grid h-full auto-rows-min grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 gap-y-2 p-5 transition-colors hover:border-gold-dark focus-visible:border-gold-dark sm:p-6"
     >
       <div className="flex min-w-0 items-start gap-3">
         {icon && <ServiceIcon name={icon} />}
