@@ -20,7 +20,8 @@ const errorMessages: Record<string, [string, string]> = {
   throttled: ['Espere un momento antes de pedir otro código.', 'Wait before requesting another code.'],
   code: ['Revise el código de esta solicitud. Si caducó, solicite otro.', 'Check the code for this request. If it expired, request another.'],
   new_password: ['Use entre 12 y 128 caracteres para su nueva contraseña.', 'Use 12 to 128 characters for your new password.'],
-  password_rejected: ['Solicite otro código e intente con una contraseña más segura.', 'Request another code and try a stronger password.'],
+  password_rejected: ['El servidor de correo rechazó la contraseña. Pruebe con una más segura.', 'The mail server rejected the password. Try a stronger one.'],
+  password_change_denied: ['El servidor de correo rechazó el cambio. Contacte al administrador del correo.', 'The mail server denied the change. Contact your email administrator.'],
   service: ['No se pudo completar la solicitud. Intente de nuevo más tarde.', 'The request could not be completed. Try again later.'],
 };
 

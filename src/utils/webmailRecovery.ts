@@ -6,10 +6,11 @@ const maxCodeAttempts = 5;
 const challengeIdPattern = /^[a-f0-9]{32}$/;
 
 type RecoveryPurpose = 'enroll' | 'reset';
+type RecoveryProof = { challenge: string; code: string };
 type RecoveryProvider = 'cPanel' | 'IMAP' | 'Resend' | 'Upstash';
 
 export class WebmailRecoveryProviderError extends Error {
-  constructor(provider: RecoveryProvider, detail: string, status?: number) {
+  constructor(provider: RecoveryProvider, detail: string, readonly status?: number) {
     super(`${provider}: ${detail}${status === undefined ? '' : ` (HTTP ${status})`}`);
   }
 }
@@ -78,7 +79,7 @@ export function createRecoveryChallenge() {
   return randomBytes(16).toString('hex');
 }
 
-export function recoveryProof(challenge: unknown, code: unknown) {
+export function recoveryProof(challenge: unknown, code: unknown): RecoveryProof | null {
   if (typeof challenge !== 'string' || !challengeIdPattern.test(challenge) ||
       typeof code !== 'string' || !/^\d{8}$/.test(code)) return null;
   return { challenge, code };
@@ -96,7 +97,7 @@ async function requestJson<T>(
   provider: RecoveryProvider,
   url: string,
   authorization: string,
-  body: string | URLSearchParams,
+  body?: string | URLSearchParams,
   timeoutMs = 8000,
 ): Promise<T> {
   const headers = new Headers({ Authorization: authorization, Accept: 'application/json' });
@@ -105,7 +106,7 @@ async function requestJson<T>(
   let response: Response;
   try {
     response = await fetch(url, {
-      method: 'POST',
+      method: body === undefined ? 'GET' : 'POST',
       headers,
       body,
       cache: 'no-store',
@@ -227,7 +228,7 @@ export async function sendWebmailRecoveryCode(
   return true;
 }
 
-// Advancing the profile version invalidates all earlier codes for the mailbox.
+// Advancing the profile version invalidates earlier codes, including an in-flight reset.
 const consumeChallenge = `
 if redis.call('EXISTS', KEYS[3]) == 1 then return 0 end
 local saved = redis.call('HMGET', KEYS[1], 'digest', 'binding', 'address', 'version')
@@ -241,19 +242,20 @@ end
 if ARGV[6] == 'check' then return 1 end
 if ARGV[1] == 'enroll' then
   redis.call('HSET', KEYS[2], 'address', saved[3])
+  redis.call('DEL', KEYS[1])
 else
-  redis.call('SET', KEYS[3], '1', 'EX', 30)
+  redis.call('SET', KEYS[3], ARGV[4], 'EX', 30)
 end
 redis.call('HSET', KEYS[2], 'version', ARGV[4])
-redis.call('DEL', KEYS[1])
 return 1
 `;
 
-export async function verifyWebmailRecoveryCode(
+async function verifyWebmailRecoveryCode(
   config: RecoveryConfig,
   mailbox: string,
   purpose: RecoveryPurpose,
-  { challenge, code }: { challenge: string; code: string },
+  { challenge, code }: RecoveryProof,
+  version: string,
   { session, consume = true }: { session?: string; consume?: boolean } = {},
 ) {
   const key = accountKey(config, mailbox);
@@ -261,26 +263,91 @@ export async function verifyWebmailRecoveryCode(
     'EVAL', consumeChallenge, 3,
     `${key}:${purpose}:${challenge}`, `${key}:profile`, `${key}:changing-password`,
     purpose, digest(config, purpose, mailbox, challenge, code),
-    session ? digest(config, 'session', session) : '', challenge, maxCodeAttempts,
+    session ? digest(config, 'session', session) : '', version, maxCodeAttempts,
     consume ? 'consume' : 'check',
   ]);
   return accepted === 1;
+}
+
+export function verifyWebmailEnrollmentCode(
+  config: RecoveryConfig,
+  mailbox: string,
+  proof: RecoveryProof,
+  session: string,
+  consume = true,
+) {
+  return verifyWebmailRecoveryCode(config, mailbox, 'enroll', proof, proof.challenge, { session, consume });
+}
+
+export async function beginWebmailPasswordReset(config: RecoveryConfig, mailbox: string, proof: RecoveryProof) {
+  const attempt = createRecoveryChallenge();
+  const accepted = await verifyWebmailRecoveryCode(config, mailbox, 'reset', proof, attempt);
+  return accepted ? attempt : null;
+}
+
+// Restore only the rejected attempt, preserving its original expiry and invalidating other codes.
+const restoreRejectedChallenge = `
+if redis.call('GET', KEYS[3]) ~= ARGV[1] or redis.call('HGET', KEYS[2], 'version') ~= ARGV[1] then
+  return 0
+end
+if redis.call('EXISTS', KEYS[1]) == 1 then
+  redis.call('HSET', KEYS[1], 'version', ARGV[1])
+end
+redis.call('DEL', KEYS[3])
+return 1
+`;
+
+export async function allowWebmailPasswordResetRetry(
+  config: RecoveryConfig,
+  mailbox: string,
+  challenge: string,
+  attempt: string,
+) {
+  const key = accountKey(config, mailbox);
+  await redisCommand<number>(config, [
+    'EVAL', restoreRejectedChallenge, 3,
+    `${key}:reset:${challenge}`, `${key}:profile`, `${key}:changing-password`, attempt,
+  ]);
+}
+
+export async function checkCPanelEmailAccess(config: RecoveryConfig) {
+  try {
+    const response = await requestJson<{ result?: { status: number } }>(
+      'cPanel', `${config.cPanel}/execute/Email/get_default_email_quota`, config.cPanelAuth, undefined, 3000,
+    );
+    if (response?.result?.status === 1) {
+      console.info('Webmail recovery cPanel read-only email request succeeded');
+    } else {
+      console.warn('Webmail recovery cPanel read-only email request was rejected');
+    }
+  } catch (error) {
+    logWebmailRecoveryError('Webmail recovery cPanel email access check failed', error);
+  }
 }
 
 export async function resetRecoveryMailboxPassword(
   config: RecoveryConfig,
   mailbox: string,
   password: string,
-) {
+): Promise<'changed' | 'rejected' | 'denied'> {
   if (recoveryMailbox(mailbox) !== mailbox) throw new Error('Unmanaged mailbox');
   const [mailboxName] = mailbox.split('@');
   const form = new URLSearchParams({ email: mailboxName, domain: corporateDomain, password });
-  const response = await requestJson<{ result?: { status: number } }>(
-    'cPanel', `${config.cPanel}/execute/Email/passwd_pop`, config.cPanelAuth, form,
-  );
+  let response: { result?: { status: number } };
+  try {
+    response = await requestJson<typeof response>(
+      'cPanel', `${config.cPanel}/execute/Email/passwd_pop`, config.cPanelAuth, form,
+    );
+  } catch (error) {
+    if (!(error instanceof WebmailRecoveryProviderError && (error.status === 401 || error.status === 403))) {
+      throw error;
+    }
+    logWebmailRecoveryError('Webmail recovery password change denied', error);
+    return 'denied';
+  }
   const status = response?.result?.status;
   if (status !== 1 && status !== 0) {
     throw new WebmailRecoveryProviderError('cPanel', 'unexpected password change response');
   }
-  return status === 1;
+  return status === 1 ? 'changed' : 'rejected';
 }

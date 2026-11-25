@@ -9,6 +9,9 @@ import {
 } from '../../../../utils/webmail';
 import {
   allowRecoveryEnrollment,
+  allowWebmailPasswordResetRetry,
+  beginWebmailPasswordReset,
+  checkCPanelEmailAccess,
   createRecoveryChallenge,
   getWebmailRecoveryConfig,
   logWebmailRecoveryError,
@@ -17,7 +20,7 @@ import {
   recoveryProof,
   resetRecoveryMailboxPassword,
   sendWebmailRecoveryCode,
-  verifyWebmailRecoveryCode,
+  verifyWebmailEnrollmentCode,
   WebmailRecoveryProviderError,
 } from '../../../../utils/webmailRecovery';
 
@@ -109,11 +112,16 @@ export async function POST(request: Request) {
       const proof = recoveryProof(body.challenge, body.code);
       if (!mailbox) return json({ error: 'mailbox' }, 400);
       if (!validPassword(body.password, 12, 128)) return json({ error: 'new_password' }, 400);
-      if (!proof || !await verifyWebmailRecoveryCode(config, mailbox, 'reset', proof)) {
-        return json({ error: 'code' }, 400);
-      }
-      if (!await resetRecoveryMailboxPassword(config, mailbox, body.password)) {
-        return json({ error: 'password_rejected' }, 422);
+      const attempt = proof && await beginWebmailPasswordReset(config, mailbox, proof);
+      if (!proof || !attempt) return json({ error: 'code' }, 400);
+
+      const result = await resetRecoveryMailboxPassword(config, mailbox, body.password);
+      if (result !== 'changed') {
+        if (result === 'denied') after(() => checkCPanelEmailAccess(config));
+        await allowWebmailPasswordResetRetry(config, mailbox, proof.challenge, attempt);
+        return result === 'denied'
+          ? json({ error: 'password_change_denied' }, 502)
+          : json({ error: 'password_rejected' }, 422);
       }
       if (sessionMailbox === mailbox) cookieStore.delete(WEBMAIL_COOKIE);
       return json({ ok: true });
@@ -142,15 +150,13 @@ export async function POST(request: Request) {
     }
 
     const proof = recoveryProof(body.challenge, body.code);
-    if (!proof || !await verifyWebmailRecoveryCode(
-      config, sessionMailbox, 'enroll', proof, { session: token, consume: false },
-    )) {
+    if (!proof || !await verifyWebmailEnrollmentCode(config, sessionMailbox, proof, token, false)) {
       return json({ error: 'code' }, 400);
     }
     if (!await verifyEnrollmentPassword(sessionMailbox, session.password, config.cPanel)) {
       return json({ error: 'current_password' }, 403);
     }
-    if (!await verifyWebmailRecoveryCode(config, sessionMailbox, 'enroll', proof, { session: token })) {
+    if (!await verifyWebmailEnrollmentCode(config, sessionMailbox, proof, token)) {
       return json({ error: 'code' }, 400);
     }
     return json({ ok: true });
