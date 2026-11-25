@@ -304,21 +304,27 @@ class NativeImapConnection {
   private pendingContinuationPayload: Buffer | null = null;
   private greetingResolved = false;
 
-  async connect(host: string, port: number, timeoutMs = 10000): Promise<void> {
+  async connect(host: string, port: number, tlsServerName?: string): Promise<void> {
     return new Promise((resolve, reject) => {
       const timeout = setTimeout(() => {
         this.destroy();
         reject(new Error(`Tiempo de espera agotado conectando a ${host}:${port}`));
-      }, timeoutMs);
+      }, 10_000);
 
       const onConnectError = (err: Error) => {
         clearTimeout(timeout);
         reject(err);
       };
 
-      const useTls = port === 993 || port === 995 || port === 465;
+      const verifyTls = tlsServerName !== undefined;
+      const useTls = verifyTls || port === 993 || port === 995 || port === 465;
       this.socket = useTls
-        ? tls.connect({ host, port, rejectUnauthorized: false })
+        ? tls.connect({
+          host,
+          port,
+          servername: tlsServerName && !net.isIP(tlsServerName) ? tlsServerName : undefined,
+          rejectUnauthorized: verifyTls,
+        })
         : net.connect({ host, port });
 
       this.socket.on('error', (err) => {
@@ -464,10 +470,11 @@ class NativeImapConnection {
 async function withImap<T>(
   creds: WebmailCredentials,
   fn: (imap: NativeImapConnection) => Promise<T>,
+  tlsServerName?: string,
 ): Promise<T> {
   const imap = new NativeImapConnection();
   try {
-    await imap.connect(creds.imapHost, creds.imapPort);
+    await imap.connect(creds.imapHost, creds.imapPort, tlsServerName);
     await imap.command(`LOGIN ${escapeImapString(creds.email)} ${escapeImapString(creds.password)}`);
     const result = await fn(imap);
     await imap.command('LOGOUT').catch(() => null);
@@ -477,8 +484,11 @@ async function withImap<T>(
   }
 }
 
-export async function verifyImapLogin(creds: WebmailCredentials): Promise<void> {
-  await withImap(creds, async () => true);
+export async function verifyImapLogin(
+  creds: WebmailCredentials,
+  { tlsServerName }: { tlsServerName?: string } = {},
+): Promise<void> {
+  await withImap(creds, async () => true, tlsServerName);
 }
 
 function classifyFolder(path: string, attrs: string): ImapFolder['specialUse'] {

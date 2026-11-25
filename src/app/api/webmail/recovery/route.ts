@@ -1,17 +1,24 @@
+import { isIP } from 'node:net';
 import { cookies } from 'next/headers';
 import { after, NextResponse } from 'next/server';
-import { decryptWebmailSession, WEBMAIL_COOKIE } from '../../../../utils/webmail';
+import {
+  decryptWebmailSession,
+  resolveDefaultMailHosts,
+  verifyImapLogin,
+  WEBMAIL_COOKIE,
+} from '../../../../utils/webmail';
 import {
   allowRecoveryEnrollment,
   createRecoveryChallenge,
   getWebmailRecoveryConfig,
+  logWebmailRecoveryError,
   recoveryEmail,
   recoveryMailbox,
   recoveryProof,
   resetRecoveryMailboxPassword,
   sendWebmailRecoveryCode,
-  verifyRecoveryMailboxPassword,
   verifyWebmailRecoveryCode,
+  WebmailRecoveryProviderError,
 } from '../../../../utils/webmailRecovery';
 
 export const runtime = 'nodejs';
@@ -39,6 +46,18 @@ function isSameOrigin(request: Request) {
 function validPassword(value: unknown, min: number, max: number): value is string {
   return typeof value === 'string' && value.length >= min && value.length <= max &&
     !/[\r\n\0]/.test(value);
+}
+
+async function verifyEnrollmentPassword(mailbox: string, password: string, cPanelOrigin: string) {
+  const hosts = resolveDefaultMailHosts();
+  const tlsServerName = isIP(hosts.imapHost) ? new URL(cPanelOrigin).hostname : hosts.imapHost;
+  try {
+    await verifyImapLogin({ email: mailbox, password, ...hosts }, { tlsServerName });
+    return true;
+  } catch (error) {
+    if (error instanceof Error && /^NO(?: |$)/.test(error.message)) return false;
+    throw new WebmailRecoveryProviderError('IMAP', 'mailbox verification failed');
+  }
 }
 
 export async function POST(request: Request) {
@@ -73,8 +92,8 @@ export async function POST(request: Request) {
       after(async () => {
         try {
           await sendWebmailRecoveryCode(config, mailbox, challenge, language);
-        } catch {
-          console.error('Webmail recovery code delivery failed');
+        } catch (error) {
+          logWebmailRecoveryError('Webmail recovery code delivery failed', error);
         }
       });
       return json({ ok: true, challenge }, 202);
@@ -112,7 +131,7 @@ export async function POST(request: Request) {
         return json({ error: 'current_password' }, 403);
       }
       if (!await allowRecoveryEnrollment(config, sessionMailbox)) return json({ error: 'throttled' }, 429);
-      if (!await verifyRecoveryMailboxPassword(config, sessionMailbox, body.password)) {
+      if (!await verifyEnrollmentPassword(sessionMailbox, body.password, config.cPanel)) {
         return json({ error: 'current_password' }, 403);
       }
       const challenge = createRecoveryChallenge();
@@ -128,15 +147,15 @@ export async function POST(request: Request) {
     )) {
       return json({ error: 'code' }, 400);
     }
-    if (!await verifyRecoveryMailboxPassword(config, sessionMailbox, session.password)) {
+    if (!await verifyEnrollmentPassword(sessionMailbox, session.password, config.cPanel)) {
       return json({ error: 'current_password' }, 403);
     }
     if (!await verifyWebmailRecoveryCode(config, sessionMailbox, 'enroll', proof, { session: token })) {
       return json({ error: 'code' }, 400);
     }
     return json({ ok: true });
-  } catch {
-    console.error('Webmail recovery service request failed');
+  } catch (error) {
+    logWebmailRecoveryError('Webmail recovery service request failed', error);
     return json({ error: 'service' }, 502);
   }
 }

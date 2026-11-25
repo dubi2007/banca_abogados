@@ -6,12 +6,27 @@ const maxCodeAttempts = 5;
 const challengeIdPattern = /^[a-f0-9]{32}$/;
 
 type RecoveryPurpose = 'enroll' | 'reset';
+type RecoveryProvider = 'cPanel' | 'IMAP' | 'Resend' | 'Upstash';
+
+export class WebmailRecoveryProviderError extends Error {
+  constructor(provider: RecoveryProvider, detail: string, status?: number) {
+    super(`${provider}: ${detail}${status === undefined ? '' : ` (HTTP ${status})`}`);
+  }
+}
+
+export function logWebmailRecoveryError(message: string, error: unknown) {
+  if (error instanceof WebmailRecoveryProviderError) {
+    console.error(message, error.message);
+  } else {
+    console.error(message);
+  }
+}
 
 export function getWebmailRecoveryConfig() {
   const {
     WEBMAIL_RECOVERY_SECRET: secret,
-    WEBMAIL_CPANEL_USERNAME: cPanelUsername,
-    WEBMAIL_CPANEL_API_TOKEN: cPanelToken,
+    WEBMAIL_CPANEL_USERNAME,
+    WEBMAIL_CPANEL_API_TOKEN,
     WEBMAIL_CPANEL_ORIGIN = 'https://cpanel.faynshteynjuridico.com:2083',
     UPSTASH_REDIS_REST_URL,
     UPSTASH_REDIS_REST_TOKEN: redisToken,
@@ -19,6 +34,8 @@ export function getWebmailRecoveryConfig() {
     WEBMAIL_RECOVERY_FROM: from,
   } = process.env;
 
+  const cPanelUsername = WEBMAIL_CPANEL_USERNAME?.trim();
+  const cPanelToken = WEBMAIL_CPANEL_API_TOKEN?.trim();
   const cPanel = httpsOrigin(WEBMAIL_CPANEL_ORIGIN);
   const redis = httpsOrigin(UPSTASH_REDIS_REST_URL);
   if (!secret || Buffer.byteLength(secret) < 32 || !cPanelUsername || !cPanelToken ||
@@ -76,24 +93,42 @@ function accountKey(config: RecoveryConfig, mailbox: string) {
 }
 
 async function requestJson<T>(
+  provider: RecoveryProvider,
   url: string,
   authorization: string,
-  body: string | FormData,
+  body: string | URLSearchParams,
   timeoutMs = 8000,
 ): Promise<T> {
   const headers = new Headers({ Authorization: authorization, Accept: 'application/json' });
   if (typeof body === 'string') headers.set('Content-Type', 'application/json');
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers,
-    body,
-    cache: 'no-store',
-    redirect: 'error',
-    signal: AbortSignal.timeout(timeoutMs),
-  });
-  if (!response.ok) throw new Error('Recovery service unavailable');
-  return response.json();
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body,
+      cache: 'no-store',
+      redirect: 'manual',
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+  } catch (error) {
+    const detail = error instanceof Error && error.name === 'TimeoutError'
+      ? 'request timed out'
+      : 'connection failed';
+    throw new WebmailRecoveryProviderError(provider, detail);
+  }
+  if (!response.ok) {
+    throw new WebmailRecoveryProviderError(provider, 'request failed', response.status);
+  }
+  try {
+    return await response.json();
+  } catch {
+    const detail = response.headers.get('content-type')?.startsWith('text/html')
+      ? 'returned an HTML page'
+      : 'returned invalid JSON';
+    throw new WebmailRecoveryProviderError(provider, detail, response.status);
+  }
 }
 
 async function redisCommand<T>(
@@ -102,10 +137,10 @@ async function redisCommand<T>(
   timeoutMs?: number,
 ): Promise<T> {
   const response = await requestJson<{ result: T; error?: string }>(
-    config.redis, `Bearer ${config.redisToken}`, JSON.stringify(command), timeoutMs,
+    'Upstash', config.redis, `Bearer ${config.redisToken}`, JSON.stringify(command), timeoutMs,
   );
-  if (response.error || !Object.hasOwn(response, 'result')) {
-    throw new Error('Recovery storage unavailable');
+  if (!response || response.error || !Object.hasOwn(response, 'result')) {
+    throw new WebmailRecoveryProviderError('Upstash', 'command failed');
   }
   return response.result;
 }
@@ -120,8 +155,8 @@ export async function needsWebmailRecoveryEmail(email: string) {
       config, ['HEXISTS', `${accountKey(config, mailbox)}:profile`, 'address'], 2000,
     );
     return exists === 0;
-  } catch {
-    console.error('Webmail recovery email status check failed');
+  } catch (error) {
+    logWebmailRecoveryError('Webmail recovery email status check failed', error);
     return false;
   }
 }
@@ -181,14 +216,14 @@ export async function sendWebmailRecoveryCode(
     ? `Your code to ${action} for ${mailbox} is ${code}.\n\nIt expires in ${codeMinutes} minutes.`
     : `Su código para ${action} de ${mailbox} es ${code}.\n\nVence en ${codeMinutes} minutos.`;
   const response = await requestJson<{ id?: string }>(
-    'https://api.resend.com/emails', `Bearer ${config.resendKey}`, JSON.stringify({
+    'Resend', 'https://api.resend.com/emails', `Bearer ${config.resendKey}`, JSON.stringify({
       from: config.from,
       to: [address],
       subject: english ? 'Faynshteyn Webmail verification code' : 'Código de verificación de Faynshteyn Webmail',
       text: message,
     }),
   );
-  if (!response.id) throw new Error('Recovery message was not accepted');
+  if (!response?.id) throw new WebmailRecoveryProviderError('Resend', 'message was not accepted');
   return true;
 }
 
@@ -232,32 +267,20 @@ export async function verifyWebmailRecoveryCode(
   return accepted === 1;
 }
 
-async function callEmailApi(
+export async function resetRecoveryMailboxPassword(
   config: RecoveryConfig,
-  action: 'verify_password' | 'passwd_pop',
   mailbox: string,
   password: string,
 ) {
   if (recoveryMailbox(mailbox) !== mailbox) throw new Error('Unmanaged mailbox');
-  const form = new FormData();
-  form.set('email', mailbox);
-  form.set('password', password);
-  if (action === 'passwd_pop') form.set('domain', corporateDomain);
-  const response = await requestJson<{ result?: { status: number; data?: unknown } }>(
-    `${config.cPanel}/execute/Email/${action}`, config.cPanelAuth, form,
+  const [mailboxName] = mailbox.split('@');
+  const form = new URLSearchParams({ email: mailboxName, domain: corporateDomain, password });
+  const response = await requestJson<{ result?: { status: number } }>(
+    'cPanel', `${config.cPanel}/execute/Email/passwd_pop`, config.cPanelAuth, form,
   );
-  if (response.result?.status !== 1 && response.result?.status !== 0) {
-    throw new Error('Unexpected mailbox provider response');
+  const status = response?.result?.status;
+  if (status !== 1 && status !== 0) {
+    throw new WebmailRecoveryProviderError('cPanel', 'unexpected password change response');
   }
-  return response.result;
-}
-
-export async function verifyRecoveryMailboxPassword(config: RecoveryConfig, mailbox: string, password: string) {
-  const result = await callEmailApi(config, 'verify_password', mailbox, password);
-  return result.status === 1 && result.data === 1;
-}
-
-export async function resetRecoveryMailboxPassword(config: RecoveryConfig, mailbox: string, password: string) {
-  const result = await callEmailApi(config, 'passwd_pop', mailbox, password);
-  return result.status === 1;
+  return status === 1;
 }
