@@ -75,7 +75,12 @@ function accountKey(config: RecoveryConfig, mailbox: string) {
   return `webmail:recovery:{${digest(config, 'mailbox', mailbox)}}`;
 }
 
-async function requestJson<T>(url: string, authorization: string, body: string | FormData): Promise<T> {
+async function requestJson<T>(
+  url: string,
+  authorization: string,
+  body: string | FormData,
+  timeoutMs = 8000,
+): Promise<T> {
   const headers = new Headers({ Authorization: authorization, Accept: 'application/json' });
   if (typeof body === 'string') headers.set('Content-Type', 'application/json');
 
@@ -85,20 +90,40 @@ async function requestJson<T>(url: string, authorization: string, body: string |
     body,
     cache: 'no-store',
     redirect: 'error',
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(timeoutMs),
   });
   if (!response.ok) throw new Error('Recovery service unavailable');
   return response.json();
 }
 
-async function redisCommand<T>(config: RecoveryConfig, ...command: (string | number)[]): Promise<T> {
+async function redisCommand<T>(
+  config: RecoveryConfig,
+  command: (string | number)[],
+  timeoutMs?: number,
+): Promise<T> {
   const response = await requestJson<{ result: T; error?: string }>(
-    config.redis, `Bearer ${config.redisToken}`, JSON.stringify(command),
+    config.redis, `Bearer ${config.redisToken}`, JSON.stringify(command), timeoutMs,
   );
   if (response.error || !Object.hasOwn(response, 'result')) {
     throw new Error('Recovery storage unavailable');
   }
   return response.result;
+}
+
+export async function needsWebmailRecoveryEmail(email: string) {
+  const mailbox = recoveryMailbox(email);
+  const config = getWebmailRecoveryConfig();
+  if (!mailbox || !config) return false;
+
+  try {
+    const exists = await redisCommand<number>(
+      config, ['HEXISTS', `${accountKey(config, mailbox)}:profile`, 'address'], 2000,
+    );
+    return exists === 0;
+  } catch {
+    console.error('Webmail recovery email status check failed');
+    return false;
+  }
 }
 
 const incrementWithExpiry = `
@@ -109,7 +134,7 @@ return count
 
 export async function allowRecoveryEnrollment(config: RecoveryConfig, mailbox: string) {
   const count = await redisCommand<number>(
-    config, 'EVAL', incrementWithExpiry, 1, `${accountKey(config, mailbox)}:password-checks`,
+    config, ['EVAL', incrementWithExpiry, 1, `${accountKey(config, mailbox)}:password-checks`],
   );
   return count <= 10;
 }
@@ -139,13 +164,13 @@ export async function sendWebmailRecoveryCode(
   const purpose: RecoveryPurpose = enrollment ? 'enroll' : 'reset';
   const key = accountKey(config, mailbox);
   const code = String(randomInt(100_000_000)).padStart(8, '0');
-  const address = await redisCommand<string | null>(
-    config, 'EVAL', issueChallenge, 5,
+  const address = await redisCommand<string | null>(config, [
+    'EVAL', issueChallenge, 5,
     `${key}:${purpose}:${challenge}`, `${key}:profile`, `${key}:changing-password`,
     `${key}:${purpose}:cooldown`, `${key}:${purpose}:sends`,
     purpose, enrollment?.address ?? '', digest(config, purpose, mailbox, challenge, code),
     enrollment ? digest(config, 'session', enrollment.session) : '', codeMinutes * 60,
-  );
+  ]);
   if (!address) return false;
 
   const english = language === 'en';
@@ -197,13 +222,13 @@ export async function verifyWebmailRecoveryCode(
   { session, consume = true }: { session?: string; consume?: boolean } = {},
 ) {
   const key = accountKey(config, mailbox);
-  const accepted = await redisCommand<number>(
-    config, 'EVAL', consumeChallenge, 3,
+  const accepted = await redisCommand<number>(config, [
+    'EVAL', consumeChallenge, 3,
     `${key}:${purpose}:${challenge}`, `${key}:profile`, `${key}:changing-password`,
     purpose, digest(config, purpose, mailbox, challenge, code),
     session ? digest(config, 'session', session) : '', challenge, maxCodeAttempts,
     consume ? 'consume' : 'check',
-  );
+  ]);
   return accepted === 1;
 }
 

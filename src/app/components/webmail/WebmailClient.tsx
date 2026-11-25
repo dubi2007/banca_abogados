@@ -23,6 +23,7 @@ import WebmailHeaderBar from './WebmailHeaderBar';
 import WebmailLogin from './WebmailLogin';
 import WebmailMessageList from './WebmailMessageList';
 import WebmailMessageReader from './WebmailMessageReader';
+import { WebmailRecoveryPrompt } from './WebmailRecoveryForms';
 import WebmailSidebar from './WebmailSidebar';
 
 type Props = {
@@ -36,6 +37,7 @@ export default function WebmailClient({ lang }: Props) {
   const [checkingSession, setCheckingSession] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
   const [sessionEmail, setSessionEmail] = useState('');
+  const [showRecoveryPrompt, setShowRecoveryPrompt] = useState(false);
 
   // Inbox state
   const [folders, setFolders] = useState<ImapFolder[]>([]);
@@ -391,9 +393,10 @@ export default function WebmailClient({ lang }: Props) {
     return (
       <WebmailLogin
         lang={lang}
-        onAuthenticated={({ email }) => {
+        onAuthenticated={({ email, needsRecoveryEmail }) => {
           setAuthenticated(true);
           setSessionEmail(email);
+          setShowRecoveryPrompt(needsRecoveryEmail);
           loadFolder('INBOX');
         }}
       />
@@ -494,6 +497,10 @@ export default function WebmailClient({ lang }: Props) {
           />
         </div>
       </div>
+
+      {showRecoveryPrompt && (
+        <WebmailRecoveryPrompt lang={lang} onDismiss={() => setShowRecoveryPrompt(false)} />
+      )}
 
       {composeState.open && (
         <WebmailComposeModal

@@ -8,7 +8,7 @@ import type { Language } from '../../../utils/i18n';
 
 type Props = {
   lang: Language;
-  onAuthenticated: (data: { email: string }) => void;
+  onAuthenticated: (data: { email: string; needsRecoveryEmail: boolean }) => void;
 };
 
 export default function WebmailLogin({ lang, onAuthenticated }: Props) {
@@ -43,7 +43,7 @@ export default function WebmailLogin({ lang, onAuthenticated }: Props) {
       }
       const data = await res.json();
       setPasswordInput('');
-      onAuthenticated({ email: data.email });
+      onAuthenticated({ email: data.email, needsRecoveryEmail: data.needsRecoveryEmail === true });
     } catch {
       setLoginError(
         english

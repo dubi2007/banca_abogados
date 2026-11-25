@@ -28,7 +28,12 @@ function errorMessage(error: string, lang: Language) {
   return (errorMessages[error] ?? errorMessages.service)[lang === 'en' ? 1 : 0];
 }
 
-function RecoveryForm({ lang, available, enrolling = false }: Pick<Props, 'lang' | 'available'> & { enrolling?: boolean }) {
+function RecoveryForm({
+  lang,
+  available,
+  enrolling = false,
+  onDismiss,
+}: Pick<Props, 'lang' | 'available'> & { enrolling?: boolean; onDismiss?: () => void }) {
   const english = lang === 'en';
   const [email, setEmail] = useState('');
   const [challenge, setChallenge] = useState('');
@@ -108,9 +113,15 @@ function RecoveryForm({ lang, available, enrolling = false }: Pick<Props, 'lang'
             ? (english ? 'Your recovery email was verified and saved.' : 'Su correo de recuperación quedó verificado y guardado.')
             : (english ? 'Your password was updated. Sign in with your new password.' : 'Su contraseña se actualizó. Ya puede ingresar con la nueva contraseña.')}
         </p>
-        <Link href={`/${lang}/webmail`} className="text-link">
-          {english ? 'Go to Webmail' : 'Ir al correo'}
-        </Link>
+        {onDismiss ? (
+          <button type="button" onClick={onDismiss} className="button-primary w-full cursor-pointer">
+            {english ? 'Go to inbox' : 'Ir a la bandeja'}
+          </button>
+        ) : (
+          <Link href={`/${lang}/webmail`} className="text-link">
+            {english ? 'Go to Webmail' : 'Ir al correo'}
+          </Link>
+        )}
       </div>
     );
   }
@@ -171,17 +182,61 @@ function RecoveryForm({ lang, available, enrolling = false }: Pick<Props, 'lang'
         </button>
       </fieldset>
       {error && <p role="alert" className="text-sm text-red-900">{error}</p>}
-      {challenge && (
-        <button
-          type="button"
-          disabled={busy}
-          className="text-link cursor-pointer disabled:opacity-60"
-          onClick={() => { setChallenge(''); setError(''); }}
-        >
-          {english ? 'Request another code' : 'Solicitar otro código'}
-        </button>
+      {(challenge || onDismiss) && (
+        <div className="flex flex-wrap gap-x-4">
+          {challenge && (
+            <button
+              type="button"
+              disabled={busy}
+              className="text-link cursor-pointer disabled:opacity-60"
+              onClick={() => { setChallenge(''); setError(''); }}
+            >
+              {english ? 'Request another code' : 'Solicitar otro código'}
+            </button>
+          )}
+          {onDismiss && (
+            <button type="button" onClick={onDismiss} className="text-link min-h-11 cursor-pointer">
+              {english ? 'Not now' : 'Ahora no'}
+            </button>
+          )}
+        </div>
       )}
     </form>
+  );
+}
+
+export function WebmailRecoveryPrompt({ lang, onDismiss }: { lang: Language; onDismiss: () => void }) {
+  const english = lang === 'en';
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (dialog && !dialog.open) {
+      dialog.showModal();
+      titleRef.current?.focus();
+    }
+  }, []);
+
+  return (
+    <dialog
+      ref={dialogRef}
+      onClose={onDismiss}
+      aria-labelledby="recovery-prompt-title"
+      aria-describedby="recovery-prompt-description"
+      className="card-surface m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-md overflow-y-auto p-5 text-ink shadow-xl backdrop:bg-ink-deep/60 sm:p-6"
+    >
+      <Mail aria-hidden="true" size={22} className="mb-3 text-gold-dark" />
+      <h2 ref={titleRef} id="recovery-prompt-title" tabIndex={-1} className="text-2xl leading-tight">
+        {english ? 'Set up a recovery email' : 'Configure un correo de recuperación'}
+      </h2>
+      <p id="recovery-prompt-description" className="mt-3 text-sm leading-relaxed">
+        {english
+          ? 'Add an alternate address so you can regain access to this mailbox.'
+          : 'Registre una dirección alternativa para recuperar el acceso a este buzón.'}
+      </p>
+      <RecoveryForm lang={lang} available enrolling onDismiss={() => dialogRef.current?.close()} />
+    </dialog>
   );
 }
 

@@ -8,6 +8,7 @@ import {
   WEBMAIL_COOKIE,
   type WebmailCredentials,
 } from '../../../../utils/webmail';
+import { needsWebmailRecoveryEmail } from '../../../../utils/webmailRecovery';
 
 export async function GET() {
   const cookieStore = await cookies();
@@ -59,6 +60,7 @@ export async function POST(request: Request) {
     );
   }
 
+  const needsRecoveryEmail = await needsWebmailRecoveryEmail(email);
   const token = encryptWebmailSession(creds);
   const cookieStore = await cookies();
   cookieStore.set(WEBMAIL_COOKIE, token, {
@@ -74,6 +76,7 @@ export async function POST(request: Request) {
     email: creds.email,
     imapHost: creds.imapHost,
     smtpHost: creds.smtpHost,
+    needsRecoveryEmail,
   });
 }
 
