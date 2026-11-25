@@ -310,12 +310,25 @@ export async function allowWebmailPasswordResetRetry(
   ]);
 }
 
+type CPanelResponse = { status?: number; result?: { status?: number } };
+
+function cPanelStatus(response: CPanelResponse | null) {
+  const direct = response?.status;
+  const wrapped = response?.result?.status;
+  const status = direct === undefined ? wrapped : direct;
+  if ((direct !== undefined && wrapped !== undefined && direct !== wrapped) ||
+      (status !== 0 && status !== 1)) {
+    throw new WebmailRecoveryProviderError('cPanel', 'unexpected API response');
+  }
+  return status;
+}
+
 export async function checkCPanelEmailAccess(config: RecoveryConfig) {
   try {
-    const response = await requestJson<{ result?: { status: number } }>(
+    const response = await requestJson<CPanelResponse>(
       'cPanel', `${config.cPanel}/execute/Email/get_default_email_quota`, config.cPanelAuth, undefined, 3000,
     );
-    if (response?.result?.status === 1) {
+    if (cPanelStatus(response) === 1) {
       console.info('Webmail recovery cPanel read-only email request succeeded');
     } else {
       console.warn('Webmail recovery cPanel read-only email request was rejected');
@@ -333,7 +346,7 @@ export async function resetRecoveryMailboxPassword(
   if (recoveryMailbox(mailbox) !== mailbox) throw new Error('Unmanaged mailbox');
   const [mailboxName] = mailbox.split('@');
   const form = new URLSearchParams({ email: mailboxName, domain: corporateDomain, password });
-  let response: { result?: { status: number } };
+  let response: CPanelResponse;
   try {
     response = await requestJson<typeof response>(
       'cPanel', `${config.cPanel}/execute/Email/passwd_pop`, config.cPanelAuth, form,
@@ -345,9 +358,5 @@ export async function resetRecoveryMailboxPassword(
     logWebmailRecoveryError('Webmail recovery password change denied', error);
     return 'denied';
   }
-  const status = response?.result?.status;
-  if (status !== 1 && status !== 0) {
-    throw new WebmailRecoveryProviderError('cPanel', 'unexpected password change response');
-  }
-  return status === 1 ? 'changed' : 'rejected';
+  return cPanelStatus(response) === 1 ? 'changed' : 'rejected';
 }
